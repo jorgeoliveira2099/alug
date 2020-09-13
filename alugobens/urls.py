@@ -1,20 +1,19 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import home, login, cadastro
-from products.views import create_product, update_product, delete_product
-
-app_name = 'products'
+from .views import cadastro
+from products import urls as products_urls
+from home import urls as home_urls
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-	path('', login),
-	path('login/', login),
-	path('cadastro/', cadastro),
+    path('', include(home_urls)),
+    path('login/', auth_views.LoginView.as_view(),  name='login'),
+    path('cadastro/', cadastro),
     path('admin/', admin.site.urls),
-    path('home/', home),
-	path('home/new', create_product, name='create_products'),
-    path('home/update/<int:id>/', update_product, name='update_product'),
-    path('home/delete/<int:id>/', delete_product, name='delete_product'),
-    
+    path('products/', include(products_urls)),
+
+
+
 ]
 
 
