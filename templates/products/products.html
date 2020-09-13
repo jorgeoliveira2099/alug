@@ -1,0 +1,52 @@
+{%  extends 'base.html'%}
+
+{% block title %} Lista de Produtos {% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div>
+
+        </div>
+
+        <div class="col-12">
+            <h3> Listagem de Produtos </h3>
+            <ul class="list-group">
+            {% for product in products %}
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-7">
+                           <p> {{ product.nome }} </p>
+                        </div>
+                        <div class="col-1">
+                            <a href="{% url 'delete_product' product.id %}" class="btn btn-danger">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="col-1">
+                            <a href="{% url 'update_product' product.id %}" class="btn btn-warning" >
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </li>
+            {% endfor %}
+
+            </ul>
+             </br>
+             <a href="{% url 'create_products' %}" class="btn btn-primary"> Cadastrar produto </a>
+        </div>
+
+        </div>
+
+    </form>
+{% endblock %}
+
+{% block footer %}
+  <footer class="footer">
+            <div class="container">
+            <span class="text-muted">Desenvolvimento Web Django</span>
+            </div>
+  </footer>
+
+{% endblock %}
