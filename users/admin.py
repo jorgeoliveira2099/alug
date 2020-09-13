@@ -9,8 +9,8 @@ from .models import MyUser
 
 class UserCreationForm(forms.ModelForm):
 
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+    password1 = forms.CharField(label='Senha', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Confirmar senha', widget=forms.PasswordInput)
 
     class Meta:
         model = MyUser
@@ -21,7 +21,7 @@ class UserCreationForm(forms.ModelForm):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
-            raise forms.ValidationError("Passwords don't match")
+            raise forms.ValidationError("As senhas não conferem!")
         return password2
 
     def save(self, commit=True):
