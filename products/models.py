@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Product(models.Model):
     nome = models.CharField(max_length=100)
     categoria = models.CharField(max_length=100)
