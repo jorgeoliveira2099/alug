@@ -4,4 +4,4 @@
 media
 .env
 venv
-*.migrations
+*migrations
