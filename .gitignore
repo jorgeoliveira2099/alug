@@ -2,5 +2,6 @@
 *.sqlite3
 *pyc
 media
+.env
 venv
 *migrations
