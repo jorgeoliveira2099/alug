@@ -1,7 +1,6 @@
 from django.http import HttpResponse
 
 from django.shortcuts import render, redirect, HttpResponseRedirect
-from usuarios.models import Usuario 
 
 from products.models import Product 
 
@@ -10,15 +9,7 @@ from products.forms import ProductForm
 def hello(request):
     return render(request, 'index.html')
 
-    # Create your views here.
-def index(request):
-    if request.method == 'POST':
-        usuarios = Usuario(usuario_nome=request.POST['usuario_nome'], usuario_senha=request.POST['usuario_senha'], usuario_email=request.POST['usuario_email'])
-        usuarios.save()
-        return redirect('/')
-    else:
-        return render(request, 'index.html')
- 
+
 def login(request):
     return render(request, 'login.html')
  

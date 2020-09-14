@@ -1,0 +1,14 @@
+{%  extends 'base.html'%}
+
+{% block title %} Confirmação de exclusão {% endblock %}
+
+{% block main %}
+    <h1> Tem certeza que deseja deletar o produto {{ product.nome }} ? </h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+         <a href="{% url 'list_products' %}" class="btn btn-info"> Voltar </a>
+        <button type="submit" class="btn btn-danger"> Deletar </button>
+
+    </form>
+{% endblock %}
