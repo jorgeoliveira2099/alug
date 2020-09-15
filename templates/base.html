@@ -3,29 +3,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
-    <link rel="stylesheet" href="{% static 'stick-footer.css' %}" >
-
-
- <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-            
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" >
 
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <nav class="cyan darken-4">
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Alugo</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a class="grey-text text-lighten-4 right" href="#">Contato</a></li>
-        <li><a class="grey-text text-lighten-4 right" href="#">Sobre nós</a></li>
-        <li><a class="grey-text text-lighten-4 right" href="#">Termos de Uso</a></li>
-      </ul>
+   <!-- Navigation -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'home' %}">Alugo</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a href="{% url 'list_products' user.id %}" class="nav-link"> Meus Produtos </a>
+
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'logout' %}">Sair</a>
+              </li>
+            {% else %}
+                <li class="nav-item">
+                      <a href="{% url 'login' %}" class="nav-link"> Entrar </a>
+                </li>
+                 <li class="nav-item">
+                      <a href="{% url 'cadastro' %}" class="nav-link"> Cadastro </a>
+                 </li>
+            {% endif %}
+        </ul>
+      </div>
     </div>
   </nav>
 
@@ -35,35 +49,15 @@
           {% endblock %}
         </div>
     </div>
-    {% block footer %}
-    {% endblock %}
 
 
-<footer class="page-footer cyan darken-4">
-          <div class="container">
-            <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">Alugo</h5>
-                <p class="grey-text text-lighten-4">Com o Alugo, você pode alugar os seus produtos preferidos.</p>
-              </div>
-              <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Redes Sociais</h5>
-                <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Instagram</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Facebook</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Twitter</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Linkedin</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="footer-copyright">
-            <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-            </div>
-          </div>
-        </footer>
-            
+<nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+      <a class="navbar-brand" href="{% url 'home' %}">Alugo</a>
+      </button>
+    </nav>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </body>
 </html>

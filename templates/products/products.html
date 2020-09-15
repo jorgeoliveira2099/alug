@@ -3,6 +3,7 @@
 {% block title %} Lista de Produtos {% endblock %}
 
 {% block main %}
+
     <div class="row">
         <div>
 
@@ -16,14 +17,15 @@
                     <div class="row">
                         <div class="col-7">
                            <p> {{ product.nome }} </p>
+                            <image src="{{ product.imagem.url }}" width="350" height="263" > </image>
                         </div>
                         <div class="col-1">
-                            <a href="{% url 'delete_product' product.id %}" class="btn btn-danger">
+                            <a href="{% url 'delete_product' product.id %}" class="btn btn-secondary" >
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </a>
                         </div>
                         <div class="col-1">
-                            <a href="{% url 'update_product' product.id %}" class="btn btn-warning" >
+                            <a href="{% url 'update_product' product.id %}" class="btn btn-secondary" >
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -34,19 +36,13 @@
 
             </ul>
              </br>
-             <a href="{% url 'create_products' %}" class="btn btn-primary"> Cadastrar produto </a>
+             <a href="{% url 'create_products' user.id %}" class="btn btn-secondary"> Cadastrar produto </a>
         </div>
 
         </div>
 
     </form>
-{% endblock %}
 
-{% block footer %}
-  <footer class="footer">
-            <div class="container">
-            <span class="text-muted">Desenvolvimento Web Django</span>
-            </div>
-  </footer>
 
 {% endblock %}
+
