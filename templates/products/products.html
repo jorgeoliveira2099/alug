@@ -16,18 +16,8 @@
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-7">
-                           <p> {{ product.nome }} </p>
-                            <image src="{{ product.imagem.url }}" width="350" height="263" > </image>
-                        </div>
-                        <div class="col-1">
-                            <a href="{% url 'delete_product' product.id %}" class="btn btn-secondary" >
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                        <div class="col-1">
-                            <a href="{% url 'update_product' product.id %}" class="btn btn-secondary" >
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                            </a>
+                           <a href="{% url 'detail_product' product.id %}"> <p> {{ product.nome }} </p> </a>
+                            <image src="{{ product.imagem.url }}" width="150" height="100" > </image>
                         </div>
 
                     </div>
@@ -40,9 +30,6 @@
         </div>
 
         </div>
-
-    </form>
-
 
 {% endblock %}
 

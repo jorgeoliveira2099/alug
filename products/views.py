@@ -33,9 +33,9 @@ def update_product(request, productId):
 
     if form.is_valid():
         form.save()
-        return redirect(reverse('list_products', kwargs={'userId': userId}))
+        return render(request, 'products/products-detail.html', {'product': product})
 
-    return render(request, 'products/products-form.html', {'form': form, 'product': product})
+    return render(request, 'products/products-alter-form.html', {'form': form, 'product': product})
 
 @login_required
 def delete_product(request, productId):
@@ -44,3 +44,8 @@ def delete_product(request, productId):
     product.delete()
     return redirect(reverse('list_products', kwargs={'userId': user.id}))
 
+@login_required
+def detail_product(request, productId):
+    product = get_object_or_404(Product, pk=productId)
+
+    return render(request, 'products/products-detail.html', {'product': product})
