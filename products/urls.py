@@ -3,7 +3,8 @@ from .views import (
     list_products,
     create_product,
     update_product,
-    delete_product
+    delete_product,
+    detail_product
 )
 
 
@@ -12,4 +13,5 @@ urlpatterns = [
     path('new/<int:userId>/', create_product, name='create_products'),
     path('update/<int:productId>/', update_product, name='update_product'),
     path('delete/<int:productId>/', delete_product, name='delete_product'),
+    path('detail/<int:productId>/', detail_product, name='detail_product'),
 ]
