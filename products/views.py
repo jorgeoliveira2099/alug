@@ -4,13 +4,19 @@ from django.contrib.auth.decorators import login_required
 from .models import Product
 from users.models import MyUser
 from .forms import ProductForm
-
+from .filters  import FilterCategory
 
 @login_required
 def list_products(request, userId):
     user = MyUser.objects.get(id=userId)
     products = user.product_set.all()
-    return render(request, 'products/products.html', {'products': products})
+
+    filtro = FilterCategory(request.GET, queryset=products)
+    products = filtro.qs
+    
+    context = {'products': products, 'filtro': filtro}
+
+    return render(request, 'products/products.html', context )
 
 @login_required
 def create_product(request, userId):
