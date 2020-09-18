@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
-from .models import Product
+from . import filters
+from .models import Product, Categoria
 from users.models import MyUser
 from .forms import ProductForm
 from .filters  import FilterCategory
@@ -34,25 +35,25 @@ def list_products(request, userId):
 
 @login_required
 def lista_products(request):    
-    products = Product.objects.all()
+    filtered_qs = filters.FilterCategory(
+            request.GET,
+            queryset=Product.objects.all()
+        ).qs
+    paginator = Paginator(filtered_qs, 2)
 
-    paginator = Paginator(products, 2)
-    page = request.GET.get('page', 1)
+    page = request.GET.get('page')
 
     try:
-        pagina = paginator.page(page)        
+        response = paginator.page(page)
     except PageNotAnInteger:
-        pagina = paginator.page(1) 
+        response = paginator.page(1)
     except EmptyPage:
-        pagina = paginator.page(paginator.num_pages)
+        response = paginator.page(paginator.num_pages)
     
+    filtro =  FilterCategory(request.GET, queryset=filtered_qs)
+    context = {'products': response, 'filtro': filtro}
 
-    filtro = FilterCategory(request.GET, queryset=products)
-    products = filtro.qs
-    
-    context = {'products': pagina, 'filtro': filtro, 'page':page}
-
-    return render(request, 'products/products.html', context )
+    return render(request, 'products/products.html', context)
 
 @login_required
 def create_product(request, userId):

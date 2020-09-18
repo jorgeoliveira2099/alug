@@ -15,9 +15,11 @@
                     {{ filtro.form }}
                     <input class="btn btn-secondary" type="submit" value="Pesquisar">
                     </form>
+                    
             </div>
         </div>
         <div class="col-12">
+            <a href="{% url 'create_products' user.id %}" class="btn btn-secondary"> Cadastrar produto </a>
             <h3> Listagem de Produtos </h3>
             <ul class="list-group">
             {% for product in products %}
@@ -33,8 +35,7 @@
             {% endfor %}
 
             </ul>
-             </br>
-             <a href="{% url 'create_products' user.id %}" class="btn btn-secondary"> Cadastrar produto </a>
+             </br>             
         </div>
 
         {% include 'products/pagination.html' with page=products %}
