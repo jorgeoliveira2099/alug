@@ -4,13 +4,8 @@
 
 {% block main %}
 
-   <button type="button" data-toggle="modal" data-target="#modal-exlusao" class="btn btn-secondary">
-        <i class="fa fa-trash" aria-hidden="true"></i>
-    </button>
-    <a href="{% url 'update_product' product.id %}" class="btn btn-secondary">
-        <i class="fa fa-pencil" aria-hidden="true"></i>
-    </a>
 
+  
 <br>
 <br>
 
@@ -26,25 +21,8 @@
 
 <p> Condições de Uso : {{ product.condicoesUso }} </p>
 
-    <!-- Modal -->
-    <div class="modal fade" id="modal-exlusao" tabindex="-1" role="dialog" aria-labelledby="modal-exclusão" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" >Exclusão</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Deseja mesmo excluir o produto?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal"> Fechar </button>
-            <a class="btn btn-secondary" href="{% url 'delete_product' product.id %}"> Sim </a>
-          </div>
-        </div>
-      </div>
-    </div>
+   <button type="button"class="btn btn-secondary"> Chat      
+    </button>
+    
 
 {% endblock %}

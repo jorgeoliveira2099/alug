@@ -5,16 +5,52 @@ from .models import Product
 from users.models import MyUser
 from .forms import ProductForm
 from .filters  import FilterCategory
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required
 def list_products(request, userId):
     user = MyUser.objects.get(id=userId)
     products = user.product_set.all()
 
+
+    paginator = Paginator(products, 2)
+
+    page = request.GET.get('page', 1)
+
+    try:
+        pagina = paginator.page(page)        
+    except PageNotAnInteger:
+        pagina = paginator.page(1) 
+    except EmptyPage:
+        pagina = paginator.page(paginator.num_pages)
+    
+
     filtro = FilterCategory(request.GET, queryset=products)
     products = filtro.qs
     
-    context = {'products': products, 'filtro': filtro}
+    context = {'products': pagina, 'filtro': filtro, 'page':page}
+
+    return render(request, 'products/my-products.html', context )
+
+@login_required
+def lista_products(request):    
+    products = Product.objects.all()
+
+    paginator = Paginator(products, 2)
+    page = request.GET.get('page', 1)
+
+    try:
+        pagina = paginator.page(page)        
+    except PageNotAnInteger:
+        pagina = paginator.page(1) 
+    except EmptyPage:
+        pagina = paginator.page(paginator.num_pages)
+    
+
+    filtro = FilterCategory(request.GET, queryset=products)
+    products = filtro.qs
+    
+    context = {'products': pagina, 'filtro': filtro, 'page':page}
 
     return render(request, 'products/products.html', context )
 
@@ -55,3 +91,9 @@ def detail_product(request, productId):
     product = get_object_or_404(Product, pk=productId)
 
     return render(request, 'products/products-detail.html', {'product': product})
+
+@login_required
+def my_detail_product(request, productId):
+    product = get_object_or_404(Product, pk=productId)
+
+    return render(request, 'products/my-products-detail.html', {'product': product})
