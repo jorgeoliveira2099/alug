@@ -1,27 +1,39 @@
 from django.db import models
+from cpf_field.models import CPFField
+from django.utils.timezone import now
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, email, password=None):
+    def create_user(self, email, first_name, last_name, date_of_birth, cpf, phone, password=None):
 
         if not email:
             raise ValueError('Users must have an email address')
 
         user = self.model(
             email=self.normalize_email(email),
+            first_name=first_name,
+            last_name=last_name,
+            date_of_birth=date_of_birth,
+            cpf=cpf,
+            phone=phone
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password=None):
+    def create_superuser(self, email, first_name, last_name, date_of_birth, cpf, phone, password=None):
 
         user = self.create_user(
             email,
             password=password,
+            first_name=first_name,
+            last_name=last_name,
+            date_of_birth=date_of_birth,
+            cpf=cpf,
+            phone=phone
         )
         user.is_admin = True
         user.save(using=self._db)
@@ -29,17 +41,47 @@ class MyUserManager(BaseUserManager):
 
 
 class MyUser(AbstractBaseUser):
+    first_name = models.CharField(
+        verbose_name='Nome',
+        max_length=50,
+        blank=False,
+        default=''
+    )
+    last_name = models.CharField(
+        verbose_name='Sobrenome',
+        max_length=50,
+        blank=False,
+        default=''
+    )
     email = models.EmailField(
         verbose_name='email',
         max_length=255,
         unique=True,
     )
+    date_of_birth = models.DateField(
+        verbose_name='Data de Nascimento',
+        blank=False,
+        default=now()
+    )
+    cpf = CPFField(
+        'cpf',
+        default='xxx.xxx.xxx-xx'
+    )
+
+    phone = models.CharField(
+        verbose_name='Telefone',
+        max_length=14,
+        blank=False,
+        default='(xx)xxxx-xxxx'
+    )
+
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
     objects = MyUserManager()
 
     USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'date_of_birth', 'cpf', 'phone']
 
     def __str__(self):
         return self.email
