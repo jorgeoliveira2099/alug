@@ -1,0 +1,22 @@
+{%  extends 'base.html'%}
+
+{%  load bootstrap %}
+
+{% block title %} Perfil {% endblock %}
+
+{% block main %}
+<body>
+<br>
+<div class="container">   
+    
+    <p>Preencha seu Endereço</p>
+
+       <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+   {{ form|bootstrap }}
+   <button type="submit" class="btn btn-secondary"> Salvar </button>
+         </form>
+    </div>
+    
+</body>
+{% endblock %}

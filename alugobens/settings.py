@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django_filters',
     'users',
     'products',
+    'address',
 ]
 
 MIDDLEWARE = [
