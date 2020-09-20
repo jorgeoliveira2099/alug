@@ -5,7 +5,7 @@ from . import filters
 from .models import Product, Categoria
 from users.models import MyUser
 from .forms import ProductForm
-from .filters  import FilterCategory
+from .filters import FilterCategory
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required
@@ -50,7 +50,7 @@ def lista_products(request):
     except EmptyPage:
         response = paginator.page(paginator.num_pages)
     
-    filtro =  FilterCategory(request.GET, queryset=filtered_qs)
+    filtro = FilterCategory(request.GET, queryset=filtered_qs)
     context = {'products': response, 'filtro': filtro}
 
     return render(request, 'products/products.html', context)
@@ -72,7 +72,6 @@ def create_product(request, userId):
 def update_product(request, productId):
     product = get_object_or_404(Product, pk=productId)
     form = ProductForm(request.POST or None, request.FILES or None, instance=product)
-    userId = product.user.id
 
     if form.is_valid():
         form.save()
