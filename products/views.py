@@ -13,7 +13,6 @@ def list_products(request, userId):
     user = MyUser.objects.get(id=userId)
     products = user.product_set.all()
 
-
     paginator = Paginator(products, 2)
 
     page = request.GET.get('page', 1)

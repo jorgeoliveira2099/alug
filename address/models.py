@@ -20,3 +20,10 @@ class Dados_usuario(models.Model):
 
     def __str__(self):
         return self.nome
+
+    @property
+    def get_photo_url(self):
+        if self.foto and hasattr(self.foto, 'url'):
+            return self.foto.url
+        else:
+            return "/static/images/user.png"

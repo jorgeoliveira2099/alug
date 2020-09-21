@@ -1,0 +1,9 @@
+.fotoPerfil{
+   width: 200px;
+   height: 200px;
+   background-color: #000;
+   color: #FFF;
+
+   /* Agora a mágica */
+   border-radius: 50%;
+}

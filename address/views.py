@@ -11,11 +11,12 @@ def alterar_perfil(request,userId):
     except ObjectDoesNotExist:
         perfil = Dados_usuario()
     form = Dados_usuarioForm(request.POST or None, request.FILES or None, instance=perfil)
-
+    perfil = form.save(commit=False)
+    print(perfil.get_photo_url)
     if form.is_valid():
         dados_usuario = form.save(commit=False)
         dados_usuario.user = user
         dados_usuario.save()
         return redirect(reverse('perfil', kwargs={'userId': user.id}))
 
-    return render(request, 'user/perfil.html', {'form': form})
+    return render(request, 'user/perfil.html', {'form': form, 'perfil': perfil})
