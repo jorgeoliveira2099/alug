@@ -6,6 +6,14 @@
 
 <h1> Bem vindo! </h1>
 
+     <div>
+               {% for message in messages %}
+               <div class="alert alert-info">
+                   {{ message }}
+               </div>
+               {% endfor %}
+           </div>
+
 {% endblock %}
 
 

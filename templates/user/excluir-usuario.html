@@ -1,0 +1,37 @@
+{%  extends 'base.html'%}
+
+{%  load bootstrap %}
+
+{% block title %} Perfil {% endblock %}
+
+{% block main %}
+<body>
+<br>
+<div class="container">   
+    
+<h3> Excluir Usuario </h3>
+
+    <p> Informe sua senha para excluir a conta </p>
+
+       <form method="POST" action="submit" enctype="multipart/form-data">
+           {% csrf_token %}
+
+           <input type="password" id="senha" name="senha"/>
+
+           <div>
+               {% for message in messages %}
+               <div class="alert alert-danger">
+                   <strong> Error! </strong> {{ message }}
+
+               </div>
+
+               {% endfor %}
+
+                <button type="submit" class="btn btn-secondary">Excluir</button>
+           </div>
+
+       </form>
+    </div>
+    
+</body>
+{% endblock %}
