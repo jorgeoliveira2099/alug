@@ -1,6 +1,6 @@
 from django.db import models
 from users.models import MyUser
-
+from django.urls import reverse
 
 class Categoria(models.Model):
     descricao = models.CharField(max_length=100, verbose_name="Descricao")
@@ -16,9 +16,13 @@ class Product(models.Model):
     condicoesUso = models.TextField(verbose_name="Condições de uso")
     imagem = models.ImageField(null=True, blank=True, verbose_name="Imagem")
     user = models.ForeignKey(MyUser, null=True, blank=True, on_delete=models.CASCADE)
+    favourite = models.ManyToManyField(MyUser, related_name='favourite', blank=True)
 
     def __str__(self):
         return self.descricao
+
+    def get_absolute_url(self):
+        return reverse('favourite_products', kwargs={'id':self.user.id})
 
 
 

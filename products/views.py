@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
+from django.http import HttpResponse, HttpResponseRedirect 
+
 from . import filters
 from .models import Product, Categoria
 from users.models import MyUser
@@ -86,13 +88,53 @@ def delete_product(request, productId):
     return redirect(reverse('list_products', kwargs={'userId': user.id}))
 
 @login_required
-def detail_product(request, productId):
-    product = get_object_or_404(Product, pk=productId)
+def detail_product(request, id):
+    product = get_object_or_404(Product, pk=id)
+    
+    #se der merda. apagar isso
+    is_favourite = False
+    if product.favourite.filter(id=request.user.id).exists():
+       
+       is_favourite = True
 
-    return render(request, 'products/products-detail.html', {'product': product})
+#até aqui
+    return render(request, 'products/products-detail.html', {'is_favourite': is_favourite, 'product': product})
 
 @login_required
 def my_detail_product(request, productId):
     product = get_object_or_404(Product, pk=productId)
 
     return render(request, 'products/my-products-detail.html', {'product': product})
+
+#se der merda, apaga só aqui
+@login_required
+def favourite_products(request, id):
+    product = get_object_or_404(Product, id=id)
+    #user = request.user
+ 
+    if product.favourite.filter(id=request.user.id).exists():
+        product.favourite.remove(request.user)
+        print('removeu')
+    else:
+        product.favourite.add(request.user)
+        print('adiciounou')
+    print('cima')
+    
+    print('baixo')
+
+    #return HttpResponseRedirect(product.get_absolute_url(), 'products/products-detail.html')
+    return render(request, 'products/products-detail.html', {'product':product})
+
+
+@login_required
+def products_favourite_list(request):    
+    user = request.user
+    favourite_products = user.favourite.all()
+
+    context = {
+        'favourite_products': favourite_products,
+
+    }
+    #return render(request, 'products/products-detail.html', context)
+    return render(request, 'products/products_favourite_list.html', context)
+#    return render(request, 'products/products-detail.html', {'product': product})

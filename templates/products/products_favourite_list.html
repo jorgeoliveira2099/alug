@@ -1,0 +1,41 @@
+{%  extends 'base.html'%}
+
+{% block title %} Favoritos {% endblock %}
+
+{% block main %}
+
+
+<div class="col-12">
+            
+            <h3> Favoritos </h3>
+
+            <ul class="list-group">
+
+            {% for product in favourite_products %}
+
+                <li class="list-group-item">
+
+                    <div class="row">
+                        <div class="col-7">
+                           <a href="{% url 'detail_product' product.id %}"> <p> {{ product.nome }} </p> </a>
+                            <image src="{{ product.imagem.url }}" width="150" height="100" > </image>
+                        </div>
+                    </div>
+                </li>
+ 			</ul>
+ 			{% empty %}
+ 			<h4>Você ainda não adicionou produtos aos favoritos!</h4>
+
+            {% endfor %}
+
+           
+
+
+
+             </br>             
+        </div>
+
+        
+         
+
+{% endblock %}

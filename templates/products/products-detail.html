@@ -9,6 +9,20 @@
 <br>
 <br>
 
+<div>
+	{% if is_favourite %}
+	<a href="{% url 'favourite_products' id=product.id %}">
+		<i class="fas fa-heart fa-lg"></i>
+	</a>
+	{% else %}
+	<a href="{% url 'favourite_products' id=product.id %}">
+		<i class="far fa-heart fa-lg"></i>
+	</a>
+	{% endif %}
+
+</div>
+
+
 <h3> {{ product.nome }} </h3>
 
 <image src="{{ product.imagem.url }}" width="150" height="100"></image>
