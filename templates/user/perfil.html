@@ -13,6 +13,16 @@
 
      <image src="{{ perfil.get_photo_url }}" class="img-thumbnail fotoPerfil"> </image>
 
+    <div>
+        {% for message in messages %}
+               <div class="alert alert-danger">
+                   <strong> Error! </strong> {{ message }}
+
+               </div>
+
+               {% endfor %}
+    </div>
+
        <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
    {{ form|bootstrap }}
