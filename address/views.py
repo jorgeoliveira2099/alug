@@ -17,6 +17,7 @@ def alterar_perfil(request,userId):
         dados_usuario = form.save(commit=False)
         dados_usuario.user = user
         dados_usuario.save()
+        messages.info(request, 'Dados salvos com sucesso!')
         return redirect(reverse('perfil', kwargs={'userId': user.id}))
 
     return render(request, 'user/perfil.html', {'form': form, 'perfil': perfil})

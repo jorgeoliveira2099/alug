@@ -9,7 +9,7 @@ class Dados_usuario(models.Model):
     sobrenome = models.CharField(null=True, blank=True, max_length=255)
     data_nascimento = models.DateField(null=True, blank=True, verbose_name='Data de Nascimento')
     telefone = models.CharField(null=True, blank=True, max_length=12)
-    cep = models.CharField(null=True, blank=True, max_length=8, unique=True)
+    cep = models.CharField(null=True, blank=True, max_length=10, unique=True)
     cidade = models.CharField(null=True, blank=True, max_length=255)
     estado = models.CharField(null=True, blank=True, max_length=2)
     rua = models.CharField(null=True, blank=True, max_length=255)
