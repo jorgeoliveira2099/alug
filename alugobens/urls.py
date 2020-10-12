@@ -8,6 +8,9 @@ from home import urls as home_urls
 from users import urls as users_urls
 from address import urls as addres_urls
 
+#from Chat import urls as chat_urls
+#from Chat.views import (    room)
+
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -17,6 +20,9 @@ urlpatterns = [
     path('products/', include(products_urls)),
     path('users/', include(users_urls)),
 
+    path('chat/', include('Chat.urls')),
+    #path('chat/', include(chat_urls)),
+    #path('chat/', room, name='room'),
    
     #reset password
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='password_reset_form.html'),name='password_reset'),

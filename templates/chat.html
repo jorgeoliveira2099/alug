@@ -1,0 +1,21 @@
+
+{%  extends 'base.html'%}
+{% load static %}
+{% block title %} Chat Home{% endblock %}
+
+{% block main %}
+
+    <textarea id="chat-text" readonly="readonly" cols="80" rows="30"></textarea><br>
+    <input type="text" id="input" size="80"><br>
+    <input id="submit" type="button" value="Enviar" >
+
+
+{{user}}
+
+{{ room_name|json_script:"room-name" }}
+{{ request.user.name|json_script:"user_username" }}
+
+
+<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+{% endblock %}
+

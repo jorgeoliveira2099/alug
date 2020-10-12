@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'users',
     'products',
     'address',
+    'Chat',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -137,3 +139,11 @@ STATICFILES_DIRS = [
 ]
 
 AUTH_USER_MODEL = "users.MyUser"
+
+ASGI_APPLICATION = 'alugobens.routing.application'
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
+
