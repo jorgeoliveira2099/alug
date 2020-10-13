@@ -8,6 +8,8 @@ const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
     document.querySelector('#submit').onclick = function(e){
         const messageInputDom = document.querySelector('#input');
+        const identificador = document.querySelector('#identificador');
+        const user_username = identificador.value
         const message = messageInputDom.value;
 
         chatSocket.send(JSON.stringify({
