@@ -41,11 +41,27 @@ def criarSala(request, idLocatario, idLocador, idProduto):
 
 
 def room(request, room_name, userId):
-    chat = Chat.objects.get(codigoSala=room_name)
+    identificador = ''
+
+    user = MyUser.objects.get(id=userId)
+    try:
+        perfil = Dados_usuario.objects.get(user=user)
+    except ObjectDoesNotExist:
+        perfil = Dados_usuario()
+
+    try:
+        chat = Chat.objects.get(codigoSala=room_name)
+    except ObjectDoesNotExist:
+        return render(request, 'home/home.html')
+
+    if perfil.nome == None or perfil.sobrenome == None:
+        identificador = user.email
+    else:
+        identificador = perfil.nome + " " + perfil.sobrenome
 
     if chat.locatario == userId or chat.locatario == userId:
         return render(request, 'chat.html', {
-            'room_name': room_name
+            'room_name': room_name, 'identificador': identificador
         })
 
     return render(request, 'home/home.html')
