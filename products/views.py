@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from django.http import HttpResponse, HttpResponseRedirect 
 
@@ -76,7 +77,8 @@ def update_product(request, productId):
 
     if form.is_valid():
         form.save()
-        return render(request, 'products/products-detail.html', {'product': product})
+        messages.info(request, 'Produto alterado com sucesso!')
+        return render(request, 'products/my-products-detail.html', {'product': product})
 
     return render(request, 'products/products-alter-form.html', {'form': form, 'product': product})
 
@@ -85,6 +87,7 @@ def delete_product(request, productId):
     product = Product.objects.get(id=productId)
     user = product.user
     product.delete()
+    messages.info(request, 'Produto excluido com sucesso!')
     return redirect(reverse('list_products', kwargs={'userId': user.id}))
 
 @login_required

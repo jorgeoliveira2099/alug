@@ -15,6 +15,18 @@
 <br>
 <br>
 
+<div>
+        {% for message in messages %}
+               <div class="alert alert-success alert-dismissible fade show" role="alert">
+                   {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+               {% endfor %}
+    </div>
+
 <h3> {{ product.nome }} </h3>
 
 <image src="{{ product.imagem.url }}" width="150" height="100"></image>

@@ -10,7 +10,7 @@ from address.models import Dados_usuario
 
 def index(request):
     #title: 'Meu chat'
-    return render(request, 'main.html', {})
+    return render(request, 'chat/main.html', {})
 
 def criarSala(request, idLocatario, idLocador, idProduto):
     produto = Product.objects.get(id=idProduto)
@@ -37,7 +37,7 @@ def criarSala(request, idLocatario, idLocador, idProduto):
     else:
         identificador = perfil.nome + " " + perfil.sobrenome
 
-    return render(request, 'chat.html', {'room_name': chat.codigoSala, 'identificador': identificador})
+    return render(request, 'chat/chat.html', {'room_name': chat.codigoSala, 'identificador': identificador})
 
 
 def room(request, room_name, userId):
@@ -60,7 +60,7 @@ def room(request, room_name, userId):
         identificador = perfil.nome + " " + perfil.sobrenome
 
     if chat.locatario == userId or chat.locatario == userId:
-        return render(request, 'chat.html', {
+        return render(request, 'chat/chat.html', {
             'room_name': room_name, 'identificador': identificador
         })
 
