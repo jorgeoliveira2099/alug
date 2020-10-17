@@ -42,6 +42,9 @@
 
                     </div>
                 </li>
+                 {% empty %}
+            <h4>Você ainda não adicionou um produto!</h4>
+
             {% endfor %}
 
             </ul>
@@ -50,6 +53,9 @@
         </div>
 
         {% include 'products/pagination.html' with page=products %}
+
+       
+
         </div>
 
 {% endblock %}

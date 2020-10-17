@@ -19,5 +19,19 @@ def alterar_perfil(request,userId):
         dados_usuario.save()
         messages.info(request, 'Dados salvos com sucesso!')
         return redirect(reverse('perfil', kwargs={'userId': user.id}))
-
-    return render(request, 'user/perfil.html', {'form': form, 'perfil': perfil})
+    
+    #aqui o usuario logado
+    usuarioLogado = request.user.id
+    #aqui, o usuario da url
+    usu = MyUser.objects.get(id=user.id)
+    usuarioDaUrl = usu.id
+    #print('usuario logado')
+    #print(usuarioLogado)
+    #print('usuario da url')
+    #print(usuarioDaUrl)
+    if usuarioLogado != usuarioDaUrl:
+        #print('diferentres')
+        return render(request, 'home/home.html')
+    else:
+        #print('iguais')
+        return render(request, 'user/perfil.html', {'form': form, 'perfil': perfil})

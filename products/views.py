@@ -16,6 +16,16 @@ def list_products(request, userId):
     user = MyUser.objects.get(id=userId)
     products = user.product_set.all()
 
+    #aqui o usuario logado
+    #print(request.user.id)
+    
+    #print('usuario logado acima, e abaixo, o id do usuario pelo parametro')
+    
+    #aqui, o usuario da url
+    usu = MyUser.objects.get(id=userId)
+    #print(usu.id)
+    
+
     paginator = Paginator(products, 2)
 
     page = request.GET.get('page', 1)
@@ -32,8 +42,13 @@ def list_products(request, userId):
     products = filtro.qs
     
     context = {'products': pagina, 'filtro': filtro, 'page':page}
-
-    return render(request, 'products/my-products.html', context )
+    
+    if request.user.id != usu.id:
+        #print('diferentes')
+        return render(request, 'home/home.html')
+    else:
+        #print('iguais')
+        return render(request, 'products/my-products.html', context )
 
 @login_required
 def lista_products(request):    
@@ -106,8 +121,21 @@ def detail_product(request, id):
 @login_required
 def my_detail_product(request, productId):
     product = get_object_or_404(Product, pk=productId)
-
-    return render(request, 'products/my-products-detail.html', {'product': product})
+    #usuario logado
+    user = request.user
+    usuarioLogado = user.id
+    #aqui, o usuario da url
+    usu = MyUser.objects.get(id=product.user.id)
+    usuarioQueCadastrou = usu.id
+    #print('id DO usuario logado')    
+    #print(usuarioLogado)
+    #print('id do usuario que cadastrou')
+    #print(usu.id)    
+    
+    if usuarioLogado != usuarioQueCadastrou:
+        return render(request, 'home/home.html')
+    else:  
+        return render(request, 'products/my-products-detail.html', {'product': product})
 
 #se der merda, apaga só aqui
 @login_required
@@ -117,13 +145,13 @@ def favourite_products(request, id):
  
     if product.favourite.filter(id=request.user.id).exists():
         product.favourite.remove(request.user)
-        print('removeu')
+        #print('removeu')
     else:
         product.favourite.add(request.user)
-        print('adiciounou')
-    print('cima')
+        #print('adiciounou')
+    #print('cima')
     
-    print('baixo')
+    #print('baixo')
 
     #return HttpResponseRedirect(product.get_absolute_url(), 'products/products-detail.html')
     return render(request, 'products/products-detail.html', {'product':product})
