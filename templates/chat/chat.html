@@ -5,12 +5,19 @@
 
 {% block main %}
 
-    <textarea id="chat-text" readonly="readonly" cols="80" rows="30"></textarea><br>
-    <input type="text" id="input" size="80"><br>
-    <input id="submit" type="button" value="Enviar" >
+    <form method="POST" action="submit" enctype="multipart/form-data">
 
+        {% csrf_token %}
 
-<output id="identificador"> {{ identificador }} </output>
+        <textarea id="chat-text" readonly="readonly" cols="80" rows="30">{{ mensagems }}</textarea>
+
+        <br>
+
+        <input type="text" id="mensagem" name="mensagem" size="80"><br>
+        <button type="submit" id="submit">Enviar</button>
+        <output id="identificador"> {{ identificador }} </output>
+
+        </form>
 
 {{ room_name|json_script:"room-name" }}
 {{ request.user.name|json_script:"user_username" }}

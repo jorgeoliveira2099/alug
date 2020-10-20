@@ -1,0 +1,23 @@
+
+{%  extends 'base.html'%}
+
+{% block title %} Chat Home{% endblock %}
+
+{% block main %}
+
+        {% for chat in chats %}
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-7">
+                            <a href="{% url 'room' chat.codigoSala user.id %}">  {{ chat.nomeSala }} </a>
+                        </div>
+
+                    </div>
+                </li>
+                 {% empty %}
+            <h4>Você ainda não tem chats!</h4>
+
+            {% endfor %}
+ 
+{% endblock %}
+
