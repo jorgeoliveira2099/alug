@@ -7,7 +7,7 @@ const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
 
     document.querySelector('#submit').onclick = function(e){
-        const messageInputDom = document.querySelector('#input');
+        const messageInputDom = document.querySelector('#mensagem');
         const identificador = document.querySelector('#identificador');
         const user_username = identificador.value
         const message = messageInputDom.value;
@@ -17,7 +17,6 @@ const roomName = JSON.parse(document.getElementById('room-name').textContent);
             'username': user_username,
         }));
 
-        messageInputDom.value = '';
     };
 
 
@@ -31,11 +30,10 @@ const chatSocket = new WebSocket(
     '/'
 );
 
-
+mensagem
 chatSocket.onmessage = function(e){
     const data = JSON.parse(e.data);
-   
-  
+
     document.querySelector('#chat-text').value += (data.username +': ' + data.message + '\n')
 
 

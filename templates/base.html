@@ -27,6 +27,10 @@
         <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
             <li class="nav-item">
+                <a href="{% url 'meusChats' %}" class="nav-link"> Meus Chats </a>
+              </li>
+
+            <li class="nav-item">
                 <a href="{% url 'lista_products' %}" class="nav-link"> Produtos </a>
               </li>
 
