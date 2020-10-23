@@ -7,6 +7,13 @@ from alugobens.util import gerarHash
 from users.models import MyUser
 from address.models import Dados_usuario
 
+#teste
+from django.http import HttpResponse, HttpResponseRedirect
+from django.views import View
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.urls import reverse_lazy
+
 def criarSala(request, idLocatario, idLocador):
     user = MyUser.objects.get(id=idLocador)
     try:
@@ -160,4 +167,72 @@ def meusChats(request):
     return render(request, 'chat/meus-chats.html', {'chats': chats})
 
 
+
+def exportarpdf(request, room_name, userId):
+    user = MyUser.objects.get(id=userId)
+    chat = Chat.objects.get(codigoSala=room_name)
+    try:
+        perfil = Dados_usuario.objects.get(user=user)
+    except ObjectDoesNotExist:
+        perfil = Dados_usuario()
+
+    try:
+        chat = Chat.objects.get(codigoSala=room_name)
+    except ObjectDoesNotExist:
+        return render(request, 'home/home.html')
+
+    if perfil.nome == None or perfil.sobrenome == None:
+        identificador = user.email
+    else:
+        identificador = perfil.nome + " " + perfil.sobrenome
+
+    if chat.locatario == str(userId) or chat.locador == str(userId):
+        mensagensChat = chat.mensagem_set.all()
+        mensagens = ''
+
+        for mensagemChat in mensagensChat:
+            mensagens += mensagemChat.texto + "\n"
+
+    #ddaqui para baixo funciona
+    
+    usuario = 1
+    try:
+        template = get_template('chat/chat2.html')
+        context = {'mensagems': mensagens, 'room_name': chat.codigoSala, 'user.id': user.id,'title': 'chhat'}
+        html = template.render(context)
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="chat.pdf"'
+        pisaStatus = pisa.CreatePDF(html, dest=response)
+
+        return response
+    except:
+        pass
+    return HttpResponseRedirect(reverse_lazy('meusChats'))
+    #user = MyUser.objects.get(id=userId)
+    #try:
+     #   perfil = Dados_usuario.objects.get(user=user)
+    #except ObjectDoesNotExist:
+     #   perfil = Dados_usuario()
+
+    #try:
+     #   chat = Chat.objects.get(codigoSala=room_name)
+    #except ObjectDoesNotExist:
+     #   return render(request, 'home/home.html')
+
+  #  if perfil.nome == None or perfil.sobrenome == None:
+     #   identificador = user.email
+   # else:
+   #     identificador = perfil.nome + " " + perfil.sobrenome
+
+   # if chat.locatario == str(userId) or chat.locador == str(userId):
+     #   mensagensChat = chat.mensagem_set.all()
+      #  mensagens = ''
+
+     #   for mensagemChat in mensagensChat:
+        #    mensagens += mensagemChat.texto + "\n"
+
+     #   return render(request, 'chat/chat.html',
+        #              {'room_name': chat.codigoSala, 'identificador': identificador, 'mensagems': mensagens})
+
+   # return render(request, 'home/home.html')
 

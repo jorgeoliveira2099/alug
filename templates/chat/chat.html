@@ -5,6 +5,8 @@
 
 {% block main %}
 
+<a href="{% url 'exportarpdf' room_name user.id %}"> Exportar Conversa </a>
+
     <form method="POST" action="submit" enctype="multipart/form-data">
 
         {% csrf_token %}
