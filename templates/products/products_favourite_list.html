@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="col-7">
                            <a href="{% url 'detail_product' product.id %}"> <p> {{ product.nome }} </p> </a>
-                            <image src="{{ product.imagem.url }}" width="150" height="100" > </image>
+                            <image src="{{ product.get_photo_url }}" width="150" height="100" > </image>
                         </div>
                     </div>
                 </li>

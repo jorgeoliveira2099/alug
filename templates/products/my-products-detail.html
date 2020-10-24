@@ -29,7 +29,7 @@
 
 <h3> {{ product.nome }} </h3>
 
-<image src="{{ product.imagem.url }}" width="150" height="100"></image>
+<image src="{{ product.get_photo_url }}" width="150" height="100"></image>
 
 <p> Descrição : {{ product.descricao }} </p>
 

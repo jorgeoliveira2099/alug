@@ -24,6 +24,13 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('favourite_products', kwargs={'id':self.user.id})
 
+    @property
+    def get_photo_url(self):
+        if self.imagem and hasattr(self.imagem, 'url'):
+            return self.imagem.url
+        else:
+            return "/static/images/imagemNaodisponivel.png"
+
 
 
 
