@@ -1,25 +1,54 @@
 {%  extends 'base.html'%}
+{% load static %}
 {% load bootstrap %}
 
 {% block title %} Pagina de login {% endblock %}
 
 {% block main %}
-    <h2>Login</h2>
-    <form method="post">
+
+<section class="container" style="margin-top: 150px;">
+  <div class="row justify-content-center" style="color: rgb(74, 74, 74); font-weight: bold;">
+    <div class="col-12 col-lg-6 bg-white px-5 pt-4 pb-5 box-shadow" style="border-radius: 40px;">
+      <div class="text-center">
+        <div class="mb-2">
+          <img src="{% static 'images/alugoicone60x60.png' %}" alt="">
+        </div>
+        <h3>Acesse a sua conta</h3>
+      </div>
+      <form method="post">
         {% csrf_token %}
         {{ form|bootstrap }}
-        <button type="submit" class="btn btn-secondary"> Login </button>
+        <button type="submit" class="btn btn-primary botao-redondo btn-block"> Login </button>
+        <div class="text-right mt-3">
+          <a href="{% url 'password_reset' %}"> Esqueceu sua senha?</a>
+        </div>
+      </form>
+      <div class="mt-4" style="border-top: 1px solid rgba(0, 0, 0, .2);">
+        <div class="text-center mt-4">
+          <h6>Não tem uma conta?</h6>
+          <a href="{% url 'cadastro' %}">Cadastre-se</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-3">
+    <div class="col-12 col-lg-6 text-center">
+      <span style="font-size: 13px; color: #A9A9A9; font-weight: normal;">
+        Ao continuar, você concorda com os Termos de Uso e a Política de Privacidade da Alugo.
+      </span>
+    </div>
+  </div>
+</section>
 
-    </form>
-   
-   <a href="{% url 'password_reset' %}"> Esqueci a senha </a>
+
+
 {% endblock %}
 
 {% block footer %}
-  <footer class="footer">
-            <div class="container">
-            <span class="text-muted">Desenvolvimento Web Django</span>
-            </div>
-  </footer>
+<footer class="footer">
+  <div class="container">
+    <span class="text-muted">Desenvolvimento Web Django</span>
+  </div>
+</footer>
 
 {% endblock %}

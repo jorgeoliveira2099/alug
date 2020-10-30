@@ -1,9 +1,22 @@
 .fotoPerfil{
-   width: 200px;
-   height: 200px;
+   width: 150px;
+   height: 150px;
    background-color: #000;
    color: #FFF;
 
    /* Agora a mágica */
    border-radius: 50%;
 }
+
+.inicio {
+   margin-top: 150px;
+ }
+
+ .box-shadow {
+   box-shadow: 0 2px 4px 0 rgba(0,0,0,.05),
+               0 2px 8px 0 rgba(0,0,0,.05);
+ }
+
+ .botao-redondo {
+    border-radius: 50px;
+ }
