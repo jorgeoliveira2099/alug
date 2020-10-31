@@ -1,16 +1,45 @@
 {%  extends 'base.html'%}
+{% load static %}
 
 {%  load bootstrap %}
 
 {% block title %} Cadastro {% endblock %}
 
 {% block main %}
-   <body>
-   <h3> Cadastre-se </h3>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form|bootstrap }}
-        <button type="submit" class="btn btn-secondary"> Registrar </button>
 
-    </form>
-{% endblock %}
+<body class="bg-light">
+    <section class="container inicio">
+        <div class="row justify-content-center" style="color: rgb(74, 74, 74); font-weight: bold;">
+            <div class="col-12 col-lg-6 bg-white px-5 pt-4 pb-5 box-shadow" style="border-radius: 40px;">
+                <div class="text-center">
+                    <div class="mb-2">
+                        <img src="{% static 'images/alugoicone60x60.png' %}" alt="">
+                    </div>
+                    <h3>Crie a sua conta</h3>
+                </div>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|bootstrap }}
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary btn-block botao-redondo"> Cadastre-se
+                        </button>
+                    </div>
+                </form>
+                <div class="mt-4" style="border-top: 1px solid rgba(0, 0, 0, .2);">
+                    <div class="text-center mt-4">
+                        <h6>Já tem uma conta?</h6>
+                        <a href="{% url 'login' %}">Entrar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <div class="col-12 col-lg-6 text-center">
+                <span style="font-size: 13px; color: #A9A9A9; font-weight: normal;">
+                    Ao continuar, você concorda com os Termos de Uso e a Política de Privacidade da Alugo.
+                </span>
+            </div>
+        </div>
+    </section>
+
+    {% endblock %}
