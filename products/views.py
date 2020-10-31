@@ -2,12 +2,11 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from django.http import HttpResponse, HttpResponseRedirect 
 
 from . import filters
-from .models import Product, Categoria
+from .models import Product
 from users.models import MyUser
-from .forms import ProductForm
+from .forms import ProductForm, DenunciaForm
 from .filters import FilterCategory
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -18,13 +17,13 @@ def list_products(request, userId):
 
     #aqui o usuario logado
     #print(request.user.id)
-    
+
     #print('usuario logado acima, e abaixo, o id do usuario pelo parametro')
-    
+
     #aqui, o usuario da url
     usu = MyUser.objects.get(id=userId)
     #print(usu.id)
-    
+
 
     paginator = Paginator(products, 2)
 
@@ -169,3 +168,21 @@ def products_favourite_list(request):
     #return render(request, 'products/products-detail.html', context)
     return render(request, 'products/products_favourite_list.html', context)
 #    return render(request, 'products/products-detail.html', {'product': product})
+
+@login_required
+def denunciar(request, productId):
+    form = DenunciaForm(request.POST or None)
+    user = request.user
+    produto = Product.objects.get(id=productId)
+
+    if form.is_valid():
+        denuncia = form.save(commit=False)
+        denuncia.user = user
+        denuncia.produto = produto
+        denuncia.save()
+        messages.info(request, 'Agradecemos pela sua boa '
+                               'vontade de manter a nossa plataforma mais acolhedora '
+                               'e iremos avaliar esse caso!')
+        return redirect(reverse('denuncia', kwargs={'productId': produto.id}))
+
+    return render(request, 'products/denuncia.html', {'form': form, 'productId': produto.id})

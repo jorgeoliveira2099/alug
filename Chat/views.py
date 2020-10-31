@@ -25,7 +25,7 @@ def criarSala(request, idLocatario, idLocador):
         chat = Chat.objects.get(locador=idLocador, locatario=idLocatario)
     except ObjectDoesNotExist:
         chat = Chat()
-        chat.codigoSala = gerarHash(50)
+        chat.codigoSala = gerarHash(20)
         chat.locatario = idLocatario
         chat.locador = idLocador
         chat.save()

@@ -1,6 +1,5 @@
 from django.urls import path
 
-from django.conf.urls import include, url
 
 from .views import (
     my_detail_product,
@@ -9,9 +8,10 @@ from .views import (
     create_product,
     update_product,
     delete_product,
-    detail_product
-    ,favourite_products,
-    products_favourite_list
+    detail_product,
+    favourite_products,
+    products_favourite_list,
+    denunciar
 )
 
 
@@ -21,6 +21,7 @@ urlpatterns = [
     path('new/<int:userId>/', create_product, name='create_products'),
     path('update/<int:productId>/', update_product, name='update_product'),
     path('delete/<int:productId>/', delete_product, name='delete_product'),
+    path('denuncia/<int:productId>/', denunciar, name='denuncia'),
     
     path('detail/<int:id>/', detail_product, name='detail_product'),
 

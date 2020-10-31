@@ -31,6 +31,13 @@ class Product(models.Model):
         else:
             return "/static/images/imagemNaodisponivel.png"
 
+class Denuncia(models.Model):
+    motivo = models.CharField(max_length=100, verbose_name="Motivo")
+    descricao = models.TextField(verbose_name="Descrição")
+    produto = models.ForeignKey(Product, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(MyUser, null=True, blank=True, on_delete=models.CASCADE)
+
+
 
 
 
