@@ -6,8 +6,9 @@ from users.models import MyUser
 from .models import Dados_usuario
 
 
-def alterar_perfil(request,userId):
+def alterar_perfil(request, userId):
     user = MyUser.objects.get(id=userId)
+    alterar = 'sim'
     try:
         perfil = Dados_usuario.objects.get(user=user)
     except ObjectDoesNotExist:
@@ -18,7 +19,7 @@ def alterar_perfil(request,userId):
         dados_usuario.user = user
         dados_usuario.save()
         messages.info(request, 'Dados salvos com sucesso!')
-        return redirect(reverse('perfil', kwargs={'userId': user.id}))
+        return render(request, 'user/perfil.html', {'form': form, 'perfil': perfil, 'alterar': alterar})
     
     #aqui o usuario logado
     usuarioLogado = request.user.id
