@@ -50,13 +50,13 @@ def list_products(request, userId):
         #print('iguais')
         return render(request, 'products/my-products.html', context )
 
-@login_required
+
 def lista_products(request):    
     filtered_qs = filters.FilterCategory(
             request.GET,
             queryset=Product.objects.all()
         ).qs
-    paginator = Paginator(filtered_qs, 2)
+    paginator = Paginator(filtered_qs, 8)
 
     page = request.GET.get('page')
 
@@ -70,7 +70,8 @@ def lista_products(request):
     filtro = FilterCategory(request.GET, queryset=filtered_qs)
     context = {'products': response, 'filtro': filtro}
 
-    return render(request, 'products/products.html', context)
+    #return render(request, 'products/products.html', context)
+    return render(request, 'home/home.html', context)
 
 @login_required
 def create_product(request, userId):
