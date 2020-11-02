@@ -37,6 +37,13 @@ class Denuncia(models.Model):
     produto = models.ForeignKey(Product, null=True, blank=True, on_delete=models.CASCADE)
     user = models.ForeignKey(MyUser, null=True, blank=True, on_delete=models.CASCADE)
 
+class Alugar(models.Model):
+    inicio = models.DateField(verbose_name='Inicio Aluguel')
+    fim = models.DateField(verbose_name='Fim Aluguel')
+    locador = models.CharField(max_length=50, blank=False, null=False)
+    locatario = models.CharField(max_length=50, blank=False, null=False)
+    confirmado = models.CharField(max_length=1, default='N')
+    produto = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL)
 
 
 

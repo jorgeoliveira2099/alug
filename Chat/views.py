@@ -9,13 +9,14 @@ from address.models import Dados_usuario
 
 #teste
 from django.http import HttpResponse, HttpResponseRedirect
-from django.views import View
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.urls import reverse_lazy
 
 def criarSala(request, idLocatario, idLocador):
     user = MyUser.objects.get(id=idLocador)
+    locador = MyUser.objects.get(id=idLocador)
+    products = locador.product_set.all()
     try:
         perfil = Dados_usuario.objects.get(user=user)
     except ObjectDoesNotExist:
@@ -42,13 +43,18 @@ def criarSala(request, idLocatario, idLocador):
         mensagens += mensagemChat.texto + "\n"
 
     return render(request, 'chat/chat.html',
-                  {'room_name': chat.codigoSala, 'identificador': identificador, 'mensagems': mensagens})
+                  {'room_name': chat.codigoSala, 'identificador': identificador,
+                   'mensagems': mensagens, 'products': products})
 
 
 def criarSalaSubmit(request, idLocatario, idLocador):
     mensagemEnviada = request.POST.get("mensagem")
 
     user = MyUser.objects.get(id=idLocador)
+
+    locador = MyUser.objects.get(id=idLocador)
+    products = locador.product_set.all()
+
     try:
         perfil = Dados_usuario.objects.get(user=user)
     except ObjectDoesNotExist:
@@ -72,7 +78,8 @@ def criarSalaSubmit(request, idLocatario, idLocador):
         mensagens += mensagemChat.texto + "\n"
 
     return render(request, 'chat/chat.html',
-                  {'room_name': chat.codigoSala, 'identificador': identificador, 'mensagems': mensagens})
+                  {'room_name': chat.codigoSala, 'identificador': identificador,
+                   'mensagems': mensagens, 'products': products})
 
 def room(request, room_name, userId):
     user = MyUser.objects.get(id=userId)
@@ -85,6 +92,16 @@ def room(request, room_name, userId):
         chat = Chat.objects.get(codigoSala=room_name)
     except ObjectDoesNotExist:
         return render(request, 'home/home.html')
+
+    print(chat.locador)
+    print(userId)
+    if chat.locador != str(userId):
+        print('entrou')
+        locador = MyUser.objects.get(id=chat.locador)
+        products = locador.product_set.all()
+        print(products)
+    else:
+        products = []
 
     if perfil.nome == None or perfil.sobrenome == None:
         identificador = user.email
@@ -99,7 +116,8 @@ def room(request, room_name, userId):
             mensagens += mensagemChat.texto + "\n"
 
         return render(request, 'chat/chat.html',
-                      {'room_name': chat.codigoSala, 'identificador': identificador, 'mensagems': mensagens})
+                      {'room_name': chat.codigoSala, 'identificador': identificador,
+                       'mensagems': mensagens, 'products': products})
 
     return render(request, 'home/home.html')
 
@@ -125,11 +143,21 @@ def roomSubmit(request, room_name, userId):
     mensagensChat = chat.mensagem_set.all()
     mensagens = ''
 
+    print(chat.locador)
+    print(userId)
+    if chat.locador != str(userId):
+        print('entrou')
+        locador = MyUser.objects.get(id=chat.locador)
+        products = locador.product_set.all()
+    else:
+        products = []
+
     for mensagemChat in mensagensChat:
         mensagens += mensagemChat.texto + "\n"
 
     return render(request, 'chat/chat.html',
-                  {'room_name': chat.codigoSala, 'identificador': identificador, 'mensagems': mensagens})
+                  {'room_name': chat.codigoSala, 'identificador': identificador,
+                   'mensagems': mensagens, 'products': products})
 
 def meusChats(request):
     user = request.user
@@ -160,9 +188,6 @@ def meusChats(request):
             else:
                 identificador = perfil.nome + " " + perfil.sobrenome
             chat.nomeSala = "Chat com " + identificador
-
-
-
 
     return render(request, 'chat/meus-chats.html', {'chats': chats})
 
