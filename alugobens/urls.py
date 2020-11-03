@@ -19,11 +19,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('products/', include(products_urls)),
     path('users/', include(users_urls)),
-
+    
+    path('notifications/', include('notification.urls')),
     path('chat/', include('Chat.urls')),
     #path('chat/', include(chat_urls)),
     #path('chat/', room, name='room'),
-   
+    
     #reset password
     path('password_reset/',auth_views.PasswordResetView.as_view(template_name='password_reset_form.html'),name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'),name='password_reset_done'),

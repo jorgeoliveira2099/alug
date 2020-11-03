@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import MyUser
 
 class Chat(models.Model):
     codigoSala = models.CharField(max_length=20, unique=True)
@@ -12,6 +13,7 @@ class Chat(models.Model):
 class Mensagem(models.Model):
     texto = models.CharField(max_length=80)
     chat = models.ForeignKey(Chat, on_delete=models.CASCADE)
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.texto

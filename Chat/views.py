@@ -9,6 +9,7 @@ from address.models import Dados_usuario
 
 #teste
 from django.http import HttpResponse, HttpResponseRedirect
+from django.views import View
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.urls import reverse_lazy
@@ -49,7 +50,7 @@ def criarSala(request, idLocatario, idLocador):
 
 def criarSalaSubmit(request, idLocatario, idLocador):
     mensagemEnviada = request.POST.get("mensagem")
-
+    usuarioLocatario = MyUser.objects.get(id=idLocatario)
     user = MyUser.objects.get(id=idLocador)
 
     locador = MyUser.objects.get(id=idLocador)
@@ -69,6 +70,7 @@ def criarSalaSubmit(request, idLocatario, idLocador):
     mensagem = Mensagem()
     mensagem.texto = identificador + ": " + mensagemEnviada
     mensagem.chat = chat
+    mensagem.user = usuarioLocatario
     mensagem.save()
 
     mensagensChat = chat.mensagem_set.all()
@@ -123,6 +125,43 @@ def room(request, room_name, userId):
 
 def roomSubmit(request, room_name, userId):
     user = MyUser.objects.get(id=userId)
+    
+    #inicia aqui
+     #aqui
+    #user = request.user
+    chats = Chat.objects.filter((Q(locador=user.id) | Q(locatario=user.id)))
+
+    for chat in chats:
+        if chat.locador != str(user.id):
+            user = MyUser.objects.get(id=chat.locador)
+            try:
+                perfil = Dados_usuario.objects.get(user=user)
+            except ObjectDoesNotExist:
+                perfil = Dados_usuario()
+
+            if perfil.nome == None or perfil.sobrenome == None:
+                identificador = user.email
+            else:
+                identificador = perfil.nome + " " + perfil.sobrenome
+            #chat.nomeSala = "Chat com " + identificador
+            usuarioLocatario = identificador
+        elif chat.locatario != str(user.id):
+            user = MyUser.objects.get(id=chat.locatario)
+            try:
+                perfil = Dados_usuario.objects.get(user=user)
+            except ObjectDoesNotExist:
+                perfil = Dados_usuario()
+
+            if perfil.nome == None or perfil.sobrenome == None:
+                identificador = user.email
+                usuarioLocatario = identificador
+            else:
+                identificador = perfil.nome + " " + perfil.sobrenome
+            usuarioLocatario = identificador
+    #aqui
+    #termina aqui
+
+    usuarioo = MyUser.objects.get(email=usuarioLocatario)
     mensagemEnviada = request.POST.get("mensagem")
     try:
         perfil = Dados_usuario.objects.get(user=user)
@@ -138,6 +177,7 @@ def roomSubmit(request, room_name, userId):
     mensagem = Mensagem()
     mensagem.texto = identificador + ": " + mensagemEnviada
     mensagem.chat = chat
+    mensagem.user = usuarioo
     mensagem.save()
 
     mensagensChat = chat.mensagem_set.all()

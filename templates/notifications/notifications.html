@@ -1,0 +1,18 @@
+{%  extends 'base.html'%}
+
+{% block title %} Notificações {% endblock %}
+
+{% block main %}
+
+  {% for notification in notifications %}
+        {% if notification.viewed == False %}
+            <p>Você tem uma nova mensagem</p>
+            <p>{{notification.message}}</p>
+            <p>{{notification.user}}
+            <a href="{% url 'delete_notification' notification.id %}" class="delete">Marcar Como lido</a>   
+            <br><br>
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}
+
