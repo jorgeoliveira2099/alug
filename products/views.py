@@ -55,7 +55,7 @@ def lista_products(request):
             request.GET,
             queryset=Product.objects.all()
         ).qs
-    paginator = Paginator(filtered_qs, 2)
+    paginator = Paginator(filtered_qs, 4)
 
     page = request.GET.get('page')
 
