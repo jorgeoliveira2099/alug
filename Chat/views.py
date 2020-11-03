@@ -70,7 +70,7 @@ def criarSalaSubmit(request, idLocatario, idLocador):
     mensagem = Mensagem()
     mensagem.texto = identificador + ": " + mensagemEnviada
     mensagem.chat = chat
-    mensagem.user = usuarioLocatario
+    mensagem.user = user
     mensagem.save()
 
     mensagensChat = chat.mensagem_set.all()
