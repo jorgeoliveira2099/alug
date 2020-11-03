@@ -65,7 +65,14 @@
           </li>
           <li class="nav-item">
             <a href="{% url 'perfil' user.id %}" class="nav-link"> Meu Perfil </a>
+          </li>
 
+          <li class="nav-item">
+            <a href="{% url 'termosDeUso' %}" class="nav-link"> Termos de Uso </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'perguntasFrequentes' %}" class="nav-link"> Perguntas frequentes </a>
           </li>
           
           <li class="nav-item">
@@ -77,6 +84,14 @@
           </li>
           <li class="nav-item">
             <a href="{% url 'cadastro' %}" class="nav-link"> Cadastro </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'termosDeUso' %}" class="nav-link"> Termos de Uso </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'perguntasFrequentes' %}" class="nav-link"> Perguntas frequentes </a>
           </li>
           {% endif %}
         </ul>
