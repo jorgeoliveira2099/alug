@@ -4,6 +4,8 @@
 
 {% block main %}
 
+ 
+
   {% for notification in notifications %}
         {% if notification.viewed == False %}
             <p>Você tem uma nova mensagem</p>
@@ -14,5 +16,6 @@
         {% endif %}
     {% endfor %}
 
+<a href="{% url 'markall_as_read'  %}" class="delete">Marcar todas como lido</a>  
 {% endblock %}
 

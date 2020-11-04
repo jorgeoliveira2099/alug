@@ -40,3 +40,9 @@ def CountNotifications(request):
 
     return {'count_notifications':count_notifications}
     
+
+def MarkAllAsRead(request):
+    user = request.user
+    Notification.objects.all().filter(user=user).delete()
+    
+    return redirect('show_notifications')
