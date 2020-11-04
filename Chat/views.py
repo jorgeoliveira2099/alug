@@ -158,6 +158,10 @@ def roomSubmit(request, room_name, userId):
             else:
                 identificador = perfil.nome + " " + perfil.sobrenome
             usuarioLocatario = identificador
+            break
+            print('AQUI O USUARIO QUE IRÁ ALUGAR')
+            print(usuarioLocatario)
+            print('AQUI O USUARIO QUE IRÁ ALUGAR')
     #aqui
     #termina aqui
 
