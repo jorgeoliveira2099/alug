@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
 
 
 from . import filters
 from .models import Product
 from users.models import MyUser
+from address.models import Dados_usuario
 from .forms import ProductForm, DenunciaForm
 from .filters import FilterCategory
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -186,3 +188,24 @@ def denunciar(request, productId):
         return redirect(reverse('denuncia', kwargs={'productId': produto.id}))
 
     return render(request, 'products/denuncia.html', {'form': form, 'productId': produto.id})
+
+@login_required
+def alugar(request, productId):
+    user = request.user
+
+    try:
+        perfil = Dados_usuario.objects.get(user=user)
+    except ObjectDoesNotExist:
+        perfil = Dados_usuario()
+
+
+    return render(request, 'products/alugar.html', {
+        'cpf': perfil.cpf if perfil.cpf != None else "",
+        'cep': perfil.cep if perfil.cep != None else "",
+        'cidade': perfil.cidade if perfil.cidade != None else "",
+        'estado': perfil.estado if perfil.estado != None else "",
+        'rua': perfil.rua if perfil.rua != None else "",
+        'bairro': perfil.bairro if perfil.bairro != None else "",
+        'complemento': perfil.complemento if perfil.complemento != None else "",
+    })
+

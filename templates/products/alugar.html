@@ -1,0 +1,61 @@
+{%  extends 'base.html'%}
+
+{%  load bootstrap %}
+{% load static %}
+
+{% block title %} Alugar {% endblock %}
+
+{% block main %}
+<body>
+<h3> Alugar </h3>
+
+<div>
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    {% endfor %}
+</div>
+
+<form method="POST" action="submit" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="bg-white p-5 col-12 col-lg-7 mb-5"
+         style="border-radius: 20px; color: rgb(74, 74, 74); font-weight: bold;">
+        <p> CPF </p>
+        <input type="text" required  id="id_cpf" value="" name="id_cpf">
+
+        <p> Endereço </p>
+
+        <p> Cep </p>
+        <input type="text" required  id="id_cep" value="{{ cep }}" name="id_cep" />
+
+        <p> Cidade </p>
+        <input type="text" required  id="cidade_input" value="{{ cidade }}" name="cidade_input" />
+
+        <p> Estado </p>
+        <input type="text" required  id="estado_input" value="{{ estado }}" name="estado_input" />
+
+        <p> Rua </p>
+        <input type="text" required  id="rua_input" value="{{ rua }}" name="rua_input" />
+
+        <p> Bairro </p>
+        <input type="text" required  id="bairro_input" value="{{ bairro }}" name="bairro_input" />
+
+        <p> Complemento </p>
+        <input type="text" required  id="complemento_input" value="{{ complemento }}"   name="complemento_input" />
+         <div class="mt-4">
+
+            <button type="submit" id="btnSalvar" class="btn btn-secondary"> Alugar </button>
+
+         </div>
+
+    </div>
+
+</form>
+
+{% endblock %}

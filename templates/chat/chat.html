@@ -27,7 +27,7 @@
                 <p> {{ product.nome }} </p>
                 <image src="{{ product.get_photo_url }}" width="150" height="100" />
                 <a type="button"class="btn btn-secondary"
-	            href="">
+	            href="{% url 'alugar' product.id %}">
 	             Alugar
                 </a>
 
