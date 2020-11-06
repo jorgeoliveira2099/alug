@@ -40,9 +40,9 @@ class Denuncia(models.Model):
 class Alugar(models.Model):
     inicio = models.DateField(verbose_name='Inicio Aluguel')
     fim = models.DateField(verbose_name='Fim Aluguel')
-    locador = models.CharField(max_length=50, blank=False, null=False)
-    locatario = models.CharField(max_length=50, blank=False, null=False)
-    confirmado = models.CharField(max_length=1, default='N')
+    locador = models.ForeignKey(MyUser,  null=True, blank=True, related_name='user_locador', on_delete=models.SET_NULL)
+    locatario = models.ForeignKey(MyUser,  null=True, blank=True, related_name='user_locatario', on_delete=models.SET_NULL)
+    confirmado = models.BooleanField()
     produto = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL)
 
 
