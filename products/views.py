@@ -8,7 +8,7 @@ from . import filters
 from .models import Product
 from users.models import MyUser
 from address.models import Dados_usuario
-from .forms import ProductForm, DenunciaForm
+from .forms import ProductForm, DenunciaForm, AlugarForm
 from .filters import FilterCategory
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -192,13 +192,13 @@ def denunciar(request, productId):
 @login_required
 def alugar(request, productId):
     user = request.user
-
+  
     try:
         perfil = Dados_usuario.objects.get(user=user)
     except ObjectDoesNotExist:
         perfil = Dados_usuario()
 
-
+    messages.info(request, 'Por gentileza, confirme seus dados!')
     return render(request, 'products/alugar.html', {
         'cpf': perfil.cpf if perfil.cpf != None else "",
         'cep': perfil.cep if perfil.cep != None else "",
@@ -209,3 +209,47 @@ def alugar(request, productId):
         'complemento': perfil.complemento if perfil.complemento != None else "",
     })
 
+
+@login_required
+def alugarSubmit(request, productId):
+    user = request.user
+    form = AlugarForm(request.POST or None)
+    produto = Product.objects.get(id=productId)
+
+    locador1 = produto.user.id
+    locador = MyUser.objects.get(id=locador1)
+    #print(locatario)
+    print('ID DO locatariooo')
+    print(produto.user.id)
+    print('ID DO locatariooo')
+
+    if request.POST and form.is_valid():
+        alugar = form.save(commit=False)
+        
+        alugar.locatario = user
+        alugar.locador = locador
+        #alugar.locatario = 
+        alugar.produto = produto
+        alugar.inicio = str(form.cleaned_data['inicio']) 
+        alugar.fim = str(form.cleaned_data['fim'])
+        alugar.confirmado = False
+        #alugar.inicio = str(begin[0])
+        #alugar.fim = str(end[0])
+        print('DATA')
+        print(alugar.inicio[0])
+        print(alugar.fim)
+        alugar.save()
+
+        messages.info(request, 'O locador recebeu seu pedido de aluguel, aguarde o retorno dele, ou entre em contato com ele(a) pelo chat')
+        return render(request, 'home/home.html')
+
+    context = {
+        'user': user,
+        'produto': produto,
+        'form': form,
+        'locador':locador,
+       # 'productId':productId
+
+    }
+
+    return render(request, 'products/alugarProduto.html', context)

@@ -13,6 +13,7 @@ from .views import (
     products_favourite_list,
     denunciar,
     alugar,
+    alugarSubmit,
 )
 
 
@@ -24,7 +25,8 @@ urlpatterns = [
     path('delete/<int:productId>/', delete_product, name='delete_product'),
     path('denuncia/<int:productId>/', denunciar, name='denuncia'),
     path('alugar/<int:productId>/', alugar, name='alugar'),
-    
+     
+    path('alugar/<int:productId>/submit', alugarSubmit, name='alugarSubmit'),
     path('detail/<int:id>/', detail_product, name='detail_product'),
 
     

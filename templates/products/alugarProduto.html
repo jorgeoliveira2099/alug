@@ -1,0 +1,21 @@
+{%  extends 'base.html'%}
+
+{%  load bootstrap %}
+{% load static %}
+
+{% block title %} Alugar{% endblock %}
+
+{% block main %}
+<body>
+<h3> Alugar</h3>
+
+
+
+<form method="POST" action="submit" enctype="multipart/form-data">
+    {% csrf_token %}
+        {{ form|bootstrap }}
+        <button type="submit" class="btn btn-secondary"> Salvar </button>
+        <a href="{% url 'alugar' user.id %}" class="btn btn-secondary"> Voltar</a>
+</form>
+
+{% endblock %}
