@@ -215,7 +215,7 @@ def alugarSubmit(request, productId):
     user = request.user
     form = AlugarForm(request.POST or None)
     produto = Product.objects.get(id=productId)
-
+    salvarPerfil(request)
     locador1 = produto.user.id
     locador = MyUser.objects.get(id=locador1)
     #print(locatario)
@@ -253,3 +253,21 @@ def alugarSubmit(request, productId):
     }
 
     return render(request, 'products/alugarProduto.html', context)
+
+def salvarPerfil(request):
+    user = request.user
+
+    try:
+        perfil = Dados_usuario.objects.get(user=user)
+    except ObjectDoesNotExist:
+        perfil = Dados_usuario()
+
+    perfil.cpf = request.POST.get("id_cpf")
+    perfil.cep = request.POST.get("id_cep")
+    perfil.rua = request.POST.get("id_rua")
+    perfil.bairro = request.POST.get("id_bairro")
+    perfil.cidade = request.POST.get("id_cidade")
+    perfil.estado = request.POST.get("id_estado")
+    perfil.complemento = request.POST.get("id_complemento")
+    perfil.save()
+
