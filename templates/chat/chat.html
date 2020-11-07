@@ -23,23 +23,17 @@
         <output id="identificador"> {{ identificador }} </output>
 
 
-        {% for product in products %}
-                <p> {{ product.nome }} </p>
-                <image src="{{ product.get_photo_url }}" width="150" height="100" />
+        <p> {{ produto.nome }} </p>
+                <image src="{{ produto.get_photo_url }}" width="150" height="100" />
                 <a type="button"class="btn btn-secondary"
-	            href="{% url 'alugar' product.id %}">
+	            href="{% url 'alugar' produto.id %}">
 	             Alugar
                 </a>
-
-        {% endfor %}
 
         </form>
 
 {{ room_name|json_script:"room-name" }}
 {{ request.user.name|json_script:"user_username" }}
-
-
-
 
 <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 {% endblock %}

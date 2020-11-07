@@ -36,7 +36,7 @@
 <p> Condições de Uso : {{ product.condicoesUso }} </p>
 
    <a type="button"class="btn btn-secondary"
-	  href="{% url 'criarSala'  idLocatario=user.id idLocador=product.user.id %}">
+	  href="{% url 'criarSala'  idProduto=product.id %}">
 	   Chat
     </a>
     
