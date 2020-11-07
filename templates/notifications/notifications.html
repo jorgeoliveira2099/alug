@@ -8,11 +8,33 @@
 
   {% for notification in notifications %}
         {% if notification.viewed == False %}
-            <p>Você tem uma nova mensagem</p>
+
+        
+
+{% if notification.notification_type == 1 %}
+   
+<p>Você tem uma nova mensagem</p>
             <p>{{notification.message}}</p>
             <p>{{notification.user}}
             <a href="{% url 'delete_notification' notification.id %}" class="delete">Marcar Como lido</a>   
             <br><br>
+
+{% endif %}
+
+{% if notification.notification_type == 2 %}
+   
+<p>Você tem uma proposta de aluguel</p>
+          
+           <p>Você tem uma proposta de aluguel</p>
+           <p>Você tem uma proposta de aluguel</p> 
+            
+            <a href="{% url 'delete_notification' notification.id %}" class="delete">Marcar Como lido</a>   
+            <br><br>
+
+{% endif %}
+
+
+            
         {% endif %}
     {% endfor %}
 

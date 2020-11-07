@@ -2,7 +2,7 @@ from django.db import models
 
 from users.models import MyUser
 from Chat.models import Mensagem
-from products.models import Product
+from products.models import Product, Alugar
 
 from django.dispatch import receiver
 from django.db.models.signals import post_save
@@ -10,8 +10,9 @@ import django.dispatch
 # Create your models here.
 
 class Notification(models.Model):
-
-    title = models.ForeignKey(Product, null=True, blank=True,on_delete=models.CASCADE)
+    
+    NOTIFICATION_TYPES = ((1,'Mensagem'),(2,'Aluguel'), (3,'Devolucao'))
+    #title = models.ForeignKey(Product, null=True, blank=True,on_delete=models.CASCADE)
     
     #tentar assim: colocar esse campo e ver se o campo vai puxar pelo channels
     
@@ -19,6 +20,9 @@ class Notification(models.Model):
     user = models.ForeignKey(MyUser, null=True, blank=True,on_delete=models.CASCADE)
     #title =  models.CharField(max_length=80)    
     viewed = models.BooleanField(default=False)
+    notification_type = models.IntegerField(choices=NOTIFICATION_TYPES,null=True, blank=True)
+
+
     #e esses dois campos, do jeito que estavam, puxando os dados 
     #destino = models.CharField(max_length=80) 
     #receptor = models.CharField(max_length=80) 
@@ -50,9 +54,34 @@ def add_message(sender, instance, created, **kwargs):
 
   #esse bloco dá certo
     if created:
-        Notification.objects.create(message=instance,user=user)
+        Notification.objects.create(message=instance,user=user,notification_type=1)
     else:
         instance.notification.save()
     
 post_save.connect(add_message, sender=Mensagem)
-  #esse bloco dá certo
+
+
+
+
+def add_alugar(sender, instance, created, **kwargs):
+  
+    # isso aqui é o terceiro usuario
+    message = instance
+    print('add messa ge aquiiiiiiiiii')
+    print(message)
+    print('add messa ge aquiiiiiiiiii')
+    sender = sender
+    print(sender)
+
+    
+    user = message.locador
+    #print(user)
+    print('LOCATARIO AQUI')
+  
+
+    if created:
+        Notification.objects.create(user=user,notification_type=2)
+    else:
+        instance.notification.save()
+    
+post_save.connect(add_alugar, sender=Alugar)
