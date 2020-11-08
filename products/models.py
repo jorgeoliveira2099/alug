@@ -17,6 +17,7 @@ class Product(models.Model):
     imagem = models.ImageField(null=True, blank=True, verbose_name="Imagem")
     user = models.ForeignKey(MyUser, null=True, blank=True, on_delete=models.CASCADE)
     favourite = models.ManyToManyField(MyUser, related_name='favourite', blank=True)
+    alugado = models.BooleanField(default=False)
 
     def __str__(self):
         return self.descricao

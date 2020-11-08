@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
 
 
 from . import filters
-from .models import Product
+from .models import Product, Alugar
 from users.models import MyUser
 from address.models import Dados_usuario
 from .forms import ProductForm, DenunciaForm, AlugarForm
@@ -270,4 +271,9 @@ def salvarPerfil(request):
     perfil.estado = request.POST.get("id_estado")
     perfil.complemento = request.POST.get("id_complemento")
     perfil.save()
+
+def produtosRequisitados(request):
+    user = request.user
+    alugados = Alugar.objects.filter(Q(locador=user.id))
+    return render(request, 'products/produtosRequisitados.html', {'alugados': alugados})
 

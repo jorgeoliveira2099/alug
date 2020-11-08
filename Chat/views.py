@@ -154,7 +154,7 @@ def roomSubmit(request, room_name):
 
 def meusChats(request):
     user = request.user
-    chats = Chat.objects.filter((Q(locador=user.id) | Q(locatario=user.id)))
+    chats = Chat.objects.filter((Q(locador=user) | Q(locatario=user)))
 
     for chat in chats:
         print(chat.produto)

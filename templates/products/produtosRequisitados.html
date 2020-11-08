@@ -1,0 +1,36 @@
+{%  extends 'base.html'%}
+
+{% block title %} Produtos Requisitados/Alugados {% endblock %}
+
+{% block main %}
+    <div class="container">
+    <div class="row">
+       {% for alugado in alugados %}
+            {% if alugado.confirmado %}
+        <div class="col">
+               <a href=""> <p> {{ alugado.produto.nome }} </p> </a>
+               <a href="">
+                    <image src="{{ alugado.produto.get_photo_url }}" width="150" height="100" />
+               </a>
+               <a class="btn btn-secondary" href="" > Encerrar Aluguel </a>
+        </div>
+            {% else %}
+        <div class="col">
+                <a href=""> <p> {{ alugado.produto.nome }} </p> </a>
+                <a href="">
+                    <image src="{{ alugado.produto.get_photo_url }}" width="150" height="100" />
+                </a>
+                <a class="btn btn-secondary" href=""> Confirmar Aluguel </a>
+        </div>
+            {% endif %}
+        {% empty %}
+        <h4>Você não tem produtos pendentes!</h4>
+
+        {% endfor %}
+
+
+    </div>
+    </div>
+
+{% endblock %}
+

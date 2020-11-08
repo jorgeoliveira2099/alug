@@ -14,6 +14,7 @@ from .views import (
     denunciar,
     alugar,
     alugarSubmit,
+    produtosRequisitados,
 )
 
 
@@ -28,6 +29,7 @@ urlpatterns = [
      
     path('alugar/<int:productId>/submit', alugarSubmit, name='alugarSubmit'),
     path('detail/<int:id>/', detail_product, name='detail_product'),
+    path('produtosRequisitados/', produtosRequisitados, name='produtos_requisitados'),
 
     
     #url(r'(?P<id>\d+)/favourite_products/$', favourite_products, name='favourite_products'),
