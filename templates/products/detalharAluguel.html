@@ -1,0 +1,76 @@
+{%  extends 'base.html'%}
+
+{% block title %} Produtos Requisitados/Alugados {% endblock %}
+
+{% block main %}
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<table class="table">
+				<thead class="thead-dark">
+				<tr>
+					<th scope="col">Endereço informado</th>
+					<th scope="col"></th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<th scope="row">CEP</th>
+					<td>{{ perfil.cep }}</td>
+				</tr>
+				<tr>
+					<th scope="row">Cidade</th>
+					<td>{{ perfil.cidade }}</td>
+				</tr>
+				<tr>
+					<th scope="row">Bairro</th>
+					<td>{{ perfil.bairro }}</td>
+				</tr>
+				<tr>
+					<th scope="row">Estado</th>
+					<td>{{ perfil.estado }}</td>
+				</tr>
+				<tr>
+					<th scope="row">Rua</th>
+					<td>{{ perfil.rua }}</td>
+				</tr>
+				<tr>
+					<th scope="row">Complemento</th>
+					<td>{{ perfil.complemento }}</td>
+				</tr>
+				</tbody>
+			</table>
+
+		</div>
+		<div class="col">
+			<table class="table">
+				<thead class="thead-dark">
+				<tr>
+					<th scope="col">Informações do Aluguel</th>
+					<th scope="col"></th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<th scope="row">Data Inicio</th>
+					<td>{{ aluguel.inicio }}</td>
+				</tr>
+				<tr>
+					<th scope="row">Data Fim</th>
+					<td>{{ aluguel.fim }}</td>
+				</tr>
+				<tr>
+					<th scope="row">Locatario</th>
+					<td>{{ perfil.nome }}</td>
+				</tr>
+				<tr>
+					<th scope="row">Produto</th>
+					<td>{{ aluguel.produto.nome }}</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

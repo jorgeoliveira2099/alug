@@ -277,3 +277,14 @@ def produtosRequisitados(request):
     alugados = Alugar.objects.filter(Q(locador=user.id))
     return render(request, 'products/produtosRequisitados.html', {'alugados': alugados})
 
+def detalharAluguel(request, idAluguel):
+    user = request.user
+    perfil = Dados_usuario.objects.get(user=user)
+    aluguel = Alugar.objects.get(id=idAluguel)
+
+    if perfil.nome == None or perfil.sobrenome == None:
+        perfil.nome = user.email
+    else:
+        perfil.nome = perfil.nome + " " + perfil.sobrenome
+
+    return render(request, 'products/detalharAluguel.html', {'perfil': perfil, 'aluguel': aluguel})
