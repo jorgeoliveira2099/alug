@@ -16,7 +16,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 @login_required
 def list_products(request, userId):
     user = MyUser.objects.get(id=userId)
-    products = user.product_set.all()
+    products = Product.objects.filter(Q(user=user, alugado=False))
 
     #aqui o usuario logado
     #print(request.user.id)
@@ -53,10 +53,12 @@ def list_products(request, userId):
         return render(request, 'products/my-products.html', context )
 
 @login_required
-def lista_products(request):    
+def lista_products(request):
+    user = request.user
+    produtos = Product.objects.filter(Q(alugado=False)).exclude(user=user)
     filtered_qs = filters.FilterCategory(
             request.GET,
-            queryset=Product.objects.all()
+            queryset=produtos
         ).qs
     paginator = Paginator(filtered_qs, 4)
 
@@ -274,7 +276,7 @@ def salvarPerfil(request):
 
 def produtosRequisitados(request):
     user = request.user
-    alugados = Alugar.objects.filter(Q(locador=user.id))
+    alugados = Alugar.objects.filter(Q(locador=user))
     return render(request, 'products/produtosRequisitados.html', {'alugados': alugados})
 
 def detalharAluguel(request, idAluguel):
