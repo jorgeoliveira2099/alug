@@ -81,7 +81,7 @@ def add_alugar(sender, instance, created, **kwargs):
 
     if created:
         Notification.objects.create(user=user,notification_type=2)
-    else:
-        instance.notification.save()
+    #else:
+     #   instance.notification.save()
     
 post_save.connect(add_alugar, sender=Alugar)

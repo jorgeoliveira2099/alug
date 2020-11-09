@@ -31,7 +31,7 @@
         <ul class="navbar-nav ml-auto">
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <a href="{% url 'meusChats' %}" class="nav-link"> Meus Chats </a>
+            <a href="{% url 'meusChats' %}" class="nav-link">Chats </a>
           </li>
 
           <li class="nav-item">
@@ -61,18 +61,23 @@
 
           <li class="nav-item">
             <a href="{% url 'list_products' user.id %}" class="nav-link"> Meus Produtos </a>
-
-          </li>
-          <li class="nav-item">
-            <a href="{% url 'perfil' user.id %}" class="nav-link"> Meu Perfil </a>
-          </li>
+          </li>          
 
           <li class="nav-item">
-            <a href="{% url 'termosDeUso' %}" class="nav-link"> Termos de Uso </a>
+            <a href="{% url 'produtos_requisitados' %}" class="nav-link"> Aluguel</a>
+          </li>
+
+
+          <li class="nav-item">
+            <a href="{% url 'perfil' user.id %}" class="nav-link"> Perfil </a>
           </li>
 
           <li class="nav-item">
-            <a href="{% url 'perguntasFrequentes' %}" class="nav-link"> Perguntas frequentes </a>
+            <a href="{% url 'termosDeUso' %}" class="nav-link"> Termos</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'perguntasFrequentes' %}" class="nav-link"> Ajuda </a>
           </li>
           
           <li class="nav-item">
@@ -87,11 +92,11 @@
           </li>
 
           <li class="nav-item">
-            <a href="{% url 'termosDeUso' %}" class="nav-link"> Termos de Uso </a>
+            <a href="{% url 'termosDeUso' %}" class="nav-link"> Termos</a>
           </li>
 
           <li class="nav-item">
-            <a href="{% url 'perguntasFrequentes' %}" class="nav-link"> Perguntas frequentes </a>
+            <a href="{% url 'perguntasFrequentes' %}" class="nav-link"> Ajuda  </a>
           </li>
           {% endif %}
         </ul>

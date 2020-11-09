@@ -23,10 +23,10 @@
 
 {% if notification.notification_type == 2 %}
    
-<p>Você tem uma proposta de aluguel</p>
           
-           <p>Você tem uma proposta de aluguel</p>
-           <p>Você tem uma proposta de aluguel</p> 
+<a href="{% url 'produtos_requisitados' %}" class="nav-link"> Você tem uma proposta de aluguel</a>
+
+        
             
             <a href="{% url 'delete_notification' notification.id %}" class="delete">Marcar Como lido</a>   
             <br><br>
