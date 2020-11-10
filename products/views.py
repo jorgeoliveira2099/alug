@@ -320,19 +320,18 @@ def encerrarAluguel(request, idAluguel):
     aluguel = Alugar.objects.get(id=idAluguel)
     
     pro = aluguel.produto.id
-
-    produto = Product.objects.get(id=pro)    
-   
-    aluguel.confirmado = False    
-    aluguel.save()
-    
-    
+    a = pro
+    produto = Product.objects.get(id=pro)     
     produto.alugado = False    
     produto.save()
 
-    context = {
-    'aluguel': aluguel,
-    }
+    #aluguel.confirmado = False    
+    aluguel.delete()
 
-
-    return render(request, 'products/detalharAluguel.html', context)
+    #context = {
+    #'aluguel': aluguel,
+    #}
+    
+    messages.info(request, 'Você encerrou um aluguel, por gentileza avalie a experiência com o locatario')
+    return render(request, 'home/home.html')
+    #return redirect(reverse('produtos_requisitados', kwargs={'user': user}))
