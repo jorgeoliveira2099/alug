@@ -69,6 +69,11 @@
 				</tr>
 				</tbody>
 			</table>
+			{% if aluguel.confirmado %}
+			<a class="btn btn-secondary" href="{% url 'encerrar_aluguel' aluguel.id %}"> Encerrar Aluguel </a>
+			{% else %}
+			<a class="btn btn-secondary" href="{% url 'confirmar_aluguel' aluguel.id %}"> Confirmar Aluguel </a>
+			{% endif %}
 		</div>
 	</div>
 </div>

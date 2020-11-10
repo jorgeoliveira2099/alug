@@ -290,3 +290,49 @@ def detalharAluguel(request, idAluguel):
         perfil.nome = perfil.nome + " " + perfil.sobrenome
 
     return render(request, 'products/detalharAluguel.html', {'perfil': perfil, 'aluguel': aluguel})
+
+
+
+def confirmarAluguel(request, idAluguel):
+    user = request.user
+    aluguel = Alugar.objects.get(id=idAluguel)
+    
+    pro = aluguel.produto.id
+
+    produto = Product.objects.get(id=pro)    
+   
+
+    aluguel.confirmado = True    
+    aluguel.save()
+    
+    
+    produto.alugado = True    
+    produto.save()
+
+    context = {
+    'aluguel': aluguel,
+    }
+
+    return render(request, 'products/detalharAluguel.html', context)
+
+def encerrarAluguel(request, idAluguel):
+    user = request.user
+    aluguel = Alugar.objects.get(id=idAluguel)
+    
+    pro = aluguel.produto.id
+
+    produto = Product.objects.get(id=pro)    
+   
+    aluguel.confirmado = False    
+    aluguel.save()
+    
+    
+    produto.alugado = False    
+    produto.save()
+
+    context = {
+    'aluguel': aluguel,
+    }
+
+
+    return render(request, 'products/detalharAluguel.html', context)

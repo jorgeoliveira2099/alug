@@ -12,7 +12,7 @@
                <a href="{% url 'detalhar_aluguel' alugado.id %}">
                     <image src="{{ alugado.produto.get_photo_url }}" width="150" height="100" />
                </a>
-               <a class="btn btn-secondary" href="" > Encerrar Aluguel </a>
+              
         </div>
             {% else %}
         <div class="col">
@@ -20,7 +20,7 @@
                 <a href="{% url 'detalhar_aluguel' alugado.id %}">
                     <image src="{{ alugado.produto.get_photo_url }}" width="150" height="100" />
                 </a>
-                <a class="btn btn-secondary" href=""> Confirmar Aluguel </a>
+                
         </div>
             {% endif %}
         {% empty %}
