@@ -114,3 +114,14 @@ function pesquisacep(valor) {
         limpa_formulário_cep();
     }
 }
+
+function prenecherExclusao(idProduto){
+    var a = $('#modal-exlusao').find('a')
+    var link = a.attr('href')
+    link = link.slice(0, -1)
+    link = link.slice(0, -1)
+    link = link + idProduto + '/'
+    console.log(link)
+    a.attr('href', link)
+}
+
