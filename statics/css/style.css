@@ -1,16 +1,44 @@
+html, body {
+   height: 100%;
+   margin: 0;
+   margin-top: 40px;
+ }
+
+ /* Navegação */
+
+ #logo-nav {
+   border-radius: 10px; 
+   width: 45px; 
+   height: 45px; 
+ }
+
+ .icones-nav img{
+    width: 30px;
+ }
+
+ .cor-texto-dropdown a{
+   color: rgb(74, 74, 74);
+ }
+
+ .cor-texto-nav li > a{
+   color: #fff;
+ }
+
+ .navbar-nav>li:hover>a, .navbar-nav>li.active>a {
+   color: #C0C0C0;
+ }
+
+ /* Meu perfil */
+
 .fotoPerfil{
    width: 150px;
    height: 150px;
    background-color: #000;
    color: #FFF;
-
-   /* Agora a mágica */
    border-radius: 50%;
 }
 
-.inicio {
-   margin-top: 150px;
- }
+/* Diversos */
 
  .box-shadow {
    box-shadow: 0 2px 4px 0 rgba(0,0,0,.05),
@@ -20,3 +48,63 @@
  .botao-redondo {
     border-radius: 50px;
  }
+
+ .login-cadastro-espacamento {
+    margin-top: 120px;
+ }
+
+ .fundo-site-branco {
+    background-color: #FFF;
+ }
+
+ /* Home */
+
+.aumentar-tamanho-mouse a {
+   color: black;
+   text-decoration: none;
+ }
+ 
+ .aumentar-tamanho-mouse:hover {
+   transition: all 0.3s ease;
+   transform: scale(1.1);
+ }
+
+ .tamanho-fixo-imagens {
+    width: 200px;
+    height: 200px;
+ }
+
+ #quem-somos {
+   background: url('../images/quem-somos.jpg') center center;
+   background-size: cover;
+ }
+
+#section-home-pesquisar #id_nome {
+    height: calc(1.5em + 1rem + 2px);
+    padding: .5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+
+/* Anunciar Produto */
+
+#id_descricao {
+   height: 150px;
+}
+
+#id_condicoesUso {
+   height: 150px;
+}
+
+.texto-campo {
+   color: rgb(74, 74, 74); 
+   font-weight: bold;
+}
+
+/* Meus Anúncios */
+
+.tamanho-fixo-imagens-myAnuncios {
+   width: 150px;
+   height: 150px;
+}

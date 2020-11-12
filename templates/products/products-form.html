@@ -2,16 +2,62 @@
 
 {%  load bootstrap %}
 
-{% block title %} Seja bem vindo {% endblock %}
+{% block title %} Anunciar Produto {% endblock %}
 
 {% block main %}
-   <body>
-   <h3> Produto </h3>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form|bootstrap }}
-        <button type="submit" class="btn btn-secondary"> Salvar </button>
-        <a href="{% url 'list_products' user.id %}" class="btn btn-secondary"> Voltar</a>
 
-    </form>
-{% endblock %}
+<body>
+
+    <section class="container-fluid box-shadow pb-5" style="border-top: 1px solid #ccc">
+        <div class="container mt-3">
+
+            <div class="row d-flex justify-content-center text-center mb-3">
+                <h1 class="display-4 text-primary">O que você está anunciando?</h1>
+            </div>
+
+            <div class="row p-lg-5 py-4 px-1 rounded mb-5 texto-campo" style="border: 1px solid #ccc">
+
+                <form method="POST" enctype="multipart/form-data" class="col-lg-9">
+                    {% csrf_token %}
+                    {{ form|bootstrap }}
+
+
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-lg-6">
+                    <span>Ao publicar você concorda e aceita nossos <a href="#">Termos de Uso e
+                            Privacidade</a></span>
+                </div>
+                <div class="col-3">
+                </div>
+                <div class="col-lg-3 text-center">
+                    <button type="submit"
+                        class="btn btn-primary px-5 btn-block mt-3 mt-lg-0 btn-lg botao-redondo">Anunciar</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <script type="text/javascript">
+        document.getElementById("id_nome").placeholder = 'Título*';
+        document.getElementById("id_descricao").placeholder = 'Descrição*';
+        document.getElementById("id_preco").placeholder = 'Preço*';
+        document.getElementById("id_condicoesUso").placeholder = 'Condições de Uso*';
+        document.getElementById("id_categoria").classList.add("col-md-4");
+        document.getElementById("id_preco").classList.add("col-md-3");
+
+        /* Diminuir espaçamento entre campos */
+        document.getElementById("id_nome").style.marginBottom = "-8px";
+        document.getElementById("id_descricao").style.marginBottom = "-20px";
+        document.getElementById("id_categoria").style.marginBottom = "-20px";
+        document.getElementById("id_preco").style.marginBottom = "-20px";
+        document.getElementById("id_condicoesUso").style.marginBottom = "-20px";
+    </script>
+
+
+    {% endblock %}

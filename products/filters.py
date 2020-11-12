@@ -13,7 +13,7 @@ def categories(request):
 class FilterCategory(django_filters.FilterSet):
     
 
-    nome = django_filters.CharFilter(lookup_expr='icontains')
+    nome = django_filters.CharFilter
     #categoria = django_filters.ModelChoiceFilter(queryset=categories)
    
 

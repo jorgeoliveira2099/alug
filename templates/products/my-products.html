@@ -1,62 +1,168 @@
-{%  extends 'base.html'%}
+{%  extends 'base_rodape_fixo.html'%}
+{% load static %}
 
 {% block title %} Lista de Produtos {% endblock %}
 
 {% block main %}
 
+{% for message in messages %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+
+<section class="container text-center mb-5 box-shadow pt-5 pb-3">
+    <div>
+        <h1 class="display-4 text-primary mb-5">Meus Anúncios</h1>
+    </div>
     <div class="row">
-        <div>
+        <div class="col" id="produtos" data-children="produto">
 
-        </div>
-    <div class="col-lg-3 mx-auto">
-            <div class="list-group">
-                
-                <form method="GET">
-                    {{ filtro.form }}
-                    <input class="btn btn-secondary" type="submit" value="Pesquisar">
-                    </form>
-            </div>
-        </div>
-        <div class="col-12">
-            <h3> Meus Produtos </h3>
-        <div>
-            {% for message in messages %}
-                   <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ message }}
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                   </div>
+            <div class="produto py-2 col-12">
 
-            {% endfor %}
-        </div>
+                <div class="row">
 
-            <ul class="list-group">
-            {% for product in products %}
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-7">
-                           <a href="{% url 'my_detail_product' product.id %}"> <p> {{ product.nome }} </p> </a>
-                            <image src="{{ product.get_photo_url }}" width="150" height="100" > </image>
+                    <div class="d-md-flex col-12 align-items-center">
+
+                        <div class="col-md col-11">
+                            <a class="lead" data-toggle="collapse" href="#publicados" aria-expanded="true"
+                                aria-controls="publicados" style="color:#696969">Publicados (3)</a>
+                        </div>
+
+                        <div class="col-md col-11 mt-2">
+                            <a class="lead" data-toggle="collapse" href="#aguardandoPublicacao" aria-expanded="true"
+                                aria-controls="aguardandoPublicacao" style="color:#696969;">Aguardando
+                                Publicação (1)</a>
+                        </div>
+
+                        <div class="col-md col-11 mt-2">
+                            <a class="lead" data-toggle="collapse" href="#expirado" aria-expanded="true"
+                                aria-controls="expirado" style="color:#696969">Expirados (0)</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="my-2" style="border: 1px solid #ccc;">
+
+                </div>
+
+                <div class="p-3" style="border: 2px solid #ccc; border-radius: 20px;">
+
+                    <div id="publicados" class="collapse show" role="tabpanel" data-parent="#produtos">
+
+                        <div class="row">
+
+                            {% for product in products %}
+                            <div class="col-md-3 rounded pb-3 ml-3 pt-2 mr-3 mt-3 mt-md-0"
+                                style="border:1px solid #ccc">
+
+                                <image src="{{ product.get_photo_url }}"
+                                    class="rounded tamanho-fixo-imagens-myAnuncios"> </image>
+                                <div class="mt-3 mb-2">
+                                    <span>{{ product.nome }}</span>
+                                </div>
+                                <div class="mb-2">
+                                    <span><strong>R{{ product.preco }}</strong></span>
+                                </div>
+                                <div class="mb-2">
+                                    <span>Visualizações: 39</span>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="mr-5">
+                                        <a href="{% url 'update_product' product.id %}"
+                                            class="btn btn-primary btn-block botao-redondo">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="6">
+                                        <button type="button" data-toggle="modal" data-target="#modal-exlusao"
+                                            class="btn btn-primary btn-block botao-redondo">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% empty %}
+                            <h4>Você ainda não adicionou um produto!</h4>
+
+                            {% endfor %}
+
                         </div>
 
                     </div>
-                </li>
-                 {% empty %}
-            <h4>Você ainda não adicionou um produto!</h4>
 
-            {% endfor %}
+                    <div id="aguardandoPublicacao" class="collapse" role="tabpanel" data-parent="#produtos">
 
-            </ul>
-             </br>
-             <a href="{% url 'create_products' user.id %}" class="btn btn-secondary"> Cadastrar produto </a>
+                        <div class="row">
+
+                            <div class="col-md-4 rounded pb-3 ml-3 pt-2 mr-3" style="border:1px solid #ccc">
+                                <img style="width: 200px;" class="mr-2 rounded"
+                                    src="{% static 'images/icone-lupa.png' %}" alt="chaves">
+                                <div class="mt-3 mb-2">
+                                    <span>Kit Chaves</span>
+                                </div>
+                                <div class="mb-2">
+                                    <span><strong>R$ 15,00</strong></span>
+                                </div>
+                                <div class="mb-2">
+                                    <span><strong>Em análise <img src="{% static 'images/icone-lupa.png' %}"
+                                                style="width: 40px;" alt="icone analise"></strong></span>
+                                </div>
+                                <div>
+                                    <button class="btn btn-primary btn-block arredondar">Cancelar</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div id="expirado" class="collapse" role="tabpanel" data-parent="#produtos">
+
+                        <div class="row">
+
+                            <div class="col-12 pb-3 ml-3 pt-2">
+                                <div>
+                                    <img src="{% static 'images/icone-lupa.png' %}" style="width: 200px; height: 200px;"
+                                        alt="icone expirado">
+                                </div>
+                                <div>
+                                    <span class="h5">Nenhum anúncio expirado!</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
         </div>
 
-        {% include 'products/pagination.html' with page=products %}
 
-       
+    </div>
 
+    <div class="row mt-4">
+        <div class="col-12 d-flex justify-content-center">
+            {% include 'products/pagination.html' with page=products %}
         </div>
+    </div>
+
+
+</section>
+
+
+
+
+
 
 {% endblock %}
-
