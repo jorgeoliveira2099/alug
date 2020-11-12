@@ -108,3 +108,55 @@ html, body {
    width: 150px;
    height: 150px;
 }
+
+
+/* Detalhe produto */
+
+@media (max-width: 2000px) {
+   .imagem-xl {
+      height: 390px;
+   }
+}
+
+@media (max-width: 960px) {
+   .imagem-lg {
+      height: 350px;
+   }
+}
+
+@media (max-width: 767px) {
+   .subs-favo {
+     margin-left: 35%;
+   }
+   .imagem-md {
+      height: 300px;
+   }
+}
+
+.etiqueta-valor {
+      width: 220px;
+      height: 150px;
+      background: url('../images/icone-etiqueta.png') no-repeat center;
+      background-size: cover;
+}
+
+.etiqueta-valor-md {
+   width: 195px;
+   height: 100px;
+   background: url('../images/icone-etiqueta.png') no-repeat center;
+   background-size: cover;
+}
+
+.preco {
+      position: relative;
+      bottom: -62px;
+      left: 27px;
+      font-size: 27px;
+}
+
+.preco-md {
+   position: relative;
+   bottom: -40px;
+   left: 82px;
+   font-size: 22px;
+}
