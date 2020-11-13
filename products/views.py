@@ -85,6 +85,8 @@ def create_product(request):
         product.cidade = request.POST.get('cidade')
         product.estado = request.POST.get('estado')
         product.save()
+        messages.info(request, 'Anunciado com sucesso!')
+        form = ProductForm(None, None)
         return render(request, 'products/products-form.html', {'form': form})
 
 
@@ -99,7 +101,7 @@ def update_product(request, productId):
         product.cidade = request.POST.get('cidade')
         product.estado = request.POST.get('estado')
         product.save()
-        messages.info(request, 'Produto alterado com sucesso!')
+        messages.info(request, 'Anúncio alterado com sucesso!')
         return render(request, 'products/products-alter-form.html',
                       {'form': form, 'product': product, 'estado': product.estado, 'cidade': product.cidade})
 

@@ -15,16 +15,27 @@
                 <h1 class="display-4 text-primary">O que você está anunciando?</h1>
             </div>
 
+            <div>
+                    {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    {% endfor %}
+
             <div class="row p-lg-5 py-4 px-1 rounded mb-5 texto-campo" style="border: 1px solid #ccc">
 
                 <form method="POST" action="" enctype="multipart/form-data" class="col-lg-9">
                     {% csrf_token %}
                     {{ form|bootstrap }}
                     <div>
-                        <select required class="custom-select mt-2 mb-4 col-4" id="estado"></select>
+                        <select required class="custom-select mt-2 mb-4 col-4" name="estado" id="estado"></select>
                     </div>
                     <div>
-                        <select required class="custom-select col-4" id="cidade"></select>
+                        <select required class="custom-select col-4" name="cidade" id="cidade"></select>
                     </div>
             </div>
 
