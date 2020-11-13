@@ -9,10 +9,10 @@
 
 	<div class="row">
 		<div class="col">
-			<span class="h6" href="">Pernambuco</span>
+			<span class="h6" href="">{{ product.estado }}</span>
 			<img src="{% static 'images/icone-seta-direita.ico' %}" class="mx-2"
 				style="width: 10px; height: 15px; margin-top: -3px;" alt="icone seta direita">
-			<span class="h6" href="">Grande Recife</span>
+			<span class="h6" href="">{{ product.cidade }}</span>
 			<img src="{% static 'images/icone-seta-direita.ico' %}" class="mx-2"
 				style="width: 10px; height: 15px; margin-top: -3px;" alt="icone seta direita">
 			<span class="h6" href="">{{ product.categoria }}</span>
@@ -120,11 +120,11 @@
 		</div>
 
 		<div class="col-6">
-			<span>Pernambuco</span>
+			<span>{{ product.estado }}</span>
 		</div>
 
 		<div class="col-6">
-			<span>Recife</span>
+			<span>{{ product.cidade }}</span>
 		</div>
 
 
