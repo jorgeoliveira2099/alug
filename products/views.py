@@ -229,7 +229,8 @@ def alugarSubmit(request, productId):
     user = request.user
     form = AlugarForm(request.POST or None)
     produto = Product.objects.get(id=productId)
-    salvarPerfil(request)
+    if request.POST.get("id_cpf") != None:
+        salvarPerfil(request)
     locador1 = produto.user.id
     locador = MyUser.objects.get(id=locador1)
     #print(locatario)
@@ -255,7 +256,10 @@ def alugarSubmit(request, productId):
         alugar.save()
 
         messages.info(request, 'O locador recebeu seu pedido de aluguel, aguarde o retorno dele, ou entre em contato com ele(a) pelo chat')
-        return render(request, 'home/home.html')
+        is_favourite = False
+        if produto.favourite.filter(id=request.user.id).exists():
+            is_favourite = True
+        return render(request, 'products/products-detail.html', {'is_favourite': is_favourite, 'product': produto})
 
     context = {
         'user': user,
@@ -292,15 +296,22 @@ def produtosRequisitados(request):
 
 def detalharAluguel(request, idAluguel):
     user = request.user
-    perfil = Dados_usuario.objects.get(user=user)
     aluguel = Alugar.objects.get(id=idAluguel)
+    perfilLocatario = Dados_usuario.objects.get(user=aluguel.locatario)
+    try:
+        perfil = Dados_usuario.objects.get(user=user)
+    except ObjectDoesNotExist:
+        perfil = Dados_usuario()
 
     if perfil.nome == None or perfil.sobrenome == None:
-        perfil.nome = user.email
+        identificador = user.email
     else:
-        perfil.nome = perfil.nome + " " + perfil.sobrenome
+        identificador = perfil.nome + " " + perfil.sobrenome
 
-    return render(request, 'products/detalharAluguel.html', {'perfil': perfil, 'aluguel': aluguel})
+    return render(request, 'products/detalharAluguel.html', {
+        'perfilLocatario': perfilLocatario,
+        'aluguel': aluguel,
+        'identificador': identificador})
 
 
 

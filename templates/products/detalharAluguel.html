@@ -16,27 +16,31 @@
 				<tbody>
 				<tr>
 					<th scope="row">CEP</th>
-					<td>{{ perfil.cep }}</td>
+					<td>{{ perfilLocatario.cep }}</td>
 				</tr>
 				<tr>
 					<th scope="row">Cidade</th>
-					<td>{{ perfil.cidade }}</td>
+					<td>{{ perfilLocatario.cidade }}</td>
 				</tr>
 				<tr>
 					<th scope="row">Bairro</th>
-					<td>{{ perfil.bairro }}</td>
+					<td>{{ perfilLocatario.bairro }}</td>
 				</tr>
 				<tr>
 					<th scope="row">Estado</th>
-					<td>{{ perfil.estado }}</td>
+					<td>{{ perfilLocatario.estado }}</td>
 				</tr>
 				<tr>
 					<th scope="row">Rua</th>
-					<td>{{ perfil.rua }}</td>
+					<td>{{ perfilLocatario.rua }}</td>
 				</tr>
 				<tr>
 					<th scope="row">Complemento</th>
-					<td>{{ perfil.complemento }}</td>
+					{% if perfilLocatario.complemento != None %}
+					<td>{{ perfilLocatario.complemento }}</td>
+					{% else %}
+					<td> </td>
+					{% endif %}
 				</tr>
 				</tbody>
 			</table>
@@ -61,7 +65,7 @@
 				</tr>
 				<tr>
 					<th scope="row">Locatario</th>
-					<td>{{ perfil.nome }}</td>
+					<td>{{ identificador }}</td>
 				</tr>
 				<tr>
 					<th scope="row">Produto</th>
