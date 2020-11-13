@@ -20,9 +20,12 @@
                 <form method="POST" action="" enctype="multipart/form-data" class="col-lg-9">
                     {% csrf_token %}
                     {{ form|bootstrap }}
-
-            <select required class="custom-select mt-2 mb-4" name="estado" id="estado"></select>
-            <select required class="custom-select" name="cidade" id="cidade"></select>
+                    <div>
+                        <select required class="custom-select mt-2 mb-4 col-4" id="estado"></select>
+                    </div>
+                    <div>
+                        <select required class="custom-select col-4" id="cidade"></select>
+                    </div>
             </div>
 
 
@@ -56,9 +59,11 @@
         /* Diminuir espaçamento entre campos */
         document.getElementById("id_nome").style.marginBottom = "-8px";
         document.getElementById("id_descricao").style.marginBottom = "-20px";
+        document.getElementById("id_descricao").style.height = "130px";
         document.getElementById("id_categoria").style.marginBottom = "-20px";
         document.getElementById("id_preco").style.marginBottom = "-20px";
         document.getElementById("id_condicoesUso").style.marginBottom = "-20px";
+        document.getElementById("id_condicoesUso").style.height = "130px";
     </script>
 
     <script language="JavaScript" type="text/javascript" charset="utf-8">

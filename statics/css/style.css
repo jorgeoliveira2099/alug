@@ -160,3 +160,61 @@ html, body {
    left: 82px;
    font-size: 22px;
 }
+
+/* Footer */
+
+footer a {
+   color: white;
+   font-weight: 500;
+}
+
+footer a:hover {
+   color: #C0C0C0;
+   text-decoration: none;
+}
+
+footer h6 {
+   color: #919496;
+}
+
+footer li {
+   margin-top: 10px;
+}
+
+footer .img-brasil {
+   width: 30px;
+}
+
+footer .bandeira p {
+  display: inline;
+  margin-right: 3px;
+  font-size: 13px;
+}
+
+footer .bandeira p:hover {
+   color:#1DB954;
+}
+
+footer .cop p {
+   color: #919496;
+   font-size: 13px;
+}
+
+footer .extra a {
+   color: #919496;
+   font-size: 13px;
+}
+
+footer .extra a:hover {
+   color: #C0C0C0;
+}
+
+footer {
+   margin-top: 300px;
+}
+
+/* Login e Cadastro */
+
+.logar-cadastrar-distanciamento {
+   margin-top: 150px;
+}

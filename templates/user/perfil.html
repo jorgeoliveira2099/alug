@@ -24,7 +24,7 @@
             {% endif %}
         </div>
 
-             <div>
+        <div>
             {% if excluir != None %}
             {% for message in messages %}
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -94,13 +94,15 @@
                             <p>Insira a sua senha</p>
                             <form method="POST" action="submit" enctype="multipart/form-data">
                                 {% csrf_token %}
-
-                                <input type="password" id="senha" name="senha" />
+                                <div class="d-flex justify-content-center">
+                                    <input type="password" class="form-control w-50" id="senha" name="senha" />
+                                </div>
 
                                 <div class="mt-3">
 
                                     <div class="col-12 mt-4">
-                                        <button type="submit" class="btn btn-danger botao-redondo btn-block py-2">Excluir Conta</button>
+                                        <button type="submit"
+                                            class="btn btn-danger botao-redondo btn-block py-2">Excluir Conta</button>
                                     </div>
                                 </div>
 

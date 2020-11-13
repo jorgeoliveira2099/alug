@@ -1,4 +1,4 @@
-{%  extends 'base_rodape_fixo.html'%}
+{%  extends 'base.html'%}
 {% load static %}
 
 {% block title %} Lista de Produtos {% endblock %}
@@ -26,21 +26,9 @@
                 <div class="row">
 
                     <div class="d-md-flex col-12 align-items-center">
-
                         <div class="col-md col-11">
                             <a class="lead" data-toggle="collapse" href="#publicados" aria-expanded="true"
                                 aria-controls="publicados" style="color:#696969">Publicados (3)</a>
-                        </div>
-
-                        <div class="col-md col-11 mt-2">
-                            <a class="lead" data-toggle="collapse" href="#aguardandoPublicacao" aria-expanded="true"
-                                aria-controls="aguardandoPublicacao" style="color:#696969;">Aguardando
-                                Publicação (1)</a>
-                        </div>
-
-                        <div class="col-md col-11 mt-2">
-                            <a class="lead" data-toggle="collapse" href="#expirado" aria-expanded="true"
-                                aria-controls="expirado" style="color:#696969">Expirados (0)</a>
                         </div>
                     </div>
 
@@ -62,21 +50,22 @@
 
                                 <image src="{{ product.get_photo_url }}"
                                     class="rounded tamanho-fixo-imagens-myAnuncios"> </image>
-                                <div class="mt-3 mb-2">
+                                <div class="mt-2 mb-2">
                                     <span>{{ product.nome }}</span>
                                 </div>
                                 <div class="mb-2">
-                                    <span><strong>R{{ product.preco }}</strong></span>
+                                    <span><strong>R${{ product.preco }}</strong></span>
                                 </div>
                                 <div class="row justify-content-center">
-                                    <div class="mr-5">
+                                    <div class="mr-3">
                                         <a href="{% url 'update_product' product.id %}"
                                             class="btn btn-primary btn-block botao-redondo">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
                                     </div>
                                     <div class="6">
-                                        <button type="button" onclick="prenecherExclusao({{product.id}})" data-toggle="modal" data-target="#modal-exlusao"
+                                        <button type="button" onclick="prenecherExclusao({{product.id}})"
+                                            data-toggle="modal" data-target="#modal-exlusao"
                                             class="btn btn-primary btn-block botao-redondo">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </button>
@@ -85,53 +74,12 @@
                             </div>
 
                             {% empty %}
-                            <h4>Você ainda não adicionou um produto!</h4>
+                            <div class="col-12 justify-content-center">
+                                <img src="{% static 'images/imagem-sem-produtos-cadastrados.png' %}" alt="">
+                                <h4>Você ainda não adicionou um produto!</h4>
+                            </div>
 
                             {% endfor %}
-
-                        </div>
-
-                    </div>
-
-                    <div id="aguardandoPublicacao" class="collapse" role="tabpanel" data-parent="#produtos">
-
-                        <div class="row">
-
-                            <div class="col-md-4 rounded pb-3 ml-3 pt-2 mr-3" style="border:1px solid #ccc">
-                                <img style="width: 200px;" class="mr-2 rounded"
-                                    src="{% static 'images/icone-lupa.png' %}" alt="chaves">
-                                <div class="mt-3 mb-2">
-                                    <span>Kit Chaves</span>
-                                </div>
-                                <div class="mb-2">
-                                    <span><strong>R$ 15,00</strong></span>
-                                </div>
-                                <div class="mb-2">
-                                    <span><strong>Em análise <img src="{% static 'images/icone-lupa.png' %}"
-                                                style="width: 40px;" alt="icone analise"></strong></span>
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary btn-block arredondar">Cancelar</button>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div id="expirado" class="collapse" role="tabpanel" data-parent="#produtos">
-
-                        <div class="row">
-
-                            <div class="col-12 pb-3 ml-3 pt-2">
-                                <div>
-                                    <img src="{% static 'images/icone-lupa.png' %}" style="width: 200px; height: 200px;"
-                                        alt="icone expirado">
-                                </div>
-                                <div>
-                                    <span class="h5">Nenhum anúncio expirado!</span>
-                                </div>
-                            </div>
 
                         </div>
 
@@ -158,24 +106,25 @@
 </section>
 
 <!-- Modal -->
-    <div class="modal fade" id="modal-exlusao" tabindex="-1" role="dialog" aria-labelledby="modal-exclusão" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+<div class="modal fade" id="modal-exlusao" tabindex="-1" role="dialog" aria-labelledby="modal-exclusão"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" >Exclusão</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Deseja mesmo excluir o produto?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal"> Fechar </button>
-            <a class="btn btn-secondary" href="{% url 'delete_product' '0' %}"> Sim </a>
-          </div>
+            <div class="modal-header">
+                <h5 class="modal-title text-danger">Exclusão</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-danger">
+                <h6>Deseja mesmo excluir o produto?</h6>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"> Não </button>
+                <a class="btn btn-primary" href="{% url 'delete_product' '0' %}"> Sim </a>
+            </div>
         </div>
-      </div>
     </div>
+</div>
 
 {% endblock %}

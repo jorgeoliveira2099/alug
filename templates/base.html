@@ -19,7 +19,7 @@
 
 <body>
 
-<script type="text/javascript" src="{% static 'js/cidades-estados.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/cidades-estados.js' %}"></script>
   <nav class="navbar fixed-top navbar-expand-lg bg-dark fixed-top box-shadow py-2">
     <div class="container nav-alugo">
       <a class="navbar-brand aumentar-tamanho-mouse" href="{% url 'home' %}">
@@ -38,17 +38,6 @@
               <img src="{% static 'images/icone-meus-anuncios.png' %}" alt="meus anuncios">
               Meus Anúncios</a>
           </li>
-          <li class="nav-item">
-            <a href="{% url 'show_notifications' %}" class="navbar-item">
-              <i class="material-icons"></i>
-              {% if count_notifications %}
-              <i class="far fa-bell" style="color:red;"></i>
-              {% else %}
-              <i class="far fa-bell"></i>
-              <span class="badge">{{ count_notifications }}</span>
-              {% endif %}
-            </a>
-          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
               href="perfil_usuario.html">
@@ -56,20 +45,31 @@
               Perfil</a>
             <div class="dropdown-menu cor-texto-dropdown" aria-labelledby="navbarDropdown">
               <div class="arredondar-linha">
-                <a class="dropdown-item" href="{% url 'perfil' user.id %}">Meu Perfil
+                <a href="{% url 'show_notifications' %}" class="dropdown-item">
+                  <i class="material-icons">Notificações</i>
+                  {% if count_notifications %}
+                  <i class="far fa-bell" style="color:red;"></i>
+                  {% else %}
+                  <i class="far fa-bell ml-1"></i>
+                  <span class="badge">{{ count_notifications }}</span>
+                  {% endif %}
+                </a>
+              </div>
+              <div class="arredondar-linha">
+                <a class="dropdown-item" href="{% url 'perfil' user.id %}"><i>Meu Perfil</i> 
                   <img class="ml-1" src="{% static 'images/icone-perfil-dropdown.ico' %}" alt="icone perfil"></a>
               </div>
               <div class="arredondar-linha">
                 <a class="dropdown-item" href="{% url 'meusChats' %}">
-                  Chat
+                  <i>Chat</i> 
                   <img class="ml-2" src="{% static 'images/icone-chat.png' %}" alt="icone chat"></a>
               </div>
               <div class="arredondar-linha">
                 <a class="dropdown-item" href="#">
-                  Ajuda
+                  <i>Ajuda</i> 
                   <img src="{% static 'images/icone-ajuda-2.ico' %}" class="ml-1" alt="icone ajuda"></a>
               </div>
-              <a class="dropdown-item" href="{% url 'logout' %}">Sair
+              <a class="dropdown-item" href="{% url 'logout' %}"><i>Sair</i>
                 <img src="{% static 'images/icone-sair.png' %}" alt="icone sair"></a>
             </div>
           <li class="nav-item aumentar-tamanho-mouse">
@@ -86,6 +86,7 @@
             <a id="anunciar" class="btn text-white ml-md-2 px-3 botao-redondo" style="background-color: orange;"
               href="{% url 'login' %}">Anunciar</a>
           </li>
+          </li>
           {% endif %}
         </ul>
       </div>
@@ -94,9 +95,80 @@
 
   {% block main %}
   {% endblock %}
-  
-  <footer class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-center mt-5">
-    <a class="navbar-brand" href="{% url 'home' %}">Alugo</a>
+
+  <footer class="container-fluid bg-dark text-white p-5">
+    <div class="container box-shadow">
+      <div class="row justify-content-center">
+
+        <div class="col-md-4 col-5 d-flex align-items-center">
+          <a class="navbar-brand aumentar-tamanho-mouse" href="{% url 'home' %}">
+            <img class="rounded" src="{% static 'images/alugoicon72x72.png' %}" alt="">
+          </a>
+        </div>
+
+        {% if user.is_authenticated %}
+        <div class="col-md-4 col-7">
+          <h6>ACESSO RÁPIDO</h6>
+          <ul class="list-unstyled">
+            
+            <li><a href="{% url 'list_products' user.id %}">→ Meus Anúncios</a></li>
+            <li><a href="{% url 'perfil' user.id %}">→ Meu Perfil</a></li>
+          </ul>
+        </div>
+
+        <div class="d-md-none col-5">
+
+        </div>
+
+        <div class="col-md-4 col-7 mt-3 mb-5 mt-md-0 mb-md-0">
+          <h6>LINKS ÚTEIS</h6>
+          <ul class="list-unstyled">
+            <li><a href="">→ Perguntas Frequentes</a></li>
+          </ul>
+        </div>
+
+        {% else %}
+        <div class="col-4">
+          <h6>ACESSO RÁPIDO</h6>
+          <ul class="list-unstyled">
+            <li><a href="{% url 'login' %}">→ Anunciar</a></li>
+            <li><a href="{% url 'login' %}">→ Meus Anúncios</a></li>
+            <li><a href="{% url 'login' %}">→ Meu Perfil</a></li>
+          </ul>
+        </div>
+
+        <div class="col-4">
+          <h6>LINKS ÚTEIS</h6>
+          <ul class="list-unstyled">
+            <li><a href="">→ Perguntas Frequentes</a></li>
+          </ul>
+        </div>
+
+        {% endif %}
+
+      </div>
+
+      <div class="row justify-content-end mr-1">
+
+        <div class="bandeira">
+          <p>Brasil</p>
+          <img class="img-brasil" src="https://country-flags.scdn.co/flags/br.svg" alt="">
+        </div>
+
+      </div>
+
+      <div class="row justify-content-between mt-1 mr-1">
+
+        <div class="extra ml-3">
+          <a href="">Termos e condições de uso</a>
+        </div>
+
+        <div class="cop">
+          <p>© 2020 Alugo</p>
+        </div>
+      </div>
+
+    </div>
   </footer>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

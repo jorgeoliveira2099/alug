@@ -18,6 +18,8 @@
 </head>
 
 <body>
+
+  <script type="text/javascript" src="{% static 'js/cidades-estados.js' %}"></script>
   <nav class="navbar fixed-top navbar-expand-lg bg-dark fixed-top box-shadow py-2">
     <div class="container nav-alugo">
       <a class="navbar-brand aumentar-tamanho-mouse" href="{% url 'home' %}">
@@ -92,9 +94,80 @@
 
   {% block main %}
   {% endblock %}
-  
-  <footer class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-center mt-5 fixed-bottom">
-    <a class="navbar-brand" href="{% url 'home' %}">Alugo</a>
+
+  <footer class="container-fluid bg-dark text-white p-5 fixed-bottom">
+    <div class="container box-shadow">
+      <div class="row justify-content-center">
+
+        <div class="col-md-4 col-5 d-flex align-items-center">
+          <a class="navbar-brand aumentar-tamanho-mouse" href="{% url 'home' %}">
+            <img class="rounded" src="{% static 'images/alugoicon72x72.png' %}" alt="">
+          </a>
+        </div>
+
+        {% if user.is_authenticated %}
+        <div class="col-md-4 col-7">
+          <h6>ACESSO RÁPIDO</h6>
+          <ul class="list-unstyled">
+            <li><a href="{% url 'create_products' user.id %}">→ Anunciar</a></li>
+            <li><a href="{% url 'list_products' user.id %}">→ Meus Anúncios</a></li>
+            <li><a href="{% url 'perfil' user.id %}">→ Meu Perfil</a></li>
+          </ul>
+        </div>
+
+        <div class="d-md-none col-5">
+          
+        </div>
+        
+        <div class="col-md-4 col-7 mt-3 mb-5 mt-md-0 mb-md-0">
+          <h6>LINKS ÚTEIS</h6>
+          <ul class="list-unstyled">
+            <li><a href="">→ Perguntas Frequentes</a></li>
+          </ul>
+        </div>
+
+        {% else %}
+        <div class="col-4">
+          <h6>ACESSO RÁPIDO</h6>
+          <ul class="list-unstyled">
+            <li><a href="{% url 'login' %}">→ Anunciar</a></li>
+            <li><a href="{% url 'login' %}">→ Meus Anúncios</a></li>
+            <li><a href="{% url 'login' %}">→ Meu Perfil</a></li>
+          </ul>
+        </div>
+
+        <div class="col-4">
+          <h6>LINKS ÚTEIS</h6>
+          <ul class="list-unstyled">
+            <li><a href="">→ Perguntas Frequentes</a></li>
+          </ul>
+        </div>
+
+        {% endif %}
+
+      </div>
+
+      <div class="row justify-content-end mr-1">
+
+        <div class="bandeira">
+          <p>Brasil</p>
+          <img class="img-brasil" src="https://country-flags.scdn.co/flags/br.svg" alt="">
+        </div>
+
+      </div>
+
+      <div class="row justify-content-between mt-1 mr-1">
+      
+        <div class="extra ml-3">
+          <a href="">Termos e condições de uso</a>
+        </div>
+
+        <div class="cop">
+          <p>© 2020 Alugo</p>
+        </div>
+      </div>
+
+    </div>
   </footer>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -106,6 +179,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
   </script>
+  <script type="text/javascript" src="{% static 'js/cidades-estados.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/jquery-1.2.6.pack.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/jquery.maskedinput-1.1.4.pack.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
