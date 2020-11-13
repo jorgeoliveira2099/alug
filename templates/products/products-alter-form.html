@@ -7,6 +7,18 @@
 {% block main %}
    <body>
    <h3> Produto </h3>
+
+   <div>
+        {% for message in messages %}
+               <div class="alert alert-success alert-dismissible fade show" role="alert">
+                   {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+               {% endfor %}
+    </div>
     <form method="POST" action="" enctype="multipart/form-data" class="col-lg-9">
         {% csrf_token %}
         {{ form|bootstrap }}
@@ -15,7 +27,7 @@
         <select required class="custom-select" name="cidade" id="cidade"></select>
 
         <button type="submit" class="btn btn-secondary"> Salvar </button>
-        <a href="{% url 'detail_product' product.id %}" class="btn btn-secondary"> Voltar </a>
+        <a href="{% url 'list_products' user.id %}" class="btn btn-secondary"> Voltar </a>
 
     </form>
 
