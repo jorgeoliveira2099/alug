@@ -75,15 +75,28 @@ def lista_products(request):
     return render(request, 'home/home.html', context)
 
 @login_required
-def create_product(request, userId):
+def create_product(request):
     form = ProductForm(request.POST or None, request.FILES or None)
-    user = MyUser.objects.get(id=userId)
+    user = request.user
+    if form.is_valid():
+        product = form.save(commit=False)
+        product.user = user
+        product.cidade = request.POST.get('cidade')
+        product.estado = request.POST.get('estado')
+        product.save()
+        return render(request, 'products/products-form.html', {'form': form})
+
+    return render(request, 'products/products-form.html', {'form': form})
+
+def create_productSubmit(request):
+    form = ProductForm(request.POST or None, request.FILES or None)
+    user = request.user
 
     if form.is_valid():
         product = form.save(commit=False)
         product.user = user
         product.save()
-        return redirect(reverse('list_products', kwargs={'userId': userId}))
+        return render(request, 'products/products-form.html', {'form': form})
 
     return render(request, 'products/products-form.html', {'form': form})
 
@@ -91,13 +104,21 @@ def create_product(request, userId):
 def update_product(request, productId):
     product = get_object_or_404(Product, pk=productId)
     form = ProductForm(request.POST or None, request.FILES or None, instance=product)
+    productForm = form.save(commit=False)
 
     if form.is_valid():
-        form.save()
+        productForm.cidade = request.POST.get('cidade')
+        productForm.estado = request.POST.get('estado')
+        productForm.save()
         messages.info(request, 'Produto alterado com sucesso!')
         return render(request, 'products/my-products-detail.html', {'product': product})
 
-    return render(request, 'products/products-alter-form.html', {'form': form, 'product': product})
+    return render(request, 'products/products-alter-form.html', {
+        'form': form,
+        'product': productForm,
+        'estado': product.estado,
+        'cidade': product.cidade
+    })
 
 @login_required
 def delete_product(request, productId):

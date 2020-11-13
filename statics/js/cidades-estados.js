@@ -16,12 +16,12 @@ function dgReadyState(fn){ //dom is ready for interaction (IE)
 }
 
 /* Objeto */
-var dgCidadesEstados = function(data) {
+var dgCidadesEstados = function(data, estadoDef, cidadeDef) {
   var defaultData = {
     estado: false,
-    estadoVal: '',
+    estadoVal: estadoDef,
     cidade: false,
-    cidadeVal: '',
+    cidadeVal: cidadeDef,
     change: false
   }
   for (name in defaultData) {
@@ -113,11 +113,11 @@ dgCidadesEstados.prototype = {
     elm.appendChild(opt);
   },
   estados : [
-    ['','Selecione um estado'],['AC','Acre'],['AL','Alagoas'],['AM','Amazonas'],['AP','Amapá'],['BA','Bahia'],
-    ['CE','Ceará'],['DF','Distrito Federal'],['ES','Espírito Santo'],['GO','Goiás'],['MA','Maranhão'],['MG','Minas Gerais'],
-    ['MS','Mato Grosso do Sul'],['MT','Mato Grosso'],['PA','Pará'],['PB','Paraíba'],['PE','Pernambuco'],['PI','Piauí'],
-    ['PR','Paraná'],['RJ','Rio de Janeiro'],['RN','Rio Grande do Norte'],['RO','Rondônia'],['RR','Roraima'],['RS','Rio Grande do Sul'],
-    ['SC','Santa Catarina'],['SP','São Paulo'],['SE','Sergipe'],['TO','Tocantins']
+    ['','Selecione um estado'],['Acre','Acre'],['Alagoas','Alagoas'],['Amazonas','Amazonas'],['Amapá','Amapá'],['Bahia','Bahia'],
+    ['Ceará','Ceará'],['Distrito Federal','Distrito Federal'],['Espírito Santo','Espírito Santo'],['Goiás','Goiás'],['Maranhão','Maranhão'],['Minas Gerais','Minas Gerais'],
+    ['Mato Grosso do Sul','Mato Grosso do Sul'],['Mato Grosso','Mato Grosso'],['Pará','Pará'],['Paraíba','Paraíba'],['Pernambuco','Pernambuco'],['Piauí','Piauí'],
+    ['Paraná','Paraná'],['RJ','Rio de Janeiro'],['Rio Grande do Norte','Rio Grande do Norte'],['Rondônia','Rondônia'],['Roraima','Roraima'],['Rio Grande do Sul','Rio Grande do Sul'],
+    ['Santa Catarina','Santa Catarina'],['São Paulo','São Paulo'],['Sergipe','Sergipe'],['Tocantins','Tocantins']
   ],
   cidades : [
 	[''],

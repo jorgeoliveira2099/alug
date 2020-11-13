@@ -6,6 +6,7 @@ from .views import (
     lista_products,
     list_products,
     create_product,
+    create_productSubmit,
     update_product,
     delete_product,
     detail_product,
@@ -24,7 +25,8 @@ from .views import (
 urlpatterns = [
     path('lista/', lista_products, name='lista_products'),
     path('list/<int:userId>/', list_products, name='list_products'),
-    path('new/<int:userId>/', create_product, name='create_products'),
+    path('new/', create_product, name='create_products'),
+    path('new/submit', create_productSubmit, name='create_productSubimit'),
     path('update/<int:productId>/', update_product, name='update_product'),
     path('delete/<int:productId>/', delete_product, name='delete_product'),
     path('denuncia/<int:productId>/', denunciar, name='denuncia'),

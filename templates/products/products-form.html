@@ -17,12 +17,12 @@
 
             <div class="row p-lg-5 py-4 px-1 rounded mb-5 texto-campo" style="border: 1px solid #ccc">
 
-                <form method="POST" enctype="multipart/form-data" class="col-lg-9">
+                <form method="POST" action="" enctype="multipart/form-data" class="col-lg-9">
                     {% csrf_token %}
                     {{ form|bootstrap }}
 
-            <select required class="custom-select mt-2 mb-4" id="estado"></select>
-            <select required class="custom-select" id="cidade"></select>
+            <select required class="custom-select mt-2 mb-4" name="estado" id="estado"></select>
+            <select required class="custom-select" name="cidade" id="cidade"></select>
             </div>
 
 
@@ -65,7 +65,7 @@
       new dgCidadesEstados({
         cidade: document.getElementById('cidade'),
         estado: document.getElementById('estado')
-      })
+      }, '{{estado}}', '{{cidade}}')
     </script>
 
 

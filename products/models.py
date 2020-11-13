@@ -18,9 +18,11 @@ class Product(models.Model):
     user = models.ForeignKey(MyUser, null=True, blank=True, on_delete=models.CASCADE)
     favourite = models.ManyToManyField(MyUser, related_name='favourite', blank=True)
     alugado = models.BooleanField(default=False)
+    estado = models.CharField(max_length=100, default='Pernambuco')
+    cidade = models.CharField(max_length=100, default='Recife')
 
     def __str__(self):
-        return self.descricao
+        return self.nome
 
     def get_absolute_url(self):
         return reverse('favourite_products', kwargs={'id':self.user.id})

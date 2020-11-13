@@ -7,11 +7,22 @@
 {% block main %}
    <body>
    <h3> Produto </h3>
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" action="" enctype="multipart/form-data" class="col-lg-9">
         {% csrf_token %}
         {{ form|bootstrap }}
+
+        <select required class="custom-select mt-2 mb-4" name="estado" id="estado"></select>
+        <select required class="custom-select" name="cidade" id="cidade"></select>
+
         <button type="submit" class="btn btn-secondary"> Salvar </button>
         <a href="{% url 'detail_product' product.id %}" class="btn btn-secondary"> Voltar </a>
 
     </form>
+
+   <script language="JavaScript" type="text/javascript" charset="utf-8">
+      new dgCidadesEstados({
+        cidade: document.getElementById('cidade'),
+        estado: document.getElementById('estado')
+      }, '{{estado}}', '{{cidade}}')
+    </script>
 {% endblock %}
