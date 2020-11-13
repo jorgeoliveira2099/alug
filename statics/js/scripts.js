@@ -23,6 +23,16 @@
         }
     });
 
+function prenecherExclusao(idProduto){
+    var a = $('#modal-exlusao').find('a')
+    var link = a.attr('href')
+    link = link.slice(0, -1)
+    link = link.slice(0, -1)
+    link = link + idProduto + '/'
+    console.log(link)
+    a.attr('href', link)
+}
+
 function validaCpf(strCPF) {
     var Soma;
     var Resto;
@@ -115,13 +125,4 @@ function pesquisacep(valor) {
     }
 }
 
-function prenecherExclusao(idProduto){
-    var a = $('#modal-exlusao').find('a')
-    var link = a.attr('href')
-    link = link.slice(0, -1)
-    link = link.slice(0, -1)
-    link = link + idProduto + '/'
-    console.log(link)
-    a.attr('href', link)
-}
 

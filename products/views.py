@@ -17,6 +17,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def list_products(request, userId):
     user = MyUser.objects.get(id=userId)
     products = Product.objects.filter(Q(user=user, alugado=False))
+    quantidade = len(products)
 
     #aqui o usuario logado
     #print(request.user.id)
@@ -43,7 +44,7 @@ def list_products(request, userId):
     filtro = FilterCategory(request.GET, queryset=products)
     products = filtro.qs
     
-    context = {'products': pagina, 'filtro': filtro, 'page':page}
+    context = {'products': pagina, 'filtro': filtro, 'page': page, 'quantidade': quantidade}
     
     if request.user.id != usu.id:
         #print('diferentes')
