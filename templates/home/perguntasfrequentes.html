@@ -1,13 +1,201 @@
 {%  extends 'base.html'%}
+{% load static %}
+
 
 {% block title %} Perguntas Frequentes {% endblock %}
 
 {% block main %}
 
-<h1> Perguntas Frequentes </h1>
+<section class="container-fluid bg-light p-5">
+  <div class="container text-center">
+    <div class="mb-5">
+      <h3 class="display-4 text-primary">Olá, como podemos Ajudar?</h3>
+    </div>
+  </div>
+</section>
+
+<section class="container p-5 duvida-por-tema">
+
+  <div>
+    <h3>Dúvidas por tema</h3>
+  </div>
+
+  <!-- Inicio - 1 categoria de dúvidas -->
+  <div class="pb-2" style="border-bottom: 1px solid #ccc;">
+
+    <div class="pt-4 pb-2">
+      <a data-toggle="collapse" href="#MinhaConta" class="colecao" role="button" aria-expanded="false"
+        aria-controls="multiCollapseExample1">
+        <img src="{% static 'images/icone-seta-pro-lado.ico' %}" style="width: 20px;" alt="icone seta">
+        Minha Conta</a>
+    </div>
+
+    <div class="collapse ml-5" id="MinhaConta">
+
+      <!--  Inicio - Um submenu com um texto -->
+      <div class="mb-3">
+        <a data-toggle="collapse" href="#AlterarDados" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Como alterar dados da minha conta?</a>
+      </div>
+
+      <div class="collapse ml-5" id="AlterarDados">
+        <p>Na barra de navegação, clique na aba Perfil, em seguida clique em Meu Perfil, após isso digite os novos dados
+          e salve a alteração.</p>
+      </div>
+      <!--  Fim - Um submenu com um texto -->
+
+      <div class="mb-3">
+        <a data-toggle="collapse" href="#ExcluirConta" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Como excluo minha conta?</a>
+      </div>
+
+      <div class="collapse ml-5" id="ExcluirConta">
+        <p>Na barra de navegação, clique na aba Perfil, em seguida clique em Meu Perfil, role a página até o fim e
+          clique em excluir conta.</p>
+      </div>
+
+      <div class="mb-3">
+        <a data-toggle="collapse" href="#AlterarEmail" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Como altero meu email?</a>
+      </div>
+
+      <div class="collapse ml-5" id="AlterarEmail">
+        <p> Na barra de navegação, clique na aba Perfil, em seguida clique em Meu Perfil, após isso digite os novos
+          dados e salve a alteração.
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- Fim - 1 categoria de dúvidas -->
+
+  <div class="pb-2" style="border-bottom: 1px solid #ccc;">
+
+    <div class="pt-4 pb-2">
+      <a data-toggle="collapse" href="#Anuncio" class="colecao" role="button" aria-expanded="false"
+        aria-controls="multiCollapseExample1">
+        <img src="{% static 'images/icone-seta-pro-lado.ico' %}" style="width: 20px;" alt="icone seta pro lado">
+        Anúncios</a>
+    </div>
+
+    <div class="collapse ml-5" id="Anuncio">
+
+      <div class="mb-3">
+        <a data-toggle="collapse" href="#PublicarAnuncio" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Como publico um anúncio?</a>
+      </div>
+
+      <div class="collapse ml-5" id="PublicarAnuncio">
+        <p>No menu de navegação, na aba inserir.</p>
+      </div>
+
+      <div class="mb-3">
+        <a data-toggle="collapse" href="#ProblemaImagem" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Problemas em anexar uma imagem</a>
+      </div>
+
+      <div class="collapse ml-5" id="ProblemaImagem">
+        <p>Abra a página de inserir produto e tire a foto com a câmera, ou importe a imagem através da galeria.</p>
+      </div>
+
+      <div class="mb-3">
+        <a data-toggle="collapse" href="#VerMeusAnuncios" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Onde vejo meus anúncios publicados?</a>
+      </div>
+
+      <div class="collapse ml-5" id="VerMeusAnuncios">
+        <p>No menu de navegação, na aba meus anúncios</p>
+      </div>
+
+      <div class="mb-3">
+        <a data-toggle="collapse" href="#EditarAnuncio" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Onde edito meus anúncios publicados?</a>
+      </div>
+
+      <div class="collapse ml-5" id="EditarAnuncio">
+        <p>No menu de navegação, na aba meus anúncios</p>
+      </div>
+
+      <div class="mb-3">
+        <a data-toggle="collapse" href="#ExcluirAnuncio" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Onde excluo meus anúncios publicados?</a>
+      </div>
+
+      <div class="collapse ml-5" id="ExcluirAnuncio">
+        <p>No menu de navegação, na aba meus anúncios</p>
+      </div>
+
+      <div class="mb-3">
+        <a data-toggle="collapse" href="#ExpiradoAnuncio" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Meu anúncio expirou e agora?</a>
+      </div>
+
+      <div class="collapse ml-5" id="ExpiradoAnuncio">
+        <p>
+          Insira-o novamente ou renove-o com um de nossos planos.
+        </p>
+      </div>
+
+      <div class="mb-3">
+        <a data-toggle="collapse" href="#StatusAnuncio" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Meu anúncio não sai do status "em análise"</a>
+      </div>
+
+      <div class="collapse ml-5" id="StatusAnuncio">
+        <p>A análise dura em média 30 minutos, naso o tempo seja maior, entre em contato conosco.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pb-2" style="border-bottom: 1px solid #ccc;">
+
+    <div class="pt-4 pb-2">
+      <a data-toggle="collapse" href="#SerPrime" class="colecao" role="button" aria-expanded="false"
+        aria-controls="multiCollapseExample1">
+        <img src="{% static 'images/icone-seta-pro-lado.ico' %}" style="width: 20px;" alt="icone seta pro lado">
+        Ser Prime</a>
+    </div>
+
+    <div class="collapse ml-5" id="SerPrime">
+
+      <!--  Inicio - Um submenu com um texto -->
+      <div class="mb-3">
+        <a data-toggle="collapse" href="#TornarPrime" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Como me torno prime?</a>
+      </div>
+
+      <div class="collapse ml-5" id="TornarPrime">
+        <p>Adquirindo o plano prime.</p>
+      </div>
+      <!--  Fim - Um submenu com um texto -->
+
+      <div class="mb-3">
+        <a data-toggle="collapse" href="#DescontoPrime" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Se eu for Gold, se for comprar o Platium tenho desconto?</a>
+      </div>
+
+      <div class="collapse ml-5" id="DescontoPrime">
+        <p>Sim, o desconto de 30% é automático.</p>
+      </div>
+
+      <div class="mb-3">
+        <a data-toggle="collapse" href="#DurarPrime" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Por quanto tempo dura o prime?</a>
+      </div>
+
+      <div class="collapse ml-5" id="DurarPrime">
+        <p>12 meses</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-warning mt-5" role="alert">
+    Não encontrou solução? Mande um e-mail para <a href="#" class="alert-link">alugosac@alugo.com</a>
+  </div>
+
+</section>
 
 <div>
-  
+
 </div>
 
 {% endblock %}

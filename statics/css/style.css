@@ -2,35 +2,35 @@ html, body {
    height: 100%;
    margin: 0;
    margin-top: 40px;
- }
+}
 
- /* Navegação */
+/* Navegação */
 
- #logo-nav {
-   border-radius: 10px; 
-   width: 45px; 
-   height: 45px; 
- }
+#logo-nav {
+   border-radius: 10px;
+   width: 45px;
+   height: 45px;
+}
 
- .icones-nav img{
-    width: 30px;
- }
+.icones-nav img {
+   width: 30px;
+}
 
- .cor-texto-dropdown a{
+.cor-texto-dropdown a {
    color: rgb(74, 74, 74);
- }
+}
 
- .cor-texto-nav li > a{
+.cor-texto-nav li>a {
    color: #fff;
- }
+}
 
- .navbar-nav>li:hover>a, .navbar-nav>li.active>a {
+.navbar-nav>li:hover>a, .navbar-nav>li.active>a {
    color: #C0C0C0;
- }
+}
 
- /* Meu perfil */
+/* Meu perfil */
 
-.fotoPerfil{
+.fotoPerfil {
    width: 150px;
    height: 150px;
    background-color: #000;
@@ -40,52 +40,50 @@ html, body {
 
 /* Diversos */
 
- .box-shadow {
-   box-shadow: 0 2px 4px 0 rgba(0,0,0,.05),
-               0 2px 8px 0 rgba(0,0,0,.05);
- }
+.box-shadow {
+   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .05), 0 2px 8px 0 rgba(0, 0, 0, .05);
+}
 
- .botao-redondo {
-    border-radius: 50px;
- }
+.botao-redondo {
+   border-radius: 50px;
+}
 
- .login-cadastro-espacamento {
-    margin-top: 120px;
- }
+.login-cadastro-espacamento {
+   margin-top: 120px;
+}
 
- .fundo-site-branco {
-    background-color: #FFF;
- }
+.fundo-site-branco {
+   background-color: #FFF;
+}
 
- /* Home */
+/* Home */
 
 .aumentar-tamanho-mouse a {
    color: black;
    text-decoration: none;
- }
- 
- .aumentar-tamanho-mouse:hover {
-   transition: all 0.3s ease;
-   transform: scale(1.1);
- }
-
- .tamanho-fixo-imagens {
-    width: 200px;
-    height: 200px;
- }
-
- #quem-somos {
-   background: url('../images/quem-somos.jpg') center center;
-   background-size: cover;
- }
-
-#section-home-pesquisar #id_nome {
-    height: calc(1.5em + 1rem + 2px);
-    padding: .5rem 1rem;
-    font-size: 1.25rem;
-    line-height: 1.5;
 }
 
+.aumentar-tamanho-mouse:hover {
+   transition: all 0.3s ease;
+   transform: scale(1.1);
+}
+
+.tamanho-fixo-imagens {
+   width: 200px;
+   height: 200px;
+}
+
+#quem-somos {
+   background: url('../images/quem-somos.jpg') center center;
+   background-size: cover;
+}
+
+#section-home-pesquisar #id_nome {
+   height: calc(1.5em + 1rem + 2px);
+   padding: .5rem 1rem;
+   font-size: 1.25rem;
+   line-height: 1.5;
+}
 
 /* Anunciar Produto */
 
@@ -98,7 +96,7 @@ html, body {
 }
 
 .texto-campo {
-   color: rgb(74, 74, 74); 
+   color: rgb(74, 74, 74);
    font-weight: bold;
 }
 
@@ -108,7 +106,6 @@ html, body {
    width: 150px;
    height: 150px;
 }
-
 
 /* Detalhe produto */
 
@@ -126,7 +123,7 @@ html, body {
 
 @media (max-width: 767px) {
    .subs-favo {
-     margin-left: 35%;
+      margin-left: 35%;
    }
    .imagem-md {
       height: 300px;
@@ -134,10 +131,10 @@ html, body {
 }
 
 .etiqueta-valor {
-      width: 220px;
-      height: 150px;
-      background: url('../images/icone-etiqueta.png') no-repeat center;
-      background-size: cover;
+   width: 220px;
+   height: 150px;
+   background: url('../images/icone-etiqueta.png') no-repeat center;
+   background-size: cover;
 }
 
 .etiqueta-valor-md {
@@ -148,10 +145,10 @@ html, body {
 }
 
 .preco {
-      position: relative;
-      bottom: -62px;
-      left: 27px;
-      font-size: 27px;
+   position: relative;
+   bottom: -62px;
+   left: 27px;
+   font-size: 27px;
 }
 
 .preco-md {
@@ -186,13 +183,13 @@ footer .img-brasil {
 }
 
 footer .bandeira p {
-  display: inline;
-  margin-right: 3px;
-  font-size: 13px;
+   display: inline;
+   margin-right: 3px;
+   font-size: 13px;
 }
 
 footer .bandeira p:hover {
-   color:#1DB954;
+   color: #1DB954;
 }
 
 footer .cop p {
@@ -213,8 +210,32 @@ footer {
    margin-top: 300px;
 }
 
+@media (max-width: 768px) {
+   .politica-cookies {
+      display: none;
+   }
+}
+
 /* Login e Cadastro */
 
 .logar-cadastrar-distanciamento {
    margin-top: 150px;
+}
+
+/* Perguntas Frequentes */
+
+section.duvida-por-tema a {
+   text-decoration: none;
+}
+
+.colecao {
+   font-weight: 600;
+}
+
+.colecao:hover {
+   text-decoration: none;
+}
+
+section.duvida-por-tema p {
+   font-weight: 500;
 }

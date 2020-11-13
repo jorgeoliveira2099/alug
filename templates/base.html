@@ -20,12 +20,23 @@
 <body>
 
   <script type="text/javascript" src="{% static 'js/cidades-estados.js' %}"></script>
+
   <nav class="navbar fixed-top navbar-expand-lg bg-dark fixed-top box-shadow py-2">
+
     <div class="container nav-alugo">
+
       <a class="navbar-brand aumentar-tamanho-mouse" href="{% url 'home' %}">
         <img id="logo-nav" src="{% static 'images/icon-nav-57x57.png' %}" alt="">
       </a>
+
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
       <div class="collapse navbar-collapse cor-texto-nav icones-nav" id="navbarResponsive">
+
         <ul class="navbar-nav ml-auto">
           {% if user.is_authenticated %}
           <li class="nav-item">
@@ -33,17 +44,22 @@
               <img src="{% static 'images/icone-prime.ico' %}" alt="icone-prime">
               Seja Prime</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="{% url 'list_products' user.id %}">
               <img src="{% static 'images/icone-meus-anuncios.png' %}" alt="meus anuncios">
               Meus Anúncios</a>
           </li>
+
           <li class="nav-item dropdown">
+
             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
               href="perfil_usuario.html">
               <img src="{% static 'images/icone-perfil-nav.png' %}" alt="icone perfil">
               Perfil</a>
+
             <div class="dropdown-menu cor-texto-dropdown" aria-labelledby="navbarDropdown">
+
               <div class="arredondar-linha">
                 <a href="{% url 'show_notifications' %}" class="dropdown-item">
                   <i class="material-icons">Notificações</i>
@@ -55,38 +71,48 @@
                   {% endif %}
                 </a>
               </div>
+
               <div class="arredondar-linha">
-                <a class="dropdown-item" href="{% url 'perfil' user.id %}"><i>Meu Perfil</i> 
+                <a class="dropdown-item" href="{% url 'perfil' user.id %}"><i>Meu Perfil</i>
                   <img class="ml-1" src="{% static 'images/icone-perfil-dropdown.ico' %}" alt="icone perfil"></a>
               </div>
+
               <div class="arredondar-linha">
                 <a class="dropdown-item" href="{% url 'meusChats' %}">
-                  <i>Chat</i> 
+                  <i>Chat</i>
                   <img class="ml-2" src="{% static 'images/icone-chat.png' %}" alt="icone chat"></a>
               </div>
+
               <div class="arredondar-linha">
                 <a class="dropdown-item" href="#">
-                  <i>Ajuda</i> 
+                  <i>Ajuda</i>
                   <img src="{% static 'images/icone-ajuda-2.ico' %}" class="ml-1" alt="icone ajuda"></a>
               </div>
-              <a class="dropdown-item" href="{% url 'logout' %}"><i>Sair</i>
-                <img src="{% static 'images/icone-sair.png' %}" alt="icone sair"></a>
+
+              <div>
+                <a class="dropdown-item" href="{% url 'logout' %}"><i>Sair</i>
+                  <img src="{% static 'images/icone-sair.png' %}" alt="icone sair"></a>
+              </div>
             </div>
+          </li>
+
           <li class="nav-item aumentar-tamanho-mouse">
             <a id="anunciar" class="btn text-white ml-md-2 px-3 botao-redondo" style="background-color: orange;"
               href="{% url 'create_products' %}">Anunciar</a>
           </li>
+
           {% else %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'login' %}">
               <img src="{% static 'images/icone-entrar.png' %}" alt="Entrar">
               Entrar</a>
           </li>
+          
           <li class="nav-item aumentar-tamanho-mouse">
             <a id="anunciar" class="btn text-white ml-md-2 px-3 botao-redondo" style="background-color: orange;"
               href="{% url 'login' %}">Anunciar</a>
           </li>
-          </li>
+
           {% endif %}
         </ul>
       </div>
@@ -123,7 +149,7 @@
         <div class="col-md-4 col-7 mt-3 mb-5 mt-md-0 mb-md-0">
           <h6>LINKS ÚTEIS</h6>
           <ul class="list-unstyled">
-            <li><a href="">→ Perguntas Frequentes</a></li>
+            <li><a href="{% url 'perguntasFrequentes' %}">→ Perguntas Frequentes</a></li>
           </ul>
         </div>
 
@@ -140,7 +166,7 @@
         <div class="col-4">
           <h6>LINKS ÚTEIS</h6>
           <ul class="list-unstyled">
-            <li><a href="">→ Perguntas Frequentes</a></li>
+            <li><a href="{% url 'perguntasFrequentes' %}">→ Perguntas Frequentes</a></li>
           </ul>
         </div>
 
@@ -160,8 +186,15 @@
       <div class="row justify-content-between mt-1 mr-1">
 
         <div class="extra ml-3">
-          <a href="">Termos e condições de uso</a>
+          <a href="{% url 'termosDeUso' %}">Termos e condições de uso</a>
+
+          <a class="ml-3 politica-cookies" href="{% url 'termosDeUso' %}">Política de cookies</a>
+
+          <div class="d-md-none">
+            <a class="ml-3" href="{% url 'termosDeUso' %}">Política de cookies</a>
+          </div>
         </div>
+
 
         <div class="cop">
           <p>© 2020 Alugo</p>
