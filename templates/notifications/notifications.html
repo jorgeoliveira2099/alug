@@ -41,7 +41,7 @@
 {% endif %}
 
 {% if notification.notification_type == 4 %}          
-    <a href="{% url 'produtos_requisitados' %}" class="nav-link">Avalie a sua experiencia com a negociação</a>        
+    <a href="{% url 'avaliacoes_pendentes' %}" class="nav-link">Avalie a sua experiencia com a negociação</a>        
             
             <a href="{% url 'delete_notification' notification.id %}" class="delete">Marcar Como lido</a>   
             <br><br>

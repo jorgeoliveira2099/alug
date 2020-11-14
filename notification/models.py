@@ -105,7 +105,7 @@ def delete_alugar(sender, instance, **kwargs):
     sender = sender
     print(sender)
 
-    user = message.locador
+    user = message.locatario
     print(user)
     print('LOCATARIO AQUI mesmo ?')    
     #aqui, a       

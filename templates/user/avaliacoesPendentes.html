@@ -1,0 +1,27 @@
+{%  extends 'base.html'%}
+{% load static %}
+{%  load bootstrap %}
+
+{% block title %} Avaliações Pendentes {% endblock %}
+
+{% block main %}
+ <div class="container">
+    <div class="row">
+       {% for avaliacao in avaliacoes %}
+           
+        <div class="col">
+               <a href="{% url 'avalia' avaliacao.id %}"> <p> Avaliar Experiencia</p> </a>         
+              
+        </div>
+            
+        {% empty %}
+        <h4>Você não tem avaliações pendentes!</h4>
+
+        {% endfor %}
+
+
+    </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{%  extends 'base.html'%}
+{% load static %}
+{%  load bootstrap %}
+
+{% block title %} Avaliação {% endblock %}
+
+{% block main %}
+
+<body>
+    
+    <h1>Avaliação</h1>
+<h1>Avalie sua experiencia com {{ usuario }} !</h1>
+<h1>{{ idAvalia }}</h1>
+  <form action="/rating/avaliar/{{idAvalia}}/submit" method="POST"> 
+<!-- <form action="submit" method="POST"> -->
+    {% csrf_token %}
+  <textarea type="text" id="textlocador" name="text" placeholder="Descreva a sua experiencia!"></textarea><br>
+ 
+
+    <input type="radio" id="star5" name="rate" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+    <input type="radio" id="star4" name="rate" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+    <input type="radio" id="star3" name="rate" value="3" /><label for="star3" title="Meh">3 stars</label>
+    <input type="radio" id="star2" name="rate" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+    <input type="radio" id="star1" name="rate" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+
+
+   <!--  <input type="submit" value="Submit">   -->
+ <!--  <button type="submit" id="submit">Avaliar</button>  -->
+    <button>Avaliar</button> 
+    
+</form> 
+
+
+</body>
+
+{% endblock %}

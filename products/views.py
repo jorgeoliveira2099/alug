@@ -13,6 +13,11 @@ from .forms import ProductForm, DenunciaForm, AlugarForm
 from .filters import FilterCategory
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+from ratings.models import HistoricoAlugados, Rating
+
+from django.shortcuts import render, redirect, HttpResponseRedirect,HttpResponse
+
+
 @login_required
 def list_products(request, userId):
     user = MyUser.objects.get(id=userId)
@@ -353,11 +358,33 @@ def encerrarAluguel(request, idAluguel):
     aluguel = Alugar.objects.get(id=idAluguel)
     
     pro = aluguel.produto.id
+
+     #historicoAlugados
+    locador = aluguel.locador
+    locatario = aluguel.locatario
+    produto = aluguel.produto
+
+    historicoAlugados = HistoricoAlugados()
+
+    historicoAlugados.locador = locador
+    historicoAlugados.locatario = locatario
+    historicoAlugados.produto = produto
+    historicoAlugados.encerrado = True
+    historicoAlugados.save()
+    #historicoAlugados
+    #avaliação
+    avaliar = Rating()
+    avaliar.de = locador
+    avaliar.para = locatario
+    avaliar.save()
+    #avaliação
+
     a = pro
     produto = Product.objects.get(id=pro)     
     produto.alugado = False    
     produto.save()
 
+   
     #aluguel.confirmado = False    
     aluguel.delete()
 
@@ -366,5 +393,5 @@ def encerrarAluguel(request, idAluguel):
     #}
     
     messages.info(request, 'Você encerrou um aluguel, por gentileza avalie a experiência com o locatario')
-    return render(request, 'home/home.html')
+    return render(request, 'home/termosdeuso.html')
     #return redirect(reverse('produtos_requisitados', kwargs={'user': user}))
