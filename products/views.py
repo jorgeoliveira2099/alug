@@ -127,11 +127,23 @@ def detail_product(request, id):
     #se der merda. apagar isso
     is_favourite = False
     if product.favourite.filter(id=request.user.id).exists():
-       
        is_favourite = True
 
-#até aqui
-    return render(request, 'products/products-detail.html', {'is_favourite': is_favourite, 'product': product})
+    try:
+        perfil = Dados_usuario.objects.get(user=product.user)
+    except ObjectDoesNotExist:
+        perfil = Dados_usuario()
+
+    if perfil.nome != None:
+        identificador = perfil.nome
+    else:
+        identificador = 'Anônimo'
+
+    return render(request, 'products/products-detail.html',
+                  {'is_favourite': is_favourite,
+                   'product': product,
+                   'identificador': identificador
+                   })
 
 @login_required
 def my_detail_product(request, productId):
@@ -152,7 +164,6 @@ def my_detail_product(request, productId):
     else:  
         return render(request, 'products/my-products-detail.html', {'product': product})
 
-#se der merda, apaga só aqui
 @login_required
 def favourite_products(request, id):
     product = get_object_or_404(Product, id=id)

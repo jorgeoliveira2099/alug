@@ -72,13 +72,17 @@
 			<div class="text-center p-3 bg-light mb-lg-3" style="border: 2px solid #ccc; border-radius: 20px;">
 
 				<div class="mb-3">
-					<h3>Paulo Marcio</h3>
+					<h3>{{ identificador }}</h3>
 				</div>
 
 				<div class="mb-3">
+					{% if user != product.user %}
 					<a type="button" class="btn btn-primary botao-redondo px-5" href="{% url 'criarSala'  idProduto=product.id %}">
 						Chamar no chat
 					</a>
+					{% else %}
+					<input disabled type="button" value="Chamar no chat" class="btn btn-primary botao-redondo px-5"/>
+					{% endif %}
 				</div>
 
 			</div>

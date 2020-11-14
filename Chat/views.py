@@ -18,6 +18,8 @@ def criarSala(request, idProduto):
     user = request.user
     produto = Product.objects.get(id=idProduto)
     locador = produto.user
+    if user == produto.user:
+        return render(request, 'paginaErro.html')
     try:
         perfil = Dados_usuario.objects.get(user=user)
     except ObjectDoesNotExist:
