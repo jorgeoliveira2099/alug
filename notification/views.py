@@ -44,5 +44,7 @@ def CountNotifications(request):
 def MarkAllAsRead(request):
     user = request.user
     Notification.objects.all().filter(user=user).delete()
-    
+    #contador = Notification.objects.all().filter(user=user).count()
+    #print(contador)
+    #print('NUMERO DE NOTIFICAÇOES')
     return redirect('show_notifications')

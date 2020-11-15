@@ -34,7 +34,7 @@
 {% endif %}
 
 {% if notification.notification_type == 3 %}          
-    <a href="{% url 'produtos_requisitados' %}" class="nav-link">Sua proposta de aluguel foi aceita!</a>        
+    Sua proposta de aluguel foi aceita!       
             
             <a href="{% url 'delete_notification' notification.id %}" class="delete">Marcar Como lido</a>   
             <br><br>
@@ -49,8 +49,14 @@
 
             
         {% endif %}
+        {% empty %}
+        <h1>Você não tem Notificações!</h1>
     {% endfor %}
 
-<a href="{% url 'markall_as_read'  %}" class="delete">Marcar todas como lido</a>  
+
+ 
+ <a href="{% url 'markall_as_read'  %}" class="delete">Marcar todas como lido</a> 
+   
+
 {% endblock %}
 

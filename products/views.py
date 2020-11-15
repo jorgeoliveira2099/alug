@@ -373,10 +373,11 @@ def encerrarAluguel(request, idAluguel):
     historicoAlugados.save()
     #historicoAlugados
     #avaliação
-    avaliar = Rating()
-    avaliar.de = locador
-    avaliar.para = locatario
-    avaliar.save()
+    #isso não faz sentido
+    #avaliar = Rating()
+    #avaliar.de = locador
+    #avaliar.para = locatario
+    #avaliar.save()
     #avaliação
 
     a = pro
