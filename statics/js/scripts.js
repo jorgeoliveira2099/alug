@@ -1,27 +1,66 @@
-	//Mascara de CPF
-	$(document).ready(function(){
-		$("#id_cpf").mask("999.999.999-99");
-	});
 
-	//Mascara de CEP
-	$(document).ready(function(){
-	$("#id_cep").mask("99.999-999");
-    });
+$(document).ready(function(){
+    $("#id_cpf").mask("999.999.999-99");
+});
 
-    //Executa a requisição quando o campo username perder o foco
-    $('#id_cpf').blur(function(){
-        var cpf = $('#id_cpf').val().replace(/[^0-9]/g, '').toString();
-        var cpfValido = true
-        if (cpf != "")
-            cpfValido = validaCpf(cpf);
-        if (cpfValido) {
+
+$(document).ready(function(){
+    $("#id_cep").mask("99.999-999");
+});
+
+$('#id_cpf').blur(function(){
+    var cpf = $('#id_cpf').val().replace(/[^0-9]/g, '').toString();
+    var cpfValido = true
+    if (cpf != "")
+        cpfValido = validaCpf(cpf);
+    if (cpfValido) {
+        $("#btnSalvar").attr("disabled", false);
+    }
+    else {
+        alert('CPF invalido!')
+        $("#btnSalvar").attr("disabled", true);
+    }
+});
+
+$('#id_fim').blur(function(){
+    var dataInicial = $('#id_inicio').val();
+    var dataFinal = $('#id_fim').val();
+    console.log(dataInicial)
+    console.log(dataFinal)
+
+    if (dataInicial != '' && dataFinal != '') {
+        let date1 = new Date(dataInicial);
+        let date2 = new Date(dataFinal);
+        if (date1 <= date2) {
             $("#btnSalvar").attr("disabled", false);
         }
         else {
-            alert('CPF invalido!')
+            alert('A data de inicio do aluguel deve ser menor ou igual a data final!')
             $("#btnSalvar").attr("disabled", true);
         }
-    });
+    }
+});
+
+$('#id_inicio').blur(function(){
+    var dataInicial = $('#id_inicio').val();
+    var dataFinal = $('#id_fim').val();
+    console.log(dataInicial)
+    console.log(dataFinal)
+
+    if (dataInicial != '' && dataFinal != '') {
+        let date1 = new Date(dataInicial);
+        let date2 = new Date(dataFinal);
+        if (date1 <= date2) {
+            $("#btnSalvar").attr("disabled", false);
+        }
+        else {
+            alert('A data de inicio do aluguel deve ser menor ou igual a data final!')
+            $("#btnSalvar").attr("disabled", true);
+        }
+    }
+});
+
+
 
 function prenecherExclusao(idProduto){
     var a = $('#modal-exlusao').find('a')
