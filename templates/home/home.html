@@ -22,7 +22,55 @@
                     <img src="{% static 'images/icone-lupa.png' %}" style="width: 40px;" alt="icone lupa">
                 </button>
             </span>
+            <div class="row my-4 col-12" style="border-radius: 20px; color: rgb(74, 74, 74);">
 
+                <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
+                    <a href="{% url 'pesquisa' categoria='Ferra' %}">
+                        <img src="{% static 'images/icone-ferramentas.png' %}" style="width: 60px;" alt="icone ferramenta">
+                        <br>
+                        <p class="m-0" style="color: black;">Ferramentas</p>
+                    </a>
+                </div>
+
+                <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
+                    <a href="{% url 'pesquisa' categoria='Moda' %}">
+                        <img src="{% static 'images/icone-roupa.png' %}" style="width: 60px;" alt="icone roupa">
+                        <br>
+                        <p class="m-0" style="color: black;">Moda e Beleza</p>
+                    </a>
+                </div>
+
+                <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
+                    <a href="{% url 'pesquisa' categoria='Eletr' %}">
+                        <img src="{% static 'images/icone-eletronico.png' %}" style="width: 60px;" alt="icone eletronico">
+                        <br>
+                        <p class="m-0" style="color: black;">Eletrônicos</p>
+                    </a>
+                </div>
+
+                <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
+                    <a href="{% url 'pesquisa' categoria='Auto' %}">
+                        <img src="{% static 'images/icone-carro.ico' %}" style="width: 60px;" alt="icone carro">
+                        <br>
+                        <p class="m-0" style="color: black;">Automóveis</p>
+                    </a>
+                </div>
+
+                <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
+                    <a href="{% url 'pesquisa' categoria='Cons' %}">
+                        <img src="{% static 'images/icone-construcao.ico' %}" style="width: 60px; margin-bottom: 9px;" alt="icone Construção">
+                        <br>
+                        <p class="m-0" style="color: black;">Construção</p>
+                    </a>
+                </div>
+
+                <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
+                    <a href="{% url 'pesquisa' categoria='Agro' %}">
+                        <img src="{% static 'images/icone-industria.ico' %}" style="width: 60px;" alt="icone Indústria">
+                        <br>
+                        <p class="m-0" style="color: black;">Agro e Indústria</p>
+                    </a>
+                </div>
         </form>
 </section>
 

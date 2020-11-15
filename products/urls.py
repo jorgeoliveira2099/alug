@@ -18,6 +18,7 @@ from .views import (
     detalharAluguel,
     confirmarAluguel,
     encerrarAluguel,
+    pesquisa,
 )
 
 
@@ -49,4 +50,6 @@ urlpatterns = [
     path('mydetail/<int:productId>/', my_detail_product, name='my_detail_product'),
 
     path('favoritos/', products_favourite_list, name='products_favourite_list'),
+
+    path('pesquisa/<slug:categoria>/', pesquisa, name='pesquisa'),
 ]

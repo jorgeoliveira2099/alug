@@ -1,0 +1,24 @@
+{%  extends 'base.html'%}
+{% load static %}
+{% load bootstrap %}
+{% block title %} Pesquisa {% endblock %}
+
+{% block main %}
+
+<section class="container mt-5">
+    <div class="row p-md-5 py-4 pl-3">
+
+        {% for product in products %}
+        <div class="col-md-3 col-6 mb-4 aumentar-tamanho-mouse">
+            <a href="{% url 'detail_product' product.id %}">
+                <image src="{{ product.get_photo_url }}" class="rounded tamanho-fixo-imagens"> </image>
+                <p class="mt-2 mb-1 ml-1">{{ product.nome }}</p>
+                <p class="m-0 ml-1" style="font-size: 20px;"><strong>R$ {{ product.preco }}</strong></p>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+</section>
+
+{% endblock %}
