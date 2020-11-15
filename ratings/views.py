@@ -24,16 +24,22 @@ def avalia(request, idAvalia):
         return render(request, 'home/termosdeuso.html')
     
     usuario = ''
-    
+    alguem = 0
     if user == historico.locador:  
                               
         if historico.avaliadoPeloLocador == False:
-            usuario = historico.locatario            
+            usuario = historico.locatario 
+            alguem = 1           
     if user == historico.locatario:              
                 
         if historico.avaliadoPeloLocatario == False:
-            usuario = historico.locador             
+            usuario = historico.locador
+            alguem = 1              
         print('ENTROU AQUIIIIIIII É LOCATARIO')
+        
+    if alguem == 0:
+        return render(request, 'home/termosdeuso.html')    
+
     #aqui para baixo é lixo
     #historicoAluga = HistoricoAlugados.objects.get(id=h)
     #aqui eu posso verificar se o usuario logado está 
