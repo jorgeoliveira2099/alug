@@ -6,7 +6,7 @@ from django.db.models import Q
 
 
 from . import filters
-from .models import Product, Alugar
+from .models import Product, Alugar, Categoria
 from users.models import MyUser
 from address.models import Dados_usuario
 from .forms import ProductForm, DenunciaForm, AlugarForm
@@ -395,3 +395,24 @@ def encerrarAluguel(request, idAluguel):
     messages.info(request, 'Você encerrou um aluguel, por gentileza avalie a experiência com o locatario')
     return render(request, 'home/termosdeuso.html')
     #return redirect(reverse('produtos_requisitados', kwargs={'user': user}))
+
+def pesquisa(request, categoria):
+    print(categoria)
+    categoriaSelecionada = Categoria.objects.get(descricao__contains=categoria)
+    produtos = Product.objects.filter(Q(alugado=False) & Q(categoria=categoriaSelecionada))
+    filtered_qs = filters.FilterCategory(request.GET, queryset=produtos).qs
+    paginator = Paginator(filtered_qs, 8)
+
+    page = request.GET.get('page')
+
+    try:
+        response = paginator.page(page)
+    except PageNotAnInteger:
+        response = paginator.page(1)
+    except EmptyPage:
+        response = paginator.page(paginator.num_pages)
+
+    filtro = FilterCategory(request.GET, queryset=filtered_qs)
+    context = {'products': response, 'filtro': filtro}
+
+    return render(request, 'pesquisa/pesquisa-categoria.html', context)
