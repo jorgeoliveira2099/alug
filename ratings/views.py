@@ -173,11 +173,12 @@ def avaliacoesPendentes(request):
 
 
 
-    #user = request.user   
-    #historico = HistoricoAlugados.objects.all()filter(Q(locador=user)| Q(locatario=user) & Q(encerrado=True))
-       
-    #for h in historico:
-     #   if user == h.locador:                   
-      #      print('ENTROU AQUIIIIIIII É LOCADOR')
-       # if user == h.locatario:        
-        #    print('ENTROU AQUIIIIIIII É LOCATARIO')
+def avaliacoesUsuario(request, idUsuario):
+    user = request.user
+    avaliacoes = Rating.objects.all().filter(Q(para=idUsuario))
+    #soma = 0
+
+    print(avaliacoes)
+    print('AQUI EM CIMA, TODAS AS AVALIACOES DO USUARIO')
+    return render(request, 'user/avaliacoesUsuario.html', {'avaliacoes': avaliacoes})
+

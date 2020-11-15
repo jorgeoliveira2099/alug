@@ -1,0 +1,31 @@
+{%  extends 'base.html'%}
+{% load static %}
+{%  load bootstrap %}
+
+{% block title %} Avaliações {% endblock %}
+
+{% block main %}
+ <div class="container">
+    <div class="row">
+       {% for avaliacao in avaliacoes %}
+           
+        <div class="col">
+                 {{ avaliacao.rate }}     
+              
+                 <br>  
+                 {{ avaliacao.text }}     
+              
+        </div>
+        
+            
+        {% empty %}
+        <h4>Este usuário ainda não possui avaliações!</h4>
+
+        {% endfor %}
+
+
+    </div>
+    </div>
+
+
+{% endblock %}

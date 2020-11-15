@@ -1,5 +1,5 @@
 from django.urls import path
-from ratings.views import avaliarSubmit, avalia, avaliacoesPendentes
+from ratings.views import avaliarSubmit, avalia, avaliacoesPendentes, avaliacoesUsuario
 
 urlpatterns = [
     path('avaliar/<int:idAvalia>', avalia, name='avalia'),
@@ -8,5 +8,7 @@ urlpatterns = [
    #aqui funcionava
     #path('avaliar/<int:idAvalia>/submit', avaliarSubmit, name='avaliar_submit'),
     path('avaliar/<int:idAvalia>/submit', avaliarSubmit, name='avaliar_submit'),
-
+    
+    path('avaliacoesUsuario/<int:idUsuario>', avaliacoesUsuario, name='avaliacoes_usuario'),
+    
 ]
