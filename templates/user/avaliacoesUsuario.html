@@ -5,15 +5,100 @@
 {% block title %} Avaliações {% endblock %}
 
 {% block main %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.checked {
+  color: orange;
+}
+</style>
+<body>
  <div class="container">
+    
+    <br>
+    <h1> {{ usuario }} </h1>  
+
+                {% if media == 1 %}
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                {% endif %}
+                {% if media == 2 %}
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                {% endif %}
+                {% if media == 3 %}
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                {% endif %}
+                {% if media == 4 %}
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                {% endif %}
+                {% if media == 5 %}
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                {% endif %}
+               {{ media }}/5 ({{ num }} votos)
+              <br> <br> <br> <br><hr>
     <div class="row">
        {% for avaliacao in avaliacoes %}
            
         <div class="col">
-                 {{ avaliacao.rate }}     
+                 {% if avaliacao.rate == 1 %}
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                 {% endif %}
+                  {% if avaliacao.rate == 2 %}
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                 {% endif %}
+                  {% if avaliacao.rate == 3 %}
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                 {% endif %}
+                  {% if avaliacao.rate == 4 %}
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                 {% endif %}
+                  {% if avaliacao.rate == 5 %}
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                 {% endif %}   
               
-                 <br>  
-                 {{ avaliacao.text }}     
+                 <br>
+
+                 {{ avaliacao.text }}
+
+                     
               
         </div>
         
@@ -26,6 +111,6 @@
 
     </div>
     </div>
-
+</body>
 
 {% endblock %}

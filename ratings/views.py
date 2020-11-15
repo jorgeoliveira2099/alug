@@ -5,9 +5,10 @@ from ratings.models import RatingForm, Rating, HistoricoAlugados
 from django.contrib import messages
 from django.db.models import Q
 
+from django.core.exceptions import ObjectDoesNotExist, EmptyResultSet
 #def avaliacoesPendentes(request):   
  #   return render(request, 'user/avaliacoesPendentes.html')
-
+from users.models import MyUser
 
 def avalia(request, idAvalia):
     user = request.user
@@ -64,30 +65,8 @@ def avaliarSubmit(request, idAvalia):
         historico = HistoricoAlugados.objects.get(id=idAvalia)
     except ObjectDoesNotExist:
         return render(request, 'home/termosdeuso.html')
-    
-    
-    
-    
-    #historico = HistoricoAlugados.objects.filter(Q(locador=user)| Q(locatario=user) & Q(encerrado=True))#.first()
-    
-    # esse quaase funciona
-    #historico = HistoricoAlugados.objects.filter(Q(locador=user)| Q(locatario=user) & Q(encerrado=True) | ~(Q(avaliadoPeloLocador=False) & Q(avaliadoPeloLocatario=False)))
-    
-    #h = historico.id
-    #avaliadoPeloLocador
-    #avaliadoPeloLocatario
-    # if user == historico.locador, ele faz algo
-    #historicoAluga = HistoricoAlugados.objects.get(id=h)
-    #excluir aui ?
-    #historicoAluga = HistoricoAlugados.objects.get(id=h)
-    #a = historico.values()
-    print('ENTROU AQUIIIIIIII É O IDDDDDDDDDDDDDDDDDDDDDDD')
-    #print(historicoAluga)
-    #print(historicoAluga)
-
-    print('ENTROU AQUIIIIIIII É IDDDDDDDDDDDDDDDDDDDDDDD')
-    #muito provavelmente eu vou precisar disso
-    #avaliacoes = Rating.objects.filter(Q(locador=user)| Q(locatario=user))
+         
+       
     usuario = ''
     locadorUser = ''
     locatarioUser = ''
@@ -105,29 +84,6 @@ def avaliarSubmit(request, idAvalia):
             #usuario = historico.locador             
         
 
-    #usuario = ''
-   # locadorUser = ''
-    #locatarioUser = ''
-    #if user == historico.locador:
-       #if historico.avaliadoPeloLocador == False:
-       # usuario = historico.locatario 
-            #usuarioDe = historicoAluga.locador
-            #usuarioPara = historicoAluga.locatario
-
-       # historicoAluga.avaliadoPeloLocador = True
-      #  historicoAluga.save()
-        
-     #   print('ENTROU AQUIIIIIIII É LOCADOR')
-
-    #if user == historicoAluga.locatario:
-    #else:
-        #está dando um bug aqui, ele sempre joga o admim aqui
-        #usuarioDe = historicoAluga.locatario
-        #usuarioPara = historicoAluga.locador
-
-        #historicoAluga.avaliadoPeloLocatario = True
-        #historicoAluga.save()
-        #print('ENTROU AQUIIIIIIII É LOCATARIO')
 
     if request.method == 'POST':
         form = RatingForm(request.POST)
@@ -176,9 +132,28 @@ def avaliacoesPendentes(request):
 def avaliacoesUsuario(request, idUsuario):
     user = request.user
     avaliacoes = Rating.objects.all().filter(Q(para=idUsuario))
-    #soma = 0
+    soma = 0
+    
+    
+    num = avaliacoes.count()
+    media = 0
+    if num > 0:
+        for avaliacao in avaliacoes:
+            soma += avaliacao.rate    
+        media = int(soma/num)
+    
 
-    print(avaliacoes)
-    print('AQUI EM CIMA, TODAS AS AVALIACOES DO USUARIO')
-    return render(request, 'user/avaliacoesUsuario.html', {'avaliacoes': avaliacoes})
+    
+    
+
+    usuario = MyUser.objects.get(id=idUsuario)
+
+    context = {
+               'avaliacoes': avaliacoes, 
+               'soma':soma, 
+               'media':media, 
+               'usuario':usuario, 
+               'num':num,                
+            }
+    return render(request, 'user/avaliacoesUsuario.html', context)
 
