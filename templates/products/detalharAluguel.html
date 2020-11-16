@@ -77,6 +77,8 @@
 			<a class="btn btn-secondary" href="{% url 'encerrar_aluguel' aluguel.id %}"> Encerrar Aluguel </a>
 			{% else %}
 			<a class="btn btn-secondary" href="{% url 'confirmar_aluguel' aluguel.id %}"> Confirmar Aluguel </a>
+
+			<a class="btn btn-danger" href="{% url 'cancelar_aluguel' aluguel.id %}"> Cancelar Aluguel </a>
 			{% endif %}
 		</div>
 	</div>

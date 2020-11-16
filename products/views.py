@@ -417,3 +417,27 @@ def pesquisa(request, categoria):
     context = {'products': response, 'filtro': filtro}
 
     return render(request, 'pesquisa/pesquisa-categoria.html', context)
+
+
+def cancelarAluguel(request, idAluguel):
+    user = request.user
+    aluguel = Alugar.objects.get(id=idAluguel)
+    
+    pro = aluguel.produto.id
+
+     
+    locador = aluguel.locador
+    locatario = aluguel.locatario
+    produto = aluguel.produto
+    
+   
+    print('ME DIZ ONDE ESTÁ ERRADO AQUI POHAAAAAA, MSSSSSSS')  
+    aluguel.delete()
+
+    #context = {
+    #'aluguel': aluguel,
+    #}
+    
+    messages.info(request, 'Você cancelou a proposta de aluguel')
+    return render(request, 'home/termosdeuso.html')
+   

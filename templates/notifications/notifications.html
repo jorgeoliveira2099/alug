@@ -47,6 +47,13 @@
             <br><br>
 {% endif %}
 
+{% if notification.notification_type == 5 %}          
+    <a href="{% url 'avaliacoes_pendentes' %}" class="nav-link">Sua proposta de aluguel foi cancelada</a>        
+            
+            <a href="{% url 'delete_notification' notification.id %}" class="delete">Marcar Como lido</a>   
+            <br><br>
+{% endif %}
+
             
         {% endif %}
         {% empty %}

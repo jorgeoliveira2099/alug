@@ -11,7 +11,7 @@ import django.dispatch
 
 class Notification(models.Model):
     
-    NOTIFICATION_TYPES = ((1,'Mensagem'),(2,'Aluguel'), (3,'Aceito'), (4,'Devolucao'))
+    NOTIFICATION_TYPES = ((1,'Mensagem'),(2,'Aluguel'), (3,'Aceito'), (4,'Devolucao'), (5, 'Cancelamento'))
     #title = models.ForeignKey(Product, null=True, blank=True,on_delete=models.CASCADE)
     
     #tentar assim: colocar esse campo e ver se o campo vai puxar pelo channels
@@ -82,7 +82,7 @@ def add_alugar(sender, instance, created, **kwargs):
     locatario = message.locatario
     print(locatario)
     
-  
+    
     
     if created:
         Notification.objects.create(user=user,notification_type=2)        
@@ -104,12 +104,24 @@ def delete_alugar(sender, instance, **kwargs):
     print('add messa ge aquiiiiiiiiii')
     sender = sender
     print(sender)
-
     user = message.locatario
+    #alugar = Alugar.objects.get(locatario=user)
+    #alugar = Alugar.instance
+    #con = alugar.confirmado
+    #instanciar um objeto de aluguel e verificar se ele tá com o 
+    #confirmar = false, se estiver, a proposta foi cancelada
+    #else, notification_type = 4
+    print(message.confirmado)
+    print('AQUI É CONFORMADO OU NÃO')
+    if message.confirmado == False:
+        Notification.objects.create(user=user,notification_type=5)
+        print('ENTROU AQUIIIII, NOTIFICAÇÃO TIPO 5 POHAAAAAA')
+    else:
+        Notification.objects.create(user=user,notification_type=4) 
     print(user)
     print('LOCATARIO AQUI mesmo ?')    
     #aqui, a       
-    Notification.objects.create(user=user,notification_type=4) 
+    
         
     
 post_delete.connect(delete_alugar, sender=Alugar)
