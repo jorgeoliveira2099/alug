@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
 from Chat.models import Chat
 from Chat.models import Mensagem
+from products.models import Alugar
+from ratings.models import HistoricoAlugados
 from django.db.models import Q
 from alugobens.util import gerarHash
 from users.models import MyUser
@@ -47,8 +49,12 @@ def criarSala(request, idProduto):
         mensagens += mensagemChat.texto + "\n"
 
     return render(request, 'chat/chat.html',
-                  {'room_name': chat.codigoSala, 'identificador': identificador,
-                   'mensagems': mensagens, 'produto': produto})
+                  {
+                    'room_name': chat.codigoSala,
+                    'identificador': identificador,
+                    'mensagems': mensagens,
+                    'produto': produto,
+                    'desabilitarAlugar': existeAluguelEmAndamento(produto)})
 
 
 def criarSalaSubmit(request, idProduto):
@@ -82,7 +88,8 @@ def criarSalaSubmit(request, idProduto):
 
     return render(request, 'chat/chat.html',
                   {'room_name': chat.codigoSala, 'identificador': identificador,
-                   'mensagems': mensagens, 'produto': produto})
+                   'mensagems': mensagens, 'produto': produto,
+                    'desabilitarAlugar': existeAluguelEmAndamento(produto)})
 
 def room(request, room_name):
     user = request.user
@@ -111,7 +118,8 @@ def room(request, room_name):
 
         return render(request, 'chat/chat.html',
                       {'room_name': chat.codigoSala, 'identificador': identificador,
-                       'mensagems': mensagens, 'produto': chat.produto})
+                       'mensagems': mensagens, 'produto': chat.produto,
+                       'desabilitarAlugar': existeAluguelEmAndamento(chat.produto)})
 
     return render(request, 'home/home.html')
 
@@ -152,7 +160,8 @@ def roomSubmit(request, room_name):
 
     return render(request, 'chat/chat.html',
                   {'room_name': chat.codigoSala, 'identificador': identificador,
-                   'mensagems': mensagens, 'produto': chat.produto})
+                   'mensagems': mensagens, 'produto': chat.produto,
+                   'desabilitarAlugar': existeAluguelEmAndamento(chat.produto)})
 
 def meusChats(request):
     user = request.user
@@ -257,3 +266,18 @@ def exportarpdf(request, room_name, userId):
 
    # return render(request, 'home/home.html')
 
+def existeAluguelEmAndamento(produto):
+
+    try:
+       aluguel = Alugar.objects.get(produto=produto)
+       return True
+    except ObjectDoesNotExist:
+        pass
+
+    historicos = HistoricoAlugados.objects.filter((Q(produto=produto)))
+
+    for historico in historicos:
+        if not historico.encerrado:
+            return True
+
+    return False

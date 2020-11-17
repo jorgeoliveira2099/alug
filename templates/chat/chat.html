@@ -25,10 +25,16 @@
 
         <p> {{ produto.nome }} </p>
                 <image src="{{ produto.get_photo_url }}" width="150" height="100" />
-                <a type="button"class="btn btn-secondary"
-	            href="{% url 'alugar' produto.id %}">
-	             Alugar
-                </a>
+                {% if desabilitarAlugar %}
+                    <input disabled value="Alugar" type="button"class="btn btn-secondary"/>
+                    <p> Este produto está em processo de aluguel, entre em contato com o locador para saber quando estará disponivel </p>
+                {% else %}
+                    <a type="button"class="btn btn-secondary"
+	                href="{% url 'alugar' produto.id %}">
+                        Alugar
+                    </a>
+                {% endif %}
+
 
         </form>
 
