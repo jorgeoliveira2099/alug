@@ -52,3 +52,47 @@ class Alugar(models.Model):
 
 
 
+class HistoricoStatus(models.Model):
+    STATUS_TYPES = ((1,'Aguardando Locador'),(2,'Proposta cancelada'), (3,'Proposta aceita'), (4,'Encerrado'), (5, 'avaliado'))
+ 
+    status = models.IntegerField(choices=STATUS_TYPES,null=True, blank=True)
+
+    locador = models.ForeignKey(MyUser,  null=True, blank=True, related_name='historicostatus_user_locador', on_delete=models.SET_NULL)
+    locatario = models.ForeignKey(MyUser,  null=True, blank=True, related_name='historicostatus_user_locatario', on_delete=models.SET_NULL)
+    produto = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL)
+    encerrado = models.BooleanField(default=False)
+
+
+class StatusAguardando(HistoricoStatus):
+    class Meta:
+        proxy = True
+
+    def save(self, *args, **kwargs):
+        self.status = 1
+        super(StatusAguardando, self).save(*args, **kwargs)
+
+class StatusCancelado(HistoricoStatus):
+    class Meta:
+        proxy = True
+
+    def save(self, *args, **kwargs):
+        self.status = 2
+        super(StatusCancelado, self).save(*args, **kwargs)
+
+class StatusAceito(HistoricoStatus):
+    class Meta:
+        proxy = True
+
+    def save(self, *args, **kwargs):
+        self.status = 3
+        super(StatusAceito, self).save(*args, **kwargs)
+
+
+
+class StatusEncerrado(HistoricoStatus):
+    class Meta:
+        proxy = True
+
+    def save(self, *args, **kwargs):
+        self.status = 4
+        super(StatusEncerrado, self).save(*args, **kwargs)

@@ -4,6 +4,7 @@ from users.models import MyUser
 from products.models import Product
 from django import forms
 from django.forms import ModelForm
+from django.core.validators import MaxValueValidator, MinValueValidator
 #RATE_CHOICES = [
  #   (1, '1'),
   #  (2, '2'),
@@ -27,7 +28,7 @@ class Rating(models.Model):
     #user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     text = models.TextField(max_length=3000, blank=True)
     #textlocatario = models.TextField(max_length=3000, blank=True)
-    rate = models.IntegerField(default=0)
+    rate = models.IntegerField(default=0,validators=[MaxValueValidator(5),MinValueValidator(0),])
     #ratelocatario = models.IntegerField(default=0)
 
 

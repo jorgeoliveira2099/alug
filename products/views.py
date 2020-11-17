@@ -6,7 +6,7 @@ from django.db.models import Q
 
 
 from . import filters
-from .models import Product, Alugar, Categoria
+from .models import Product, Alugar, Categoria, HistoricoStatus, StatusAguardando, StatusCancelado, StatusAceito, StatusEncerrado
 from users.models import MyUser
 from address.models import Dados_usuario
 from .forms import ProductForm, DenunciaForm, AlugarForm
@@ -271,6 +271,13 @@ def alugarSubmit(request, productId):
         print(alugar.fim)
         alugar.save()
 
+        status = StatusAguardando()
+        status.locador = locador
+        status.locatario = user        
+        status.produto = produto
+        status.encerrado = False
+        status.save()
+
         messages.info(request, 'O locador recebeu seu pedido de aluguel, aguarde o retorno dele, ou entre em contato com ele(a) pelo chat')
         is_favourite = False
         if produto.favourite.filter(id=request.user.id).exists():
@@ -346,6 +353,17 @@ def confirmarAluguel(request, idAluguel):
     
     produto.alugado = True    
     produto.save()
+    
+    locador = aluguel.locador
+    locatario = aluguel.locatario
+    pro = aluguel.produto
+
+    status = StatusAceito()
+    status.locador = locador
+    status.locatario = locatario        
+    status.produto = produto
+    status.encerrado = False
+    status.save()
 
     context = {
     'aluguel': aluguel,
@@ -371,6 +389,14 @@ def encerrarAluguel(request, idAluguel):
     historicoAlugados.produto = produto
     historicoAlugados.encerrado = True
     historicoAlugados.save()
+
+    #HistoricoStatus
+    status = StatusEncerrado()
+    status.locador = locador
+    status.locatario = locatario        
+    status.produto = produto
+    status.encerrado = True
+    status.save()
     #historicoAlugados
     #avaliação
     #isso não faz sentido
@@ -430,7 +456,13 @@ def cancelarAluguel(request, idAluguel):
     locatario = aluguel.locatario
     produto = aluguel.produto
     
-   
+    status = StatusCancelado()
+    status.locador = locador
+    status.locatario = locatario        
+    status.produto = produto
+    status.encerrado = False
+    status.save()
+
     print('ME DIZ ONDE ESTÁ ERRADO AQUI POHAAAAAA, MSSSSSSS')  
     aluguel.delete()
 
