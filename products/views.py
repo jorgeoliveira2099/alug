@@ -76,7 +76,7 @@ def lista_products(request):
         response = paginator.page(paginator.num_pages)
     
     filtro = FilterCategory(request.GET, queryset=filtered_qs)
-    context = {'products': response, 'filtro': filtro}
+    context = {'products': reversed(response), 'filtro': filtro}
 
     return render(request, 'home/home.html', context)
 
@@ -475,5 +475,5 @@ def cancelarAluguel(request, idAluguel):
 
 def historicoStatus(request):
     user = request.user
-    historico = HistoricoStatus.objects.filter(Q(locatario=user))
+    historico = reversed(HistoricoStatus.objects.filter(Q(locatario=user)))
     return render(request, 'user/historicoStatus.html', {'historicos': historico})
