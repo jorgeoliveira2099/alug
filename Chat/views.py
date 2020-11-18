@@ -198,8 +198,13 @@ def meusChats(request):
 
 
 
-def exportarpdf(request, room_name, userId):
-    user = MyUser.objects.get(id=userId)
+def exportarpdf(request, room_name):
+    user = request.user
+    print(user)
+    print('USUARIO AQUI')
+    userId = user.id
+    #user = MyUser.objects.get(id=userId)
+
     chat = Chat.objects.get(codigoSala=room_name)
     try:
         perfil = Dados_usuario.objects.get(user=user)
@@ -216,7 +221,7 @@ def exportarpdf(request, room_name, userId):
     else:
         identificador = perfil.nome + " " + perfil.sobrenome
 
-    if chat.locatario == str(userId) or chat.locador == str(userId):
+    if chat.locatario == user or chat.locador == user:
         mensagensChat = chat.mensagem_set.all()
         mensagens = ''
 
@@ -228,6 +233,7 @@ def exportarpdf(request, room_name, userId):
     usuario = 1
     try:
         template = get_template('chat/chat2.html')
+
         context = {'mensagems': mensagens, 'room_name': chat.codigoSala, 'user.id': user.id,'title': 'chhat'}
         html = template.render(context)
         response = HttpResponse(content_type='application/pdf')

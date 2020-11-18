@@ -7,7 +7,7 @@ urlpatterns = [
    path('criarSala/<int:idProduto>/', criarSala, name='criarSala'),
    path('criarSala/<int:idProduto>/submit', criarSalaSubmit),
    path('meusChats/', meusChats, name='meusChats'),
-   path('exportarpdf/<str:room_name>/<int:userId>/', exportarpdf, name='exportarpdf'),
+   path('exportarpdf/<str:room_name>/', exportarpdf, name='exportarpdf'),
    
    
 ]

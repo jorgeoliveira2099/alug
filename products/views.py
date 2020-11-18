@@ -295,6 +295,7 @@ def alugarSubmit(request, productId):
 
     return render(request, 'products/alugarProduto.html', context)
 
+@login_required
 def salvarPerfil(request):
     user = request.user
 
@@ -312,11 +313,13 @@ def salvarPerfil(request):
     perfil.complemento = request.POST.get("id_complemento")
     perfil.save()
 
+@login_required
 def produtosRequisitados(request):
     user = request.user
     alugados = Alugar.objects.filter(Q(locador=user))
     return render(request, 'products/produtosRequisitados.html', {'alugados': alugados})
 
+@login_required
 def detalharAluguel(request, idAluguel):
     user = request.user
     aluguel = Alugar.objects.get(id=idAluguel)
@@ -333,7 +336,7 @@ def detalharAluguel(request, idAluguel):
         'identificador': identificador})
 
 
-
+@login_required
 def confirmarAluguel(request, idAluguel):
     user = request.user
     aluguel = Alugar.objects.get(id=idAluguel)
@@ -370,6 +373,7 @@ def confirmarAluguel(request, idAluguel):
     return render(request, 'products/detalharAluguel.html',
                   {'perfilLocatario': perfilLocatario, 'aluguel': aluguel, 'identificador': identificador})
 
+@login_required
 def encerrarAluguel(request, idAluguel):
     user = request.user
     aluguel = Alugar.objects.get(id=idAluguel)
@@ -443,7 +447,7 @@ def pesquisa(request, categoria):
 
     return render(request, 'pesquisa/pesquisa-categoria.html', context)
 
-
+@login_required
 def cancelarAluguel(request, idAluguel):
     user = request.user
     aluguel = Alugar.objects.get(id=idAluguel)
@@ -472,7 +476,7 @@ def cancelarAluguel(request, idAluguel):
     messages.info(request, 'Você cancelou a proposta de aluguel')
     return render(request, 'products/produtosRequisitados.html')
    
-
+@login_required
 def historicoStatus(request):
     user = request.user
     historico = reversed(HistoricoStatus.objects.filter(Q(locatario=user)))
