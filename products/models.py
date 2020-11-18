@@ -1,6 +1,7 @@
 from django.db import models
 from users.models import MyUser
 from django.urls import reverse
+from datetime import datetime  
 
 class Categoria(models.Model):
     descricao = models.CharField(max_length=100, verbose_name="Descricao")
@@ -20,6 +21,7 @@ class Product(models.Model):
     alugado = models.BooleanField(default=False)
     estado = models.CharField(max_length=100, default='Pernambuco')
     cidade = models.CharField(max_length=100, default='Recife')
+    date = models.DateTimeField(default=datetime.now, null=True, blank=True)
 
     def __str__(self):
         return self.nome
@@ -61,6 +63,7 @@ class HistoricoStatus(models.Model):
     locatario = models.ForeignKey(MyUser,  null=True, blank=True, related_name='historicostatus_user_locatario', on_delete=models.SET_NULL)
     produto = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL)
     encerrado = models.BooleanField(default=False)
+    date = models.DateTimeField(default=datetime.now, null=True, blank=True)
 
 
 class StatusAguardando(HistoricoStatus):

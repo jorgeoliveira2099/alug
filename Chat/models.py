@@ -15,7 +15,7 @@ class Chat(models.Model):
         return self.codigoSala
 
 class Mensagem(models.Model):
-    texto = models.CharField(max_length=80)
+    texto = models.CharField(max_length=250)
     chat = models.ForeignKey(Chat, on_delete=models.CASCADE)
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
 
