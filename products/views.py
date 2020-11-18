@@ -321,15 +321,11 @@ def detalharAluguel(request, idAluguel):
     user = request.user
     aluguel = Alugar.objects.get(id=idAluguel)
     perfilLocatario = Dados_usuario.objects.get(user=aluguel.locatario)
-    try:
-        perfil = Dados_usuario.objects.get(user=user)
-    except ObjectDoesNotExist:
-        perfil = Dados_usuario()
 
-    if perfil.nome == None or perfil.sobrenome == None:
-        identificador = user.email
+    if perfilLocatario.nome == None or perfilLocatario.sobrenome == None:
+        identificador = aluguel.locatario.email
     else:
-        identificador = perfil.nome + " " + perfil.sobrenome
+        identificador = perfilLocatario.nome + " " + perfilLocatario.sobrenome
 
     return render(request, 'products/detalharAluguel.html', {
         'perfilLocatario': perfilLocatario,
@@ -341,7 +337,13 @@ def detalharAluguel(request, idAluguel):
 def confirmarAluguel(request, idAluguel):
     user = request.user
     aluguel = Alugar.objects.get(id=idAluguel)
-    
+    perfilLocatario = Dados_usuario.objects.get(user=aluguel.locatario)
+
+    if perfilLocatario.nome == None or perfilLocatario.sobrenome == None:
+        identificador = aluguel.locatario.email
+    else:
+        identificador = perfilLocatario.nome + " " + perfilLocatario.sobrenome
+
     pro = aluguel.produto.id
 
     produto = Product.objects.get(id=pro)    
@@ -365,11 +367,8 @@ def confirmarAluguel(request, idAluguel):
     status.encerrado = False
     status.save()
 
-    context = {
-    'aluguel': aluguel,
-    }
-
-    return render(request, 'products/detalharAluguel.html', context)
+    return render(request, 'products/detalharAluguel.html',
+                  {'perfilLocatario': perfilLocatario, 'aluguel': aluguel, 'identificador': identificador})
 
 def encerrarAluguel(request, idAluguel):
     user = request.user
@@ -420,7 +419,7 @@ def encerrarAluguel(request, idAluguel):
     #}
     
     messages.info(request, 'Você encerrou um aluguel, por gentileza avalie a experiência com o locatario')
-    return render(request, 'home/termosdeuso.html')
+    return render(request, 'products/produtosRequisitados.html')
     #return redirect(reverse('produtos_requisitados', kwargs={'user': user}))
 
 def pesquisa(request, categoria):
@@ -471,5 +470,5 @@ def cancelarAluguel(request, idAluguel):
     #}
     
     messages.info(request, 'Você cancelou a proposta de aluguel')
-    return render(request, 'home/termosdeuso.html')
+    return render(request, 'products/produtosRequisitados.html')
    
