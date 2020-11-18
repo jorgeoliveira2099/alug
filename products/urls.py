@@ -20,6 +20,7 @@ from .views import (
     encerrarAluguel,
     pesquisa,
     cancelarAluguel,
+    historicoStatus
 )
 
 
@@ -37,7 +38,7 @@ urlpatterns = [
     path('produtosRequisitados/', produtosRequisitados, name='produtos_requisitados'),
     path('detalharAluguel/<int:idAluguel>', detalharAluguel, name='detalhar_aluguel'),
 
-    
+    path('historico/', historicoStatus, name='historico_status'),
     #url(r'(?P<id>\d+)/favourite_products/$', favourite_products, name='favourite_products'),
     path('detalharAluguel/<int:idAluguel>/confirmar', confirmarAluguel, name='confirmar_aluguel'),
     path('detalharAluguel/<int:idAluguel>/encerrar', encerrarAluguel, name='encerrar_aluguel'),

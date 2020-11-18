@@ -472,3 +472,8 @@ def cancelarAluguel(request, idAluguel):
     messages.info(request, 'Você cancelou a proposta de aluguel')
     return render(request, 'products/produtosRequisitados.html')
    
+
+def historicoStatus(request):
+    user = request.user
+    historico = HistoricoStatus.objects.filter(Q(locatario=user))
+    return render(request, 'user/historicoStatus.html', {'historicos': historico})

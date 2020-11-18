@@ -1,0 +1,49 @@
+{%  extends 'base.html'%}
+
+{% block title %} PHistórico Status Aluguel {% endblock %}
+
+{% block main %}
+    <div class="container">
+
+      
+    <div class="row">
+       {% for historico in historicos %}
+          
+<ul class="list-group">
+  <li class="list-group-item">Produto: {{historico.produto}}</li>
+  <li class="list-group-item">Locador: {{historico.locador}}</li>
+
+       {% if historico.status == 1 %}
+                <li class="list-group-item">Status: Aguardando locador</li>  
+            {% endif %}
+        {% if historico.status == 2 %}
+                <li class="list-group-item"><div class="alert alert-danger" role="alert">
+ Status: Cancelado
+</div></li>  
+            {% endif %}
+
+            {% if historico.status == 3 %}
+                <li class="list-group-item"><div class="alert alert-success" role="alert">
+  Status: aceito
+</div></li>  
+            {% endif %}
+
+            {% if historico.status == 4 %}
+                <li class="list-group-item">Status: encerrado</li>  
+           {% endif %}
+  
+</ul>
+<br>
+<hr>
+
+        {% empty %}
+        <h4>Você não tem nenhum produto alugado!</h4>
+
+        {% endfor %}
+
+
+    </div>
+    </div>
+
+{% endblock %}
+
