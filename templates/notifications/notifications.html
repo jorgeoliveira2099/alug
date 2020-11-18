@@ -58,12 +58,15 @@
         {% endif %}
         {% empty %}
         <h1>Você não tem Notificações!</h1>
+
     {% endfor %}
 
 
- 
- <a href="{% url 'markall_as_read'  %}" class="delete">Marcar todas como lido</a> 
-   
+{% if count_notifications > 0 %}
+ <a href="{% url 'markall_as_read'  %}" class="delete">Marcar todas como lido</a>
+
+{% endif %}
+
 
 {% endblock %}
 
