@@ -58,13 +58,6 @@ def list_products(request, userId):
         #print('iguais')
         return render(request, 'products/my-products.html', context)
 
-def lista_products(request):
-    produtos = Product.objects.filter(Q(alugado=False)).order_by('-id')[0:8]
-
-    context = {'products': produtos}
-
-    return render(request, 'home/home.html', context)
-
 @login_required
 def create_product(request):
     form = ProductForm(request.POST or None, request.FILES or None)

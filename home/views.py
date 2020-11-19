@@ -6,7 +6,11 @@ from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def home(request):
-    return render(request, 'home/home.html')
+    produtos = Product.objects.filter(Q(alugado=False)).order_by('-id')[0:8]
+    context = {'products': produtos}
+    gerarCategorias()
+
+    return render(request, 'home/home.html', context)
 
 def my_logout(request):
     logout(request)
@@ -122,3 +126,12 @@ def pesquisa(request):
     }
 
     return render(request, 'pesquisa/pesquisa.html', context)
+
+def gerarCategorias():
+    categorias = Categoria.objects.all()
+    descricoes = ["Agro e Indústria", "Automóveis", "Construção", "Eletrônicos", "Ferramentas", "Moda e Beleza"]
+    if len(categorias) == 0:
+       for descricao in descricoes:
+           categoria = Categoria()
+           categoria.descricao = descricao
+           categoria.save()

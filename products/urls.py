@@ -3,7 +3,6 @@ from django.urls import path
 
 from .views import (
     my_detail_product,
-    lista_products,
     list_products,
     create_product,
     update_product,
@@ -24,7 +23,6 @@ from .views import (
 
 
 urlpatterns = [
-    path('lista/', lista_products, name='lista_products'),
     path('list/<int:userId>/', list_products, name='list_products'),
     path('new/', create_product, name='create_products'),
     path('update/<int:productId>/', update_product, name='update_product'),
@@ -38,18 +36,12 @@ urlpatterns = [
     path('detalharAluguel/<int:idAluguel>', detalharAluguel, name='detalhar_aluguel'),
 
     path('historico/', historicoStatus, name='historico_status'),
-    #url(r'(?P<id>\d+)/favourite_products/$', favourite_products, name='favourite_products'),
     path('detalharAluguel/<int:idAluguel>/confirmar', confirmarAluguel, name='confirmar_aluguel'),
     path('detalharAluguel/<int:idAluguel>/encerrar', encerrarAluguel, name='encerrar_aluguel'),
-    
     path('cancelarAluguel/<int:idAluguel>/cancelar', cancelarAluguel, name='cancelar_aluguel'),
-    #path('<int:id>/favourite_products/', favourite_products, name='favourite_products'),
+
     path('favourite_products/<int:id>/', favourite_products, name='favourite_products'),
-  
-
     path('favoritos/', products_favourite_list, name='products_favourite_list'),
-    
     path('mydetail/<int:productId>/', my_detail_product, name='my_detail_product'),
-
     path('favoritos/', products_favourite_list, name='products_favourite_list'),
 ]
