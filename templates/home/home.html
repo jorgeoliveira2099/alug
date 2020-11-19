@@ -17,7 +17,7 @@
     <div class="container">
         <form method="POST" id="form" action="pesquisa/" enctype="multipart/form-data">
         {% csrf_token %}
-            <input hidden value="" name="categoria" id="categoriaSelecionada">
+            <input hidden value="{{categoria}}" name="categoria" id="categoriaSelecionada">
             <span class="input-group-append">
                 <input type="text" maxlength="100" class="form-control" name="nome" id="nomePesquisa">
                 <button id="btnForm" type="submit" class="btn btn-primary py-0 px-3">
