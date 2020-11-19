@@ -100,6 +100,21 @@
 <script language="JavaScript" type="text/javascript" charset="utf-8">
       document.getElementById("nomePesquisa").placeholder = 'Estou procurando por...';
 
+      if (document.getElementById("categoriaSelecionada").value == 'Ferramentas'){
+        document.getElementById('divFerramentas').style.borderStyle = 'inset';
+      } else if (document.getElementById("categoriaSelecionada").value == 'Moda e Beleza'){
+        document.getElementById('divModa').style.borderStyle = 'inset';
+      } else if (document.getElementById("categoriaSelecionada").value == 'Eletrônicos'){
+        document.getElementById('divEle').style.borderStyle = 'inset';
+      } else if (document.getElementById("categoriaSelecionada").value == 'Automóveis'){
+        document.getElementById('divAuto').style.borderStyle = 'inset';
+      } else if (document.getElementById("categoriaSelecionada").value == 'Construção'){
+        document.getElementById('divConst').style.borderStyle = 'inset';
+      } else if (document.getElementById("categoriaSelecionada").value == 'Agro e Indústria'){
+        document.getElementById('divAgro').style.borderStyle = 'inset';
+      }
+
+
       function selecionarCategoria(categoriaSelecionada, div){
         if (document.getElementById("categoriaSelecionada").value == categoriaSelecionada){
            document.getElementById("categoriaSelecionada").value = '';
