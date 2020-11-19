@@ -21,8 +21,7 @@
 
   <script type="text/javascript" src="{% static 'js/cidades-estados.js' %}"></script>
 
-  <nav class="navbar fixed-top navbar-expand-lg bg-dark fixed-top box-shadow py-2">
-
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container nav-alugo">
 
       <a class="navbar-brand aumentar-tamanho-mouse" href="{% url 'home' %}">
@@ -39,6 +38,7 @@
 
         <ul class="navbar-nav ml-auto">
           {% if user.is_authenticated %}
+
           <li class="nav-item">
             <a class="nav-link" href="#">
               <img src="{% static 'images/icone-prime.ico' %}" alt="icone-prime">
@@ -102,22 +102,25 @@
           </li>
 
           {% else %}
+
           <li class="nav-item">
             <a class="nav-link" href="{% url 'login' %}">
               <img src="{% static 'images/icone-entrar.png' %}" alt="Entrar">
               Entrar</a>
           </li>
-          
+
           <li class="nav-item aumentar-tamanho-mouse">
             <a id="anunciar" class="btn text-white ml-md-2 px-3 botao-redondo" style="background-color: orange;"
               href="{% url 'login' %}">Anunciar</a>
           </li>
-
+          
           {% endif %}
         </ul>
       </div>
     </div>
   </nav>
+
+  
 
   {% block main %}
   {% endblock %}

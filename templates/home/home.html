@@ -13,7 +13,7 @@
     {% endfor %}
 </div>
 
-<section id="section-home-pesquisar" class="container-fluid bg-light pt-4 pb-1">
+<section id="section-home-pesquisar" class="container-fluid bg-light pt-4 pb-1 categoria">
     <div class="container">
         <form method="POST" id="form" action="pesquisa/" enctype="multipart/form-data">
         {% csrf_token %}
@@ -21,57 +21,57 @@
             <span class="input-group-append">
                 <input type="text" maxlength="100" class="form-control" name="nome" id="nomePesquisa">
                 <button id="btnForm" type="submit" class="btn btn-primary py-0 px-3">
-                    <img src="{% static 'images/icone-lupa.png' %}" style="width: 40px;" alt="icone lupa">
+                    <img src="{% static 'images/icone-lupa.png' %}" style="width: 30px;" alt="icone lupa">
                 </button>
             </span>
         <form>
-            <div class="row my-4 col-12" style="border-radius: 20px; color: rgb(74, 74, 74);">
+            <div class="row my-4 col-12" style="border-radius: 20px;">
 
-                <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
+                <div class="col-md-2 col-6 text-center aumentar-tamanho-mouse mt-3">
                     <a onclick="preencherCategoria('Ferramentas')">
-                        <img src="{% static 'images/icone-ferramentas.png' %}" style="width: 60px;" alt="icone ferramenta">
+                        <img src="{% static 'images/icone-ferramentas.png' %}" alt="icone ferramenta">
                         <br>
-                        <p class="m-0" style="color: black;">Ferramentas</p>
+                        <p class="m-0">Ferramentas</p>
                     </a>
                 </div>
 
-                <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
+                <div class="col-md-2 col-6 text-center aumentar-tamanho-mouse mt-3">
                     <a onclick="preencherCategoria('Moda e Beleza')">
-                        <img src="{% static 'images/icone-roupa.png' %}" style="width: 60px;" alt="icone roupa">
+                        <img src="{% static 'images/icone-roupa.png' %}" alt="icone roupa">
                         <br>
-                        <p class="m-0" style="color: black;">Moda e Beleza</p>
+                        <p class="m-0">Moda e Beleza</p>
                     </a>
                 </div>
 
-                <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
+                <div class="col-md-2 col-6 text-center aumentar-tamanho-mouse mt-3">
                     <a onclick="preencherCategoria('Eletrônicos')">
-                        <img src="{% static 'images/icone-eletronico.png' %}" style="width: 60px;" alt="icone eletronico">
+                        <img src="{% static 'images/icone-eletronico.png' %}" alt="icone eletronico">
                         <br>
-                        <p class="m-0" style="color: black;">Eletrônicos</p>
+                        <p class="m-0">Eletrônicos</p>
                     </a>
                 </div>
 
-                <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
+                <div class="col-md-2 col-6 text-center aumentar-tamanho-mouse mt-3">
                     <a onclick="preencherCategoria('Automóveis')">
-                        <img src="{% static 'images/icone-carro.ico' %}" style="width: 60px;" alt="icone carro">
+                        <img src="{% static 'images/icone-carro.ico' %}" alt="icone carro">
                         <br>
-                        <p class="m-0" style="color: black;">Automóveis</p>
+                        <p class="m-0">Automóveis</p>
                     </a>
                 </div>
 
-                <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
+                <div class="col-md-2 col-6 text-center aumentar-tamanho-mouse mt-3">
                     <a onclick="preencherCategoria('Construção')">
-                        <img src="{% static 'images/icone-construcao.ico' %}" style="width: 60px; margin-bottom: 9px;" alt="icone Construção">
+                        <img src="{% static 'images/icone-construcao.ico' %}" style="margin-bottom: 9px;" alt="icone Construção">
                         <br>
-                        <p class="m-0" style="color: black;">Construção</p>
+                        <p class="m-0">Construção</p>
                     </a>
                 </div>
 
-                <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
+                <div class="col-md-2 col-6 text-center aumentar-tamanho-mouse mt-3">
                     <a onclick="preencherCategoria('Agro e Indústria')">
                         <img src="{% static 'images/icone-industria.ico' %}" style="width: 60px;" alt="icone Indústria">
                         <br>
-                        <p class="m-0" style="color: black;">Agro e Indústria</p>
+                        <p class="m-0">Agro e Indústria</p>
                     </a>
                 </div>
 </section>

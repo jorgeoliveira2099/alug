@@ -105,7 +105,7 @@ def pesquisa(request):
             else:
                 produtos = Product.objects.filter(Q(alugado=False))
 
-    paginator = Paginator(produtos, 4)
+    paginator = Paginator(produtos, 10)
 
     try:
         response = paginator.page(page)

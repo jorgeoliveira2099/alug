@@ -61,6 +61,7 @@ html, body {
 .aumentar-tamanho-mouse a {
    color: black;
    text-decoration: none;
+   cursor: pointer;
 }
 
 .aumentar-tamanho-mouse:hover {
@@ -83,6 +84,24 @@ html, body {
    padding: .5rem 1rem;
    font-size: 1.25rem;
    line-height: 1.5;
+}
+
+.categoria p{ 
+   color: rgb(74, 74, 74);
+   font-weight: 500;
+}
+
+.categoria .aumentar-tamanho-mouse img {
+   width: 60px;
+}
+
+.categoria .pesquisa-categoria img {
+   width: 60px;
+}
+
+.categoria .pesquisa-categoria {
+   cursor: pointer;
+   text-decoration: none;
 }
 
 /* Anunciar Produto */
@@ -238,4 +257,31 @@ section.duvida-por-tema a {
 
 section.duvida-por-tema p {
    font-weight: 500;
+}
+
+/* Pesquisa (tela de busca) */
+
+.texto-item {
+   color: black;
+   text-decoration: none;
+   font-weight: ;
+}
+
+.texto-item:hover {
+   text-decoration: none;
+   color: #717171;
+}
+
+.texto-item-nome {
+   font-size: 1.3rem;
+}
+
+.tamanho-imagens-pesquisa {
+   width: 24%;
+}
+
+@media (max-width: 767px) {
+   .tamanho-imagens-pesquisa {
+      width: 40%;
+   }
 }
