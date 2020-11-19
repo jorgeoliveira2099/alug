@@ -12,6 +12,8 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
+APPEND_SLASH=False
+
 ALLOWED_HOSTS = ['alugobens.herokuapp.com', 'localhost', '127.0.0.1']
 
 #reset passord configuration

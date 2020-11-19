@@ -59,24 +59,9 @@ def list_products(request, userId):
         return render(request, 'products/my-products.html', context)
 
 def lista_products(request):
-    produtos = Product.objects.filter(Q(alugado=False))
-    filtered_qs = filters.FilterCategory(
-            request.GET,
-            queryset=produtos
-        ).qs
-    paginator = Paginator(filtered_qs, 8)
+    produtos = Product.objects.filter(Q(alugado=False)).order_by('-id')[0:8]
 
-    page = request.GET.get('page')
-
-    try:
-        response = paginator.page(page)
-    except PageNotAnInteger:
-        response = paginator.page(1)
-    except EmptyPage:
-        response = paginator.page(paginator.num_pages)
-    
-    filtro = FilterCategory(request.GET, queryset=filtered_qs)
-    context = {'products': reversed(response), 'filtro': filtro}
+    context = {'products': produtos}
 
     return render(request, 'home/home.html', context)
 
@@ -426,26 +411,7 @@ def encerrarAluguel(request, idAluguel):
     return render(request, 'products/produtosRequisitados.html')
     #return redirect(reverse('produtos_requisitados', kwargs={'user': user}))
 
-def pesquisa(request, categoria):
-    print(categoria)
-    categoriaSelecionada = Categoria.objects.get(descricao__contains=categoria)
-    produtos = Product.objects.filter(Q(alugado=False) & Q(categoria=categoriaSelecionada))
-    filtered_qs = filters.FilterCategory(request.GET, queryset=produtos).qs
-    paginator = Paginator(filtered_qs, 8)
 
-    page = request.GET.get('page')
-
-    try:
-        response = paginator.page(page)
-    except PageNotAnInteger:
-        response = paginator.page(1)
-    except EmptyPage:
-        response = paginator.page(paginator.num_pages)
-
-    filtro = FilterCategory(request.GET, queryset=filtered_qs)
-    context = {'products': response, 'filtro': filtro}
-
-    return render(request, 'pesquisa/pesquisa-categoria.html', context)
 
 @login_required
 def cancelarAluguel(request, idAluguel):

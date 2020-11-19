@@ -15,17 +15,20 @@
 
 <section id="section-home-pesquisar" class="container-fluid bg-light pt-4 pb-1">
     <div class="container">
-        <form method="GET">
-            {{ filtro.form|bootstrap}}
+        <form method="POST" id="form" action="pesquisa/" enctype="multipart/form-data">
+        {% csrf_token %}
+            <input hidden value="" name="categoria" id="categoriaSelecionada">
             <span class="input-group-append">
-                <button type="submit" class="btn btn-primary py-0 px-3">
+                <input type="text" maxlength="100" class="form-control" name="nome" id="nomePesquisa">
+                <button id="btnForm" type="submit" class="btn btn-primary py-0 px-3">
                     <img src="{% static 'images/icone-lupa.png' %}" style="width: 40px;" alt="icone lupa">
                 </button>
             </span>
+        <form>
             <div class="row my-4 col-12" style="border-radius: 20px; color: rgb(74, 74, 74);">
 
                 <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
-                    <a href="{% url 'pesquisa' categoria='Ferra' %}">
+                    <a onclick="preencherCategoria('Ferramentas')">
                         <img src="{% static 'images/icone-ferramentas.png' %}" style="width: 60px;" alt="icone ferramenta">
                         <br>
                         <p class="m-0" style="color: black;">Ferramentas</p>
@@ -33,7 +36,7 @@
                 </div>
 
                 <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
-                    <a href="{% url 'pesquisa' categoria='Moda' %}">
+                    <a onclick="preencherCategoria('Moda e Beleza')">
                         <img src="{% static 'images/icone-roupa.png' %}" style="width: 60px;" alt="icone roupa">
                         <br>
                         <p class="m-0" style="color: black;">Moda e Beleza</p>
@@ -41,7 +44,7 @@
                 </div>
 
                 <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
-                    <a href="{% url 'pesquisa' categoria='Eletr' %}">
+                    <a onclick="preencherCategoria('Eletrônicos')">
                         <img src="{% static 'images/icone-eletronico.png' %}" style="width: 60px;" alt="icone eletronico">
                         <br>
                         <p class="m-0" style="color: black;">Eletrônicos</p>
@@ -49,7 +52,7 @@
                 </div>
 
                 <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
-                    <a href="{% url 'pesquisa' categoria='Auto' %}">
+                    <a onclick="preencherCategoria('Automóveis')">
                         <img src="{% static 'images/icone-carro.ico' %}" style="width: 60px;" alt="icone carro">
                         <br>
                         <p class="m-0" style="color: black;">Automóveis</p>
@@ -57,7 +60,7 @@
                 </div>
 
                 <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
-                    <a href="{% url 'pesquisa' categoria='Cons' %}">
+                    <a onclick="preencherCategoria('Construção')">
                         <img src="{% static 'images/icone-construcao.ico' %}" style="width: 60px; margin-bottom: 9px;" alt="icone Construção">
                         <br>
                         <p class="m-0" style="color: black;">Construção</p>
@@ -65,13 +68,12 @@
                 </div>
 
                 <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
-                    <a href="{% url 'pesquisa' categoria='Agro' %}">
+                    <a onclick="preencherCategoria('Agro e Indústria')">
                         <img src="{% static 'images/icone-industria.ico' %}" style="width: 60px;" alt="icone Indústria">
                         <br>
                         <p class="m-0" style="color: black;">Agro e Indústria</p>
                     </a>
                 </div>
-        </form>
 </section>
 
 <section class="container mt-5">
@@ -92,7 +94,12 @@
 </section>
 
 <script type="text/javascript">
-    document.getElementById("id_nome").placeholder = 'Estou procurando por...';
+    document.getElementById("nomePesquisa").placeholder = 'Estou procurando por...';
+
+    function preencherCategoria(categoria){
+        document.getElementById('categoriaSelecionada').value = categoria;
+        document.getElementById('btnForm').click();
+    }
 </script>
 
 {% endblock %}
