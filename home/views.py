@@ -20,6 +20,7 @@ def perguntasFrequentes(request):
 
 def pesquisa(request):
     categoria = request.POST.get('categoria')
+    print(categoria)
     resposta = request.GET.get('page')
     nome = request.POST.get('nome')
     estado = request.POST.get('estado')
@@ -36,9 +37,6 @@ def pesquisa(request):
     else:
         page = None
         nomeGET = None
-        categoria = None
-        estado = None
-        cidade = None
 
     if nome != None and nome != '':
         if categoria != None and categoria != '':

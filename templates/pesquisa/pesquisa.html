@@ -9,6 +9,9 @@
     <div class="container">
         <form method="POST" action="" enctype="multipart/form-data">
             {% csrf_token %}
+
+            <input hidden value="{{categoria}}" name="categoria" id="categoriaSelecionada">
+
             <div>
                 <select class="custom-select mt-2 mb-4 col-4" name="estado" id="estado"></select>
             </div>
@@ -25,51 +28,51 @@
                 </button>
             </span>
             <form>
-                <input hidden value="{{categoria}}" id="categoriaSelecionada">
-                <div class="row my-4 col-12" style="border-radius: 20px; color: rgb(74, 74, 74);">
 
-                    <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
-                        <a href="">
+                <div class="row my-4 col-12" id="divCategorias" style="border-radius: 20px; color: rgb(74, 74, 74);">
+
+                    <div onclick="selecionarCategoria('Ferramentas', 'divFerramentas')" id="divFerramentas" class="col-md-2 col-6 text-center tamanho-hover mt-3">
+                        <a >
                             <img src="{% static 'images/icone-ferramentas.png' %}" style="width: 60px;" alt="icone ferramenta">
                             <br>
                             <p class="m-0" style="color: black;">Ferramentas</p>
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
-                        <a href="">
+                    <div id="divModa" onclick="selecionarCategoria('Moda e Beleza', 'divModa')" class="col-md-2 col-6 text-center tamanho-hover mt-3">
+                        <a>
                             <img src="{% static 'images/icone-roupa.png' %}" style="width: 60px;" alt="icone roupa">
                             <br>
                             <p class="m-0" style="color: black;">Moda e Beleza</p>
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
-                        <a href="">
+                    <div id="divEle" onclick="selecionarCategoria('Eletrônicos', 'divEle')" class="col-md-2 col-6 text-center tamanho-hover mt-3">
+                        <a>
                             <img src="{% static 'images/icone-eletronico.png' %}" style="width: 60px;" alt="icone eletronico">
                             <br>
                             <p class="m-0" style="color: black;">Eletrônicos</p>
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
-                        <a href="">
+                    <div onclick="selecionarCategoria('Automóveis', 'divAuto')" id="divAuto" class="col-md-2 col-6 text-center tamanho-hover mt-3">
+                        <a>
                             <img src="{% static 'images/icone-carro.ico' %}" style="width: 60px;" alt="icone carro">
                             <br>
                             <p class="m-0" style="color: black;">Automóveis</p>
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
-                        <a href="">
+                    <div onclick="selecionarCategoria('Construção', 'divConst')" id="divConst" class="col-md-2 col-6 text-center tamanho-hover mt-3">
+                        <a>
                             <img src="{% static 'images/icone-construcao.ico' %}" style="width: 60px; margin-bottom: 9px;" alt="icone Construção">
                             <br>
                             <p class="m-0" style="color: black;">Construção</p>
                         </a>
                     </div>
 
-                    <div class="col-md-2 col-6 text-center tamanho-hover mt-3">
-                        <a href="">
+                    <div onclick="selecionarCategoria('Agro e Indústria', 'divAgro')" id="divAgro" class="col-md-2 col-6 text-center tamanho-hover mt-3">
+                        <a>
                             <img src="{% static 'images/icone-industria.ico' %}" style="width: 60px;" alt="icone Indústria">
                             <br>
                             <p class="m-0" style="color: black;">Agro e Indústria</p>
@@ -96,6 +99,28 @@
 
 <script language="JavaScript" type="text/javascript" charset="utf-8">
       document.getElementById("nomePesquisa").placeholder = 'Estou procurando por...';
+
+      function selecionarCategoria(categoriaSelecionada, div){
+        if (document.getElementById("categoriaSelecionada").value == categoriaSelecionada){
+           document.getElementById("categoriaSelecionada").value = '';
+           removerBordas();
+        } else {
+            document.getElementById("categoriaSelecionada").value = categoriaSelecionada;
+            removerBordas();
+            document.getElementById(div).style.borderStyle = 'inset';
+        }
+
+      }
+
+      function removerBordas(){
+         document.getElementById('divFerramentas').style.border = 'none';
+         document.getElementById('divModa').style.border = 'none';
+         document.getElementById('divEle').style.border = 'none';
+         document.getElementById('divAuto').style.border = 'none';
+         document.getElementById('divConst').style.border = 'none';
+         document.getElementById('divAgro').style.border = 'none';
+
+      }
       new dgCidadesEstados({
         cidade: document.getElementById('cidade'),
         estado: document.getElementById('estado')
