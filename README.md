@@ -28,3 +28,5 @@ Configuração/Setup
 Rodar os Testes unitários/ Run unit tests
 
     python manage.py test home
+
+    python manage.py test address
