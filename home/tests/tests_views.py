@@ -42,5 +42,6 @@ class HomeViewTestCase(TestCase):
     def test_login_template(self):
         response = self.client.get(reverse('cadastro'))
         self.assertTemplateUsed(response, 'registration/register.html')
-
+    
+    
     

@@ -151,12 +151,15 @@ def my_detail_product(request, productId):
 def favourite_products(request, id):
     product = get_object_or_404(Product, id=id)
     #user = request.user
- 
+    url = request.META.get('HTTP_REFERER')
+
     if product.favourite.filter(id=request.user.id).exists():
         product.favourite.remove(request.user)
         #print('removeu')
+        return HttpResponseRedirect(url)
     else:
         product.favourite.add(request.user)
+        return HttpResponseRedirect(url)
         #print('adiciounou')
     #print('cima')
     

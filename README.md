@@ -2,8 +2,9 @@
 
 
 
-![Alugo logo](/statics/images/aluno_home.jpeg)
-Format: ![Alt Text](url)
+![Alugo logo](/statics/images/alugo_home.jpeg)
+![Alugo logo](/statics/images/alugo_products.jpeg)
+
 
 Configuração/Setup
 

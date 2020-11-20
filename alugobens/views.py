@@ -18,7 +18,6 @@ def login(request):
 def home(request):
     return render(request, 'home.html')
 
-
 def cadastro(request):
     return render(request, 'cadastro.html')
 
@@ -30,12 +29,9 @@ def cadastro(request):
        #     context = {'msg': 'Invalid email or password'}
        #     return render(request, 'login.html', context)
 
-
-
 def list_products(request):
     products = Product.objects.all()
     return render(request, 'products.html', {'products': products})
-
 
 def create_product(request):
     form = ProductForm(request.POST or None)
@@ -48,7 +44,6 @@ def create_product(request):
 
     return render(request, 'products-form.html', {'form': form})
 
-
 def update_product(request, id):
     product = Product.objects.get(id=id)
     form = ProductForm(request.POST or None, instance=product)
@@ -59,7 +54,6 @@ def update_product(request, id):
 
     return render(request, 'products-form.html', {'form': form, 'product': product})
 
-
 def delete_product(request, id):
     product = Product.objects.get(id=id)
 
@@ -68,4 +62,3 @@ def delete_product(request, id):
         return redirect('list_products')
 
     return render(request, 'prod-delete-confirm.html', {'product': product})
-
