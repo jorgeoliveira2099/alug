@@ -1,5 +1,9 @@
 # Alugo
 
+<img src="https://github.com/jorgeoliveira2099/alug/blob/master/statics/images/aluno_home.jpeg">
+<img src="https://github.com/jorgeoliveira2099/alug/blob/master/statics/images/aluno_products.jpeg">
+
+
 Configuração/Setup
 
     1 - Em uma pasta, clone o projeto/ In a folder, clone the project: git clone <link do repositório> 
@@ -19,3 +23,6 @@ Configuração/Setup
     8 - Rode a aplicação/ Run the Application - python manage.py runserver
 
     
+Rodar os Testes unitários/ Run unit tests
+
+    python manage.py test home
