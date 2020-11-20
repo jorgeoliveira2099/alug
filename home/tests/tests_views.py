@@ -3,10 +3,11 @@ from django.urls import reverse
 
 
 class HomeViewTestCase(TestCase):
-
+    
+    #TESTE DE VIEWS
     def test_home_status_code_200(self):
         response = self.client.get(reverse('home'))
-        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.status_code, 200)   
 
     def test_logout_status_code_302(self):
         response = self.client.get(reverse('logout'))
@@ -24,6 +25,22 @@ class HomeViewTestCase(TestCase):
         response = self.client.get(reverse('perguntasFrequentes'))
         self.assertEquals(response.status_code, 200)
 
+    def test_login_status_code_200(self):
+        response = self.client.get(reverse('login'))
+        self.assertEquals(response.status_code, 200)
 
+    #TESTE DE TEMPLATES
 
+    def test_home_template(self):
+        response = self.client.get(reverse('home'))
+        self.assertTemplateUsed(response, 'home/home.html')
+    
+    def test_login_template(self):
+        response = self.client.get(reverse('login'))
+        self.assertTemplateUsed(response, 'registration/login.html')
 
+    def test_login_template(self):
+        response = self.client.get(reverse('cadastro'))
+        self.assertTemplateUsed(response, 'registration/register.html')
+
+    

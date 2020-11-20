@@ -1,8 +1,9 @@
 # Alugo
 
-<img src="https://github.com/jorgeoliveira2099/alug/blob/master/statics/images/aluno_home.jpeg">
-<img src="https://github.com/jorgeoliveira2099/alug/blob/master/statics/images/aluno_products.jpeg">
 
+
+![Alugo logo](/statics/images/aluno_home.jpeg)
+Format: ![Alt Text](url)
 
 Configuração/Setup
 
