@@ -3,6 +3,16 @@ $(document).ready(function(){
     $("#id_cpf").mask("999.999.999-99");
 });
 
+$(document).ready(function(){
+    $("#id_telefone").mask("(99)99999-9999");
+});
+
+$(document).ready(function(){
+    $("#id_data_nascimento").mask("99/99/9999");
+});
+
+
+
 $('#id_preco').keyup(function(){
     v = $("#id_preco").val()
 	v = v.replace(/\D/g,"");  //permite digitar apenas numeros
