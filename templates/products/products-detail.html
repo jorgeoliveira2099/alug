@@ -30,26 +30,26 @@
 		</div>
 
 		<div>
-                    {% for message in messages %}
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ message }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+			{% for message in messages %}
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				{{ message }}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
 
-                    {% endfor %}
+			{% endfor %}
 		</div>
 
 		<div class="d-flex align-items-center">
 			<div class="">
 				{% if is_favourite %}
 				<a href="{% url 'favourite_products' id=product.id %}">
-					<i class="fas fa-heart fa-2x"></i>
+					<img style="width: 40px;" src="{% static 'images/coracao-cheio.ico' %}" alt="">
 				</a>
 				{% else %}
 				<a href="{% url 'favourite_products' id=product.id %}">
-					<i class="fas fa-heart fa-2x"></i>
+					<img style="width: 40px;" src="{% static 'images/coracao-vazio.ico' %}" alt="">
 				</a>
 				{% endif %}
 			</div>
@@ -77,11 +77,12 @@
 
 				<div class="mb-3">
 					{% if user != product.user %}
-					<a type="button" class="btn btn-primary botao-redondo px-5" href="{% url 'criarSala'  idProduto=product.id %}">
+					<a type="button" class="btn btn-primary botao-redondo px-5"
+						href="{% url 'criarSala'  idProduto=product.id %}">
 						Chamar no chat
 					</a>
 					{% else %}
-					<input disabled type="button" value="Chamar no chat" class="btn btn-primary botao-redondo px-5"/>
+					<input disabled type="button" value="Chamar no chat" class="btn btn-primary botao-redondo px-5" />
 					{% endif %}
 				</div>
 
@@ -90,7 +91,7 @@
 			<div class="text-center p-3 d-none d-xl-block">
 
 				<div class="etiqueta-valor d-none d-xl-block">
-					<span class="h2 preco">R$ {{ product.preco }}</span>
+					<span class="h2 preco ml-4">R$ {{ product.preco }}</span>
 				</div>
 			</div>
 

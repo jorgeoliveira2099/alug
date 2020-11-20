@@ -1,41 +1,86 @@
 {%  extends 'base.html'%}
-
+{% load static %}
 {% block title %} Favoritos {% endblock %}
 
 {% block main %}
 
 
-<div class="col-12">
-            
-            <h3> Favoritos </h3>
+<section class="container text-center mb-5 box-shadow pt-5 pb-3">
+    <div>
+        <h1 class="display-4 text-primary mb-5">Meus Favoritos</h1>
+    </div>
+    <div class="row">
+        <div class="col" id="produtos" data-children="produto">
 
-            <ul class="list-group">
+            <div class="produto py-2 col-12">
 
-            {% for product in favourite_products %}
+                <div class="row">
 
-                <li class="list-group-item">
-
-                    <div class="row">
-                        <div class="col-7">
-                           <a href="{% url 'detail_product' product.id %}"> <p> {{ product.nome }} </p> </a>
-                            <image src="{{ product.get_photo_url }}" width="150" height="100" > </image>
+                    <div class="d-md-flex col-12 align-items-center">
+                        <div class="col-md col-11">
+                            <a class="lead" data-toggle="collapse" href="#favoritados" aria-expanded="true"
+                                aria-controls="publicados" style="color:#696969">Favoritados ({{quantidade}})</a>
                         </div>
                     </div>
-                </li>
- 			</ul>
- 			{% empty %}
- 			<h4>Você ainda não adicionou produtos aos favoritos!</h4>
 
-            {% endfor %}
+                </div>
 
-           
+                <div class="my-2" style="border: 1px solid #ccc;">
+
+                </div>
+
+                <div class="p-3" style="border: 2px solid #ccc; border-radius: 20px;">
+
+                    <div id="publicados" class="collapse show" role="tabpanel" data-parent="#produtos">
+
+                        <div class="row mt-3">
+
+                            {% for product in favourite_products %}
+                            <a class="texto-favoritos" href="{% url 'detail_product' product.id %}">
+                            <div class="col-md-3 rounded pb-3 ml-md-5 ml-3 pt-2 mr-4 mt-3 mb-5 mt-md-0"
+                                style="border:1px solid #ccc">
+                               
+                                    <image src="{{ product.get_photo_url }}"
+                                        class="rounded tamanho-fixo-imagens-myAnuncios"> </image>
+                                    <div class="mt-2 mb-1">
+                                        <span class="h5">{{ product.nome }}</span>
+                                    </div>
+                                    <div class="mb-1">
+                                        <span class="h6"><strong>R$ {{ product.preco }}</strong></span>
+                                    </div>
+                                    <div style="font-size: 1rem; color: rgb(153, 153, 153); ">
+                                        <span>{{ product.estado }}<span>, {{ product.cidade }}</span></span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            {% empty %}
+                            <div class="col-12 justify-content-center">
+                                <img src="{% static 'images/sem-favoritos.ico' %}" alt="">
+                                <h4>Você ainda não favoritou um produto!</h4>
+                            </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
 
 
 
-             </br>             
         </div>
 
-        
-         
+
+    </div>
+
+
+</section>
+
+
+
 
 {% endblock %}

@@ -84,8 +84,9 @@
         <div class="col-md-3 col-6 mb-4 aumentar-tamanho-mouse">
             <a href="{% url 'detail_product' product.id %}">
                 <image src="{{ product.get_photo_url }}" class="rounded tamanho-fixo-imagens"> </image>
-                <p class="mt-2 mb-1 ml-1">{{ product.nome }}</p>
+                <p class="h5 mt-2 mb-1 ml-1">{{ product.nome }}</p>
                 <p class="m-0 ml-1" style="font-size: 20px;"><strong>R$ {{ product.preco }}</strong></p>
+                <p class="m-0 ml-1" style="font-size: 15px; color: rgb(153, 153, 153); font-weight: 500;">{{ product.estado }}<span>, {{ product.cidade }}</span></p>
             </a>
         </div>
         {% endfor %}

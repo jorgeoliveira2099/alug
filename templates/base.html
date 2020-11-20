@@ -78,13 +78,18 @@
               </div>
 
               <div class="arredondar-linha">
+                <a class="dropdown-item" href="{% url 'products_favourite_list' %}"><i>Meus Favoritos</i>
+                  <img class="ml-1" src="{% static 'images/icone-favoritos-nav.png' %}" alt="icone meus favoritos"></a>
+              </div>
+
+              <div class="arredondar-linha">
                 <a class="dropdown-item" href="{% url 'meusChats' %}">
                   <i>Chat</i>
                   <img class="ml-2" src="{% static 'images/icone-chat.png' %}" alt="icone chat"></a>
               </div>
 
               <div class="arredondar-linha">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{% url 'perguntasFrequentes' %}">
                   <i>Ajuda</i>
                   <img src="{% static 'images/icone-ajuda-2.ico' %}" class="ml-1" alt="icone ajuda"></a>
               </div>

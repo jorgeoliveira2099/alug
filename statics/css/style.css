@@ -122,9 +122,18 @@ html, body {
 /* Meus Anúncios */
 
 .tamanho-fixo-imagens-myAnuncios {
-   width: 150px;
-   height: 150px;
+   width: 200px;
+   height: 200px;
 }
+
+.texto-meus-anuncios {
+   color: black;
+}
+
+.texto-meus-anuncios:hover {
+   text-decoration: none;
+}
+
 
 /* Detalhe produto */
 
@@ -283,5 +292,19 @@ section.duvida-por-tema p {
 @media (max-width: 767px) {
    .tamanho-imagens-pesquisa {
       width: 40%;
+      height: 200px;
    }
+}
+
+/* Meus Favoritos */
+
+.texto-favoritos {
+   color: #212529;
+   text-decoration: none;
+   font-size: 1.1rem;
+   font-weight: 500;
+}
+
+.texto-favoritos:hover {
+   text-decoration: none;
 }
