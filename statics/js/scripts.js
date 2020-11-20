@@ -3,9 +3,15 @@ $(document).ready(function(){
     $("#id_cpf").mask("999.999.999-99");
 });
 
+$('#id_preco').keyup(function(){
+    v = $("#id_preco").val()
+	v = v.replace(/\D/g,"");  //permite digitar apenas numeros
+	v = v.replace(/[0-9]{12}/,"inválido");   //limita pra maximo 999.999.999,99
+	v = v.replace(/(\d{1})(\d{8})$/,"$1.$2");  //coloca ponto antes dos ultimos 8 digitos
+	v = v.replace(/(\d{1})(\d{5})$/,"$1.$2");  //coloca ponto antes dos ultimos 5 digitos
+	v = v.replace(/(\d{1})(\d{1,2})$/,"$1,$2");        //coloca virgula antes dos ultimos 2 digitos
 
-$(document).ready(function(){
-    $("#id_cep").mask("99.999-999");
+	$("#id_preco").val(v)
 });
 
 $('#id_cpf').blur(function(){

@@ -13,7 +13,7 @@ class Product(models.Model):
     nome = models.CharField(max_length=100, verbose_name="")
     categoria = models.ForeignKey(Categoria, null=True, blank=True, on_delete=models.CASCADE)
     descricao = models.TextField(verbose_name="")
-    preco = models.DecimalField(max_digits=9, decimal_places=2, verbose_name="")
+    preco = models.CharField(max_length=13, verbose_name="")
     condicoesUso = models.TextField(verbose_name="")
     imagem = models.ImageField(null=True, blank=True, verbose_name="")
     user = models.ForeignKey(MyUser, null=True, blank=True, on_delete=models.CASCADE)
