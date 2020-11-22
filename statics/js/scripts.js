@@ -11,6 +11,10 @@ $(document).ready(function(){
     $("#id_data_nascimento").mask("99/99/9999");
 });
 
+$(document).ready(function(){
+    $("#id_cep").mask("99.999-999");
+});
+
 
 
 $('#id_preco').keyup(function(){
