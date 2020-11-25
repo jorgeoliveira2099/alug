@@ -173,9 +173,11 @@ def favourite_products(request, id):
 def products_favourite_list(request):    
     user = request.user
     favourite_products = user.favourite.all()
+    quantidade = len(favourite_products)
 
     context = {
         'favourite_products': favourite_products,
+        'quantidade': quantidade,
 
     }
     #return render(request, 'products/products-detail.html', context)
