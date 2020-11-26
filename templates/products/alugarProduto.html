@@ -14,7 +14,7 @@
 <form method="POST" action="submit" enctype="multipart/form-data">
     {% csrf_token %}
         {{ form|bootstrap }}
-        <button type="submit" id="btnSalvar" class="btn btn-secondary"> Salvar </button>
+        <button type="submit" id="btnSalvar" class="btn btn-secondary"> Concluir </button>
         <a href="{% url 'alugar' user.id %}" class="btn btn-secondary"> Voltar</a>
 </form>
 

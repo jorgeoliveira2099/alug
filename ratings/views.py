@@ -57,33 +57,24 @@ def avalia(request, idAvalia):
 #AVALIAR SUBMIT
 def avaliarSubmit(request, idAvalia):
     url = request.META.get('HTTP_REFERER')
-    print('USUARIO AQUIIIIIIIII')
     user = request.user
-    print('USUARIO AQUIIIIIIIII')
     print(user)
     try:         
         historico = HistoricoAlugados.objects.get(id=idAvalia)
     except ObjectDoesNotExist:
         return render(request, 'home/termosdeuso.html')
-         
-       
+
     usuario = ''
     locadorUser = ''
     locatarioUser = ''
-    if user == historico.locador:  
+    if user == historico.locador:
         historico.avaliadoPeloLocador = True
         historico.save()
-        print('SALVOUUUUUUUUUUUUUU')
-        print(historico.avaliadoPeloLocador)
         usuario = historico.locatario
-            #usuario = historico.locatario            
-    if user == historico.locatario: 
+    if user == historico.locatario:
         historico.avaliadoPeloLocatario = True
         historico.save()
         usuario = historico.locador
-            #usuario = historico.locador             
-        
-
 
     if request.method == 'POST':
         form = RatingForm(request.POST)
@@ -95,17 +86,22 @@ def avaliarSubmit(request, idAvalia):
             data.rate = form.cleaned_data['rate']
             data.save()           
             print('SALVOUUUUUUUUUUUUUU')
-            messages.info(request, 'Usuario avaliado com sucesso!')
-              #  return HttpResponseRedirect(url)
-            context = {
-                #'historico':historico,
-                'idAvalia':idAvalia,
-                #'usuario':usuario,
-            }
-       
-    return render(request, 'home/termosdeuso.html', context)
-    #return HttpResponse('comentario adicionado')
-#return HttpResponseRedirect(url)
+            messages.info(request, 'Agradecemos a sua avaliação!')
+
+    user = request.user
+    avaliacoes = HistoricoAlugados.objects.filter(Q(locador=user) | Q(locatario=user) & Q(encerrado=True))
+    arrayPendentes = []
+    for avaliacao in avaliacoes:
+        if user == avaliacao.locador:
+
+            if avaliacao.avaliadoPeloLocador == False:
+                arrayPendentes.append(avaliacao)
+        if user == avaliacao.locatario:
+
+            if avaliacao.avaliadoPeloLocatario == False:
+                arrayPendentes.append(avaliacao)
+
+    return render(request, 'user/avaliacoesPendentes.html', {'avaliacoes': arrayPendentes})
 
 
 def avaliacoesPendentes(request):
