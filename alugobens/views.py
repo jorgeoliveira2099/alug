@@ -11,8 +11,8 @@ def hello(request):
 
 def login(request):
     return render(request, 'login.html')
- 
- def perfil(request):
+
+def perfil(request):
     return render(request, 'perfil.html')
 
 def home(request):

@@ -3,39 +3,50 @@
 {% block title %} PHistórico Status Aluguel {% endblock %}
 
 {% block main %}
-    <div class="container">
+<div class="container">
 
-      
+
     <div class="row">
-       {% for historico in historicos %}
-          
-<ul class="list-group">
-  <li class="list-group-item">Produto: {{historico.produto}}</li>
-  <li class="list-group-item">Locador: {{historico.locador}}</li>
+        {% for historico in historicos %}
+        <div class="col-md-3 col-6 mb-4">
+            <ul class="list-group">
+                <li class="list-group-item">Produto: {{historico.produto}}</li>
+                <li class="list-group-item">Locador: {{historico.locador}}</li>
 
-       {% if historico.status == 1 %}
-                <li class="list-group-item">Status: Aguardando locador</li>  
-            {% endif %}
-        {% if historico.status == 2 %}
-                <li class="list-group-item"><div class="alert alert-danger" role="alert">
- Status: Cancelado
-</div></li>  
-            {% endif %}
+                {% if historico.status == 1 %}
+                <li class="list-group-item">
+                    <div class="alert alert-warning" role="alert">
+                        Status: em espera
+                    </div>
+                </li>
+                {% endif %}
+                {% if historico.status == 2 %}
+                <li class="list-group-item">
+                    <div class="alert alert-danger" role="alert">
+                        Status: Cancelado
+                    </div>
+                </li>
+                {% endif %}
 
-            {% if historico.status == 3 %}
-                <li class="list-group-item"><div class="alert alert-success" role="alert">
-  Status: aceito
-</div></li>  
-            {% endif %}
+                {% if historico.status == 3 %}
+                <li class="list-group-item">
+                    <div class="alert alert-success" role="alert">
+                        Status: aceito
+                    </div>
+                </li>
+                {% endif %}
 
-            {% if historico.status == 4 %}
-                <li class="list-group-item">Status: encerrado</li>  
-           {% endif %}
-    <li class="list-group-item">Data: {{historico.date}}</li>
-  
-</ul>
-<br>
-<hr>
+                {% if historico.status == 4 %}
+                <li class="list-group-item">
+                    <div class="alert alert-primary" role="alert">
+                        Status: encerrado
+                    </div>
+                </li>
+                {% endif %}
+                <li class="list-group-item">Data: {{historico.date}}</li>
+
+            </ul>
+        </div>
 
         {% empty %}
         <h4>Você não tem nenhum produto alugado!</h4>
@@ -44,7 +55,7 @@
 
 
     </div>
-    </div>
+</div>
 
 {% endblock %}
 

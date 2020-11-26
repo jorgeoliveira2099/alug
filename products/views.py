@@ -353,6 +353,7 @@ def confirmarAluguel(request, idAluguel):
     status.encerrado = False
     status.save()
 
+
     return render(request, 'products/detalharAluguel.html',
                   {'perfilLocatario': perfilLocatario, 'aluguel': aluguel, 'identificador': identificador})
 
