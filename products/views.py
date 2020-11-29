@@ -34,7 +34,7 @@ def list_products(request, userId):
     #print(usu.id)
 
 
-    paginator = Paginator(products, 4)
+    paginator = Paginator(products, 6)
 
     page = request.GET.get('page', 1)
 

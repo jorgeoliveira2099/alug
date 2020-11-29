@@ -1,46 +1,119 @@
-
 {%  extends 'base.html'%}
 {% load static %}
 {% block title %} Chat Home{% endblock %}
 
 {% block main %}
 
-<a href="{% url 'exportarpdf' room_name  %}"> Exportar Conversa </a>
-
-    <form method="POST" action="submit" enctype="multipart/form-data">
-
-        {% csrf_token %}
-
-        <br/>
 
 
-        <textarea id="chat-text" readonly="readonly" cols="80" rows="30">{{ mensagems }}</textarea>
+<form method="POST" action="submit" enctype="multipart/form-data">
 
-        <br>
+    {% csrf_token %}
+    
+    <section class="container box-shadow p-3 pb-5">
 
-        <input type="text" id="mensagem" name="mensagem" maxlength="80" size="80"><br>
-        <button type="submit" id="submit">Enviar</button>
-        <output id="identificador"> {{ identificador }} </output>
+        <div class="text-center">
+            <h1 class="display-4 text-primary">Chat</h1>
+            <span class="h6">Converse com o locatário, <output id="identificador"> {{ identificador }} </output></span>
+        </div>
 
+        <div class="row mt-5">
 
-        <p> {{ produto.nome }} </p>
-                <image src="{{ produto.get_photo_url }}" width="150" height="100" />
-                {% if desabilitarAlugar %}
-                    <input disabled value="Alugar" type="button"class="btn btn-secondary"/>
-                    <p> Este produto está em processo de aluguel, entre em contato com o locador para saber quando estará disponivel </p>
-                {% else %}
-                    <a type="button"class="btn btn-secondary"
-	                href="{% url 'alugar' produto.id %}">
-                        Alugar
+            <div class="col-md-6 col-12">
+
+                <div>
+                    <textarea class="form-control" id="chat-text" readonly="readonly"
+                        rows="20">{{ mensagems }}</textarea>
+                </div>
+
+                <div>
+                    <span class="input-group-append">
+                        <input class="form-control enviar-mensagem" type="text" id="mensagem" name="mensagem"
+                            maxlength="80">
+                        <button class="btn btn-block btn-primary col-2" type="submit" id="submit" style="">Enviar</button>
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-12 mt-5 mt-md-0 text-center">
+                <div>
+                    <h3>Informações sobre o produto</h3>
+                </div>
+                <div class="mt-5">
+
+                    <image class="tamanho-fixo-imagens rounded" src="{{ produto.get_photo_url }}" />
+                    <h5 class="mt-3"> {{ produto.nome }} </h5>
+                    <h5> <span>R$ </span>{{ produto.preco }} </h5>
+                </div>
+
+                <div class="mt-5">
+                    <h6>Caso queira iniciar a solicitação do processo de aluguel do produto:</h6>
+
+                    {% if desabilitarAlugar %}
+                    <input disabled value="Alugar" type="button" class="btn btn-secondary" />
+                    <p> Este produto está em processo de aluguel, entre em contato com o locador para saber quando
+                        estará disponivel
+                    </p>
+                    {% else %}
+                    <div class="mt-4 mx-auto col-4">
+                        <a type="button" href="{% url 'alugar' produto.id %}">
+                        <img style="width: 150px;" src="{% static 'images/alugar.png' %}" alt=""></a>
+                    </div>
+                    {% endif %}
+
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+
+                <div>
+                    <h2>Exportar Conversa</h2>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-6 mt-5" style="">
+                <div>
+                    <img style="width: 250px;" src="{% static 'images/esqueceu.png' %}" alt="">
+                </div>
+            </div>
+
+            <div class="col-md-4 col-6 mt-5">
+                <div class="">
+                    <h4>Para evitar o esquecimento do acordo entre as 2 partes, o Alugo disponibiliza a exportação da conversa no formato PDF!</h4>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <a class="" href="{% url 'exportarpdf' room_name  %}"> 
+                        <img style="width: 90px;" src="{% static 'images/pdf_baixar.png' %}" alt="">
                     </a>
-                {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </section>
 
 
-        </form>
+
+
+
+
+
+
+
+
+
+
+</form>
 
 {{ room_name|json_script:"room-name" }}
 {{ request.user.name|json_script:"user_username" }}
 
 <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 {% endblock %}
-

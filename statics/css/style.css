@@ -104,6 +104,60 @@ html, body {
    text-decoration: none;
 }
 
+
+/* EFEITO PARALLAX HOME */
+
+/* Efeito Parallax */
+
+.caixa1, .caixa2, .caixa3, .caixa4 {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   opacity: 0.8;
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center;
+   background-attachment: fixed;
+}
+
+.caixa1 {
+   background-image: url('../images/aperto-de-maos.jpg');
+}
+
+.caixa2 {
+   background-image: url('../images/alugando-carro.jpg');
+
+}
+
+.caixa3 {
+   background-image: url('../images/alugando-mala.jpg');
+
+}
+
+.caixa4 {
+   background-image: url('../images/comprar-ou-alugar.jpg');
+
+}
+
+.conteudo {
+   color: #777;
+   background-color: white;
+   text-align: justify;
+   padding: 40px 80px;
+}
+
+.conteudo-titulo span.titulo {
+   text-transform: uppercase;
+   color: #fff;
+   background-color: #111;
+   padding: 18px;
+   font-size: 25px;
+   letter-spacing: 5px;
+   border-radius: 6px;
+}
+
 /* Anunciar Produto */
 
 #id_descricao {
@@ -287,6 +341,7 @@ section.duvida-por-tema p {
 
 .tamanho-imagens-pesquisa {
    width: 24%;
+   height: 11.5rem;
 }
 
 @media (max-width: 767px) {
@@ -308,3 +363,28 @@ section.duvida-por-tema p {
 .texto-favoritos:hover {
    text-decoration: none;
 }
+
+
+
+/* Chat */
+
+#chat-text {
+   background-color: white;
+   border-radius: 30px;
+   color: black;
+}
+
+.enviar-mensagem {
+   height: 50px;
+}
+
+/* Meus Chats */
+
+.link-produto-chat{
+   color: black;
+}
+
+.link-produto-chat:hover {
+   text-decoration: none;
+}
+

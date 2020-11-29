@@ -1,28 +1,92 @@
-
 {%  extends 'base.html'%}
-
+{% load static %}
 {% block title %} Chat Home{% endblock %}
 
 {% block main %}
 
-<br/>
-<br/>
-<br/><br/>
+<section class="container box-shadow p-3 pb-5">
+
+    <div class="text-center">
+        <h1 class="display-4 text-primary">Meus Chats</h1>
+        <span class="h6">Aqui você encontra todas as conversas</span>
+    </div>
+
+    <div class="row">
+
+        <div class="col-12 mt-5">
+
+            <div class="row justify-content-around">
+
+                <div class="col-md-4 col-1">
+
+                </div>
+
+                <div class="col-3 d-none d-md-block">
+                    <h5 class="ml-md-4">Usuário</h5>
+                </div>
+
+                <div class="col-3 d-none d-md-block">
+                    <h5 class="ml-md-4">Produto</h5>
+                </div>
+
+                <div class="col-md-1 col-3">
+
+                </div>
 
 
-        {% for chat in chats %}
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-7">
-                            <a href="{% url 'room' chat.codigoSala %}">  {{ chat.nomeSala }} </a>
+            </div>
+
+            {% for chat in chats %}
+            <li class="list-group-item" style="border-radius: 20px;">
+                <div class="row">
+                    <div class="row col-12 align-items-center justify-content-md-around text-center">
+
+
+                        <div class="col-md-3 col-12">
+                            <a href="{% url 'detail_product' chat.produto.id %}">
+                                <image style="width: 100px; height: 75px;" class="rounded"
+                                    src="{{ chat.produto.get_photo_url }}" />
+                            </a>
                         </div>
 
+                        <div class="col-md-3 col-12">
+                            <h6>{{ chat.nomeSala }}</h6>
+                        </div>
+
+                        <div class="col-md-3 col-12">
+                            <a class="link-produto-chat" href="{% url 'detail_product' chat.produto.id %}">
+                                <h6>{{ chat.produto.nome }}</h6>
+                            </a>
+                        </div>
+
+
+                        <div class="col-md-1 col-12">
+                            <a href="{% url 'room' chat.codigoSala %}">
+                            <img style="width: 50px;" src="{% static 'images/chat-icone.png' %}" alt="">
+                            </a>
+                        </div>
+
+
                     </div>
-                </li>
-                 {% empty %}
-            <h4>Você ainda não tem chats!</h4>
+            </li>
 
-            {% endfor %}
- 
+            {% empty %}
+            <li class="list-group-item mt-3 p-5" style="border-radius: 20px;">
+                <div class="text-center mt-3">
+                    <h4>Você não tem conversas! <span><img style="width: 50px;"
+                                src="{% static 'images/chat-icone.png' %}" alt=""></span></h4>
+                </div>
+            </li>
+
+        </div>
+
+
+        {% endfor %}
+
+    </div>
+
+    </div>
+
+</section>
+
 {% endblock %}
-

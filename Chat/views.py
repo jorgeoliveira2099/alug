@@ -168,31 +168,34 @@ def meusChats(request):
     chats = Chat.objects.filter((Q(locador=user) | Q(locatario=user)))
 
     for chat in chats:
-        print(chat.produto)
+        print(chat.locador)
+        print(chat.locatario)
         if chat.locador != user:
-            user = chat.locador
+            print("locador")
+            
             try:
-                perfil = Dados_usuario.objects.get(user=user)
+                perfil = Dados_usuario.objects.get(user=chat.locador)
             except ObjectDoesNotExist:
                 perfil = Dados_usuario()
 
             if perfil.nome == None or perfil.sobrenome == None:
-                identificador = user.email
+                identificador = chat.locador.email
             else:
                 identificador = perfil.nome + " " + perfil.sobrenome
-            chat.nomeSala = "Chat com " + identificador + " Sobre o Produto " + chat.produto.nome
-        elif chat.locatario != user.id:
-            user = chat.locatario
+            chat.nomeSala = identificador
+        elif chat.locatario != user:
+            print("locatario")
+            
             try:
-                perfil = Dados_usuario.objects.get(user=user)
+                perfil = Dados_usuario.objects.get(user=chat.locatario)
             except ObjectDoesNotExist:
                 perfil = Dados_usuario()
 
             if perfil.nome == None or perfil.sobrenome == None:
-                identificador = user.email
+                identificador = chat.locatario.email
             else:
                 identificador = perfil.nome + " " + perfil.sobrenome
-            chat.nomeSala = "Chat com " + identificador + " Sobre o Produto " + chat.produto.nome
+            chat.nomeSala = identificador
 
     return render(request, 'chat/meus-chats.html', {'chats': chats})
 
