@@ -168,11 +168,7 @@ def meusChats(request):
     chats = Chat.objects.filter((Q(locador=user) | Q(locatario=user)))
 
     for chat in chats:
-        print(chat.locador)
-        print(chat.locatario)
         if chat.locador != user:
-            print("locador")
-            
             try:
                 perfil = Dados_usuario.objects.get(user=chat.locador)
             except ObjectDoesNotExist:
@@ -184,8 +180,7 @@ def meusChats(request):
                 identificador = perfil.nome + " " + perfil.sobrenome
             chat.nomeSala = identificador
         elif chat.locatario != user:
-            print("locatario")
-            
+
             try:
                 perfil = Dados_usuario.objects.get(user=chat.locatario)
             except ObjectDoesNotExist:

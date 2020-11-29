@@ -35,6 +35,6 @@ class Rating(models.Model):
 class RatingForm(ModelForm):
     class Meta:
         model = Rating
-        fields = [ 'text', 'rate' ]
+        fields = ['text', 'rate']
 
 

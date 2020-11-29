@@ -2,11 +2,13 @@ from django.shortcuts import render, redirect
 from .admin import UserCreationForm
 from django.urls import reverse_lazy
 from .models import MyUser
+from products.models import Product
 from django.contrib.auth import authenticate
 from django.contrib import messages
 from address.models import Dados_usuario
 from django.core.exceptions import ObjectDoesNotExist
 from address.forms import Dados_usuarioForm
+from django.db.models import Q
 
 def register(request):
     form = UserCreationForm(request.POST or None)
@@ -37,8 +39,10 @@ def excluirContaSubmit(request, userId):
 
     if auth is not None:
        auth.delete()
+       produtos = Product.objects.filter(Q(alugado=False)).order_by('-id')[0:8]
+       context = {'products': produtos}
        messages.info(request, 'Usuario excluido com sucesso!')
-       return render(request, 'home/home.html')
+       return render(request, 'home/home.html', context)
     else:
        messages.error(request, 'Senha incorreta, favor informar a senha correta!')
     return render(request, 'user/perfil.html', {'form': form, 'perfil': perfil, 'excluir': excluir})
