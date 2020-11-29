@@ -1,25 +1,15 @@
+from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
 from django.shortcuts import render
 
-from django.shortcuts import render, redirect, HttpResponseRedirect,HttpResponse
 from ratings.models import RatingForm, Rating, HistoricoAlugados
-from django.contrib import messages
-from django.db.models import Q
-
-from django.core.exceptions import ObjectDoesNotExist, EmptyResultSet
-#def avaliacoesPendentes(request):   
- #   return render(request, 'user/avaliacoesPendentes.html')
 from users.models import MyUser
+
 
 def avalia(request, idAvalia):
     user = request.user
-    #posso usar isso
-    #historico = HistoricoAlugados.objects.filter(Q(locador=user)| Q(locatario=user) & Q(encerrado=True))#.first()
-    #h = historico.id
-    #print(h)
     try:
-        #AQUI EU TO VERIFICANDO SE EXISTE UM HISTORICO COM ESTE ID
-        #historico = HistoricoAlugados.objects.filter(Q(locador=user)| Q(locatario=user) & Q(encerrado=True) & Q(id=idAvalia))#.first()
-        #eu posso usar isso ainda, pode ser util
         historico = HistoricoAlugados.objects.get(id=idAvalia)
     except ObjectDoesNotExist:
         return render(request, 'home/termosdeuso.html')
@@ -36,16 +26,10 @@ def avalia(request, idAvalia):
         if historico.avaliadoPeloLocatario == False:
             usuario = historico.locador
             alguem = 1              
-        print('ENTROU AQUIIIIIIII É LOCATARIO')
-        
+
     if alguem == 0:
         return render(request, 'home/termosdeuso.html')    
 
-    #aqui para baixo é lixo
-    #historicoAluga = HistoricoAlugados.objects.get(id=h)
-    #aqui eu posso verificar se o usuario logado está 
-    #em algum objeto de avaliação, se ele estiver, não exibe
-#aqui é o apenas o método para renderizar o formulário de avaliação    
     context = {
         'historico':historico,
         'idAvalia':idAvalia,
@@ -53,13 +37,10 @@ def avalia(request, idAvalia):
     }
     return render(request, 'user/avaliar.html', context)
 
-#aqui o metodo que pera a requisição do formulário
-#AVALIAR SUBMIT
 def avaliarSubmit(request, idAvalia):
     url = request.META.get('HTTP_REFERER')
     user = request.user
-    print(user)
-    try:         
+    try:
         historico = HistoricoAlugados.objects.get(id=idAvalia)
     except ObjectDoesNotExist:
         return render(request, 'home/termosdeuso.html')
@@ -85,7 +66,6 @@ def avaliarSubmit(request, idAvalia):
             data.text = form.cleaned_data['text']
             data.rate = form.cleaned_data['rate']
             data.save()           
-            print('SALVOUUUUUUUUUUUUUU')
             messages.info(request, 'Agradecemos a sua avaliação!')
 
     user = request.user
@@ -113,13 +93,10 @@ def avaliacoesPendentes(request):
                               
             if avaliacao.avaliadoPeloLocador == False:
                 arrayPendentes.append(avaliacao)
-                print(arrayPendentes)
-        if user == avaliacao.locatario:              
-            
+        if user == avaliacao.locatario:
+
             if avaliacao.avaliadoPeloLocatario == False:
                 arrayPendentes.append(avaliacao)
-                print(arrayPendentes)
-            print('ENTROU AQUIIIIIIII É LOCATARIO')
 
     return render(request, 'user/avaliacoesPendentes.html', {'avaliacoes': arrayPendentes})
 
@@ -137,10 +114,6 @@ def avaliacoesUsuario(request, idUsuario):
         for avaliacao in avaliacoes:
             soma += avaliacao.rate    
         media = int(soma/num)
-    
-
-    
-    
 
     usuario = MyUser.objects.get(id=idUsuario)
 

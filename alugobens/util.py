@@ -1,5 +1,5 @@
 import string
-from random import random, choice
+from random import choice
 
 def gerarHash(tamanho):
     valores = string.ascii_letters
