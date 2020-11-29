@@ -133,3 +133,8 @@ def gerarCategorias():
            categoria = Categoria()
            categoria.descricao = descricao
            categoria.save()
+
+    elif len(categorias) == 6:
+        categoria = Categoria()
+        categoria.descricao = "Outros"
+        categoria.save()
