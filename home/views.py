@@ -28,6 +28,7 @@ def pesquisa(request):
     resposta = request.GET.get('page')
     nome = request.POST.get('nome')
     estado = request.POST.get('estado')
+
     cidade = request.POST.get('cidade')
     if resposta != None:
         print(resposta)
@@ -41,6 +42,8 @@ def pesquisa(request):
     else:
         page = None
         nomeGET = None
+
+    print(estado)
 
     if nome != None and nome != '':
         if categoria != None and categoria != '':

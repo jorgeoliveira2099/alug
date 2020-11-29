@@ -113,9 +113,9 @@ dgCidadesEstados.prototype = {
     elm.appendChild(opt);
   },
   estados : [
-    ['','Selecione um estado'],['Acre','Acre'],['Alagoas','Alagoas'],['Amazonas','Amazonas'],['Amapá','Amapá'],['Bahia','Bahia'],
-    ['Ceará','Ceará'],['Distrito Federal','Distrito Federal'],['Espírito Santo','Espírito Santo'],['Goiás','Goiás'],['Maranhão','Maranhão'],['Minas Gerais','Minas Gerais'],
-    ['Mato Grosso do Sul','Mato Grosso do Sul'],['Mato Grosso','Mato Grosso'],['Pará','Pará'],['Paraíba','Paraíba'],['Pernambuco','Pernambuco'],['Piauí','Piauí'],
+    ['','Selecione um estado'],['Acre','Acre'],['Alagoas','Alagoas'],['Amapá','Amapá'],['Amazonas','Amazonas'],['Bahia','Bahia'],
+    ['Ceará','Ceará'],['Distrito Federal','Distrito Federal'],['Espírito Santo','Espírito Santo'],['Goiás','Goiás'],['Maranhão','Maranhão'],
+    ['Mato Grosso do Sul','Mato Grosso do Sul'],['Mato Grosso','Mato Grosso'],['Minas Gerais','Minas Gerais'],['Pará','Pará'],['Paraíba','Paraíba'],['Pernambuco','Pernambuco'],['Piauí','Piauí'],
     ['Paraná','Paraná'],['Rio de Janeiro','Rio de Janeiro'],['Rio Grande do Norte','Rio Grande do Norte'],['Rondônia','Rondônia'],['Roraima','Roraima'],['Rio Grande do Sul','Rio Grande do Sul'],
     ['Santa Catarina','Santa Catarina'],['São Paulo','São Paulo'],['Sergipe','Sergipe'],['Tocantins','Tocantins']
   ],
