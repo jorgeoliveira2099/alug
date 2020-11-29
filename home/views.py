@@ -127,7 +127,7 @@ def pesquisa(request):
 
 def gerarCategorias():
     categorias = Categoria.objects.all()
-    descricoes = ["Agro e Indústria", "Automóveis", "Construção", "Eletrônicos", "Ferramentas", "Moda e Beleza"]
+    descricoes = ["Agro e Indústria", "Automóveis", "Construção", "Eletrônicos", "Ferramentas", "Moda e Beleza", "Outros"]
     if len(categorias) == 0:
        for descricao in descricoes:
            categoria = Categoria()
