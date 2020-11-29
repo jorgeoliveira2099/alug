@@ -2,7 +2,6 @@ from django.urls import path
 
 
 from .views import (
-    my_detail_product,
     list_products,
     create_product,
     update_product,
@@ -42,6 +41,5 @@ urlpatterns = [
 
     path('favourite_products/<int:id>/', favourite_products, name='favourite_products'),
     path('favoritos/', products_favourite_list, name='products_favourite_list'),
-    path('mydetail/<int:productId>/', my_detail_product, name='my_detail_product'),
     path('favoritos/', products_favourite_list, name='products_favourite_list'),
 ]

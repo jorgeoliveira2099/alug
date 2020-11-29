@@ -1,21 +1,17 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
-from django.db.models import Q
-
-
-from . import filters
-from .models import Product, Alugar, Categoria, HistoricoStatus, StatusAguardando, StatusCancelado, StatusAceito, StatusEncerrado
-from users.models import MyUser
-from address.models import Dados_usuario
-from .forms import ProductForm, DenunciaForm, AlugarForm
-from .filters import FilterCategory
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
+from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.shortcuts import reverse, get_object_or_404
 
-from ratings.models import HistoricoAlugados, Rating
-
-from django.shortcuts import render, redirect, HttpResponseRedirect,HttpResponse
+from address.models import Dados_usuario
+from ratings.models import HistoricoAlugados
+from users.models import MyUser
+from .filters import FilterCategory
+from .forms import ProductForm, DenunciaForm, AlugarForm
+from .models import Product, Alugar, HistoricoStatus, StatusAguardando, StatusCancelado, StatusAceito, StatusEncerrado
 
 
 @login_required
@@ -24,15 +20,7 @@ def list_products(request, userId):
     products = Product.objects.filter(Q(user=user, alugado=False))
     quantidade = len(products)
 
-    #aqui o usuario logado
-    #print(request.user.id)
-
-    #print('usuario logado acima, e abaixo, o id do usuario pelo parametro')
-
-    #aqui, o usuario da url
     usu = MyUser.objects.get(id=userId)
-    #print(usu.id)
-
 
     paginator = Paginator(products, 6)
 
@@ -52,10 +40,8 @@ def list_products(request, userId):
     context = {'products': pagina, 'filtro': filtro, 'page': page, 'quantidade': quantidade}
     
     if request.user.id != usu.id:
-        #print('diferentes')
         return render(request, 'home/home.html')
     else:
-        #print('iguais')
         return render(request, 'products/my-products.html', context)
 
 @login_required
@@ -103,11 +89,9 @@ def delete_product(request, productId):
     messages.info(request, 'Produto excluido com sucesso!')
     return redirect(reverse('list_products', kwargs={'userId': user.id}))
 
-@login_required
 def detail_product(request, id):
     product = get_object_or_404(Product, pk=id)
     
-    #se der merda. apagar isso
     is_favourite = False
     if product.favourite.filter(id=request.user.id).exists():
        is_favourite = True
@@ -129,43 +113,17 @@ def detail_product(request, id):
                    })
 
 @login_required
-def my_detail_product(request, productId):
-    product = get_object_or_404(Product, pk=productId)
-    #usuario logado
-    user = request.user
-    usuarioLogado = user.id
-    #aqui, o usuario da url
-    usu = MyUser.objects.get(id=product.user.id)
-    usuarioQueCadastrou = usu.id
-    #print('id DO usuario logado')    
-    #print(usuarioLogado)
-    #print('id do usuario que cadastrou')
-    #print(usu.id)    
-    
-    if usuarioLogado != usuarioQueCadastrou:
-        return render(request, 'home/home.html')
-    else:  
-        return render(request, 'products/my-products-detail.html', {'product': product})
-
-@login_required
 def favourite_products(request, id):
     product = get_object_or_404(Product, id=id)
-    #user = request.user
     url = request.META.get('HTTP_REFERER')
 
     if product.favourite.filter(id=request.user.id).exists():
         product.favourite.remove(request.user)
-        #print('removeu')
         return HttpResponseRedirect(url)
     else:
         product.favourite.add(request.user)
         return HttpResponseRedirect(url)
-        #print('adiciounou')
-    #print('cima')
-    
-    #print('baixo')
 
-    #return HttpResponseRedirect(product.get_absolute_url(), 'products/products-detail.html')
     return render(request, 'products/products-detail.html', {'product':product})
 
 
@@ -180,9 +138,7 @@ def products_favourite_list(request):
         'quantidade': quantidade,
 
     }
-    #return render(request, 'products/products-detail.html', context)
     return render(request, 'products/products_favourite_list.html', context)
-#    return render(request, 'products/products-detail.html', {'product': product})
 
 @login_required
 def denunciar(request, productId):
@@ -232,10 +188,6 @@ def alugarSubmit(request, productId):
         salvarPerfil(request)
     locador1 = produto.user.id
     locador = MyUser.objects.get(id=locador1)
-    #print(locatario)
-    print('ID DO locatariooo')
-    print(produto.user.id)
-    print('ID DO locatariooo')
 
     if request.POST and form.is_valid():
         alugar = form.save(commit=False)
@@ -247,11 +199,6 @@ def alugarSubmit(request, productId):
         alugar.inicio = str(form.cleaned_data['inicio']) 
         alugar.fim = str(form.cleaned_data['fim'])
         alugar.confirmado = False
-        #alugar.inicio = str(begin[0])
-        #alugar.fim = str(end[0])
-        print('DATA')
-        print(alugar.inicio[0])
-        print(alugar.fim)
         alugar.save()
 
         status = StatusAguardando()
@@ -364,7 +311,6 @@ def encerrarAluguel(request, idAluguel):
     
     pro = aluguel.produto.id
 
-     #historicoAlugados
     locador = aluguel.locador
     locatario = aluguel.locatario
     produto = aluguel.produto
@@ -377,38 +323,22 @@ def encerrarAluguel(request, idAluguel):
     historicoAlugados.encerrado = True
     historicoAlugados.save()
 
-    #HistoricoStatus
     status = StatusEncerrado()
     status.locador = locador
     status.locatario = locatario        
     status.produto = produto
     status.encerrado = True
     status.save()
-    #historicoAlugados
-    #avaliação
-    #isso não faz sentido
-    #avaliar = Rating()
-    #avaliar.de = locador
-    #avaliar.para = locatario
-    #avaliar.save()
-    #avaliação
 
     a = pro
     produto = Product.objects.get(id=pro)     
     produto.alugado = False    
     produto.save()
 
-   
-    #aluguel.confirmado = False    
     aluguel.delete()
 
-    #context = {
-    #'aluguel': aluguel,
-    #}
-    
     messages.info(request, 'Você encerrou um aluguel, por gentileza avalie a experiência com o locatario')
     return render(request, 'products/produtosRequisitados.html')
-    #return redirect(reverse('produtos_requisitados', kwargs={'user': user}))
 
 
 
@@ -431,13 +361,8 @@ def cancelarAluguel(request, idAluguel):
     status.encerrado = False
     status.save()
 
-    print('ME DIZ ONDE ESTÁ ERRADO AQUI POHAAAAAA, MSSSSSSS')  
     aluguel.delete()
 
-    #context = {
-    #'aluguel': aluguel,
-    #}
-    
     messages.info(request, 'Você cancelou a proposta de aluguel')
     return render(request, 'products/produtosRequisitados.html')
    

@@ -1,21 +1,23 @@
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
+# teste
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+from django.template.loader import get_template
+from django.urls import reverse_lazy
+from xhtml2pdf import pisa
+
 from Chat.models import Chat
 from Chat.models import Mensagem
-from products.models import Alugar
-from ratings.models import HistoricoAlugados
-from django.db.models import Q
-from alugobens.util import gerarHash
-from users.models import MyUser
-from products.models import Product
 from address.models import Dados_usuario
+from alugobens.util import gerarHash
+from products.models import Alugar
+from products.models import Product
+from ratings.models import HistoricoAlugados
 
-#teste
-from django.http import HttpResponse, HttpResponseRedirect
-from django.template.loader import get_template
-from xhtml2pdf import pisa
-from django.urls import reverse_lazy
 
+@login_required
 def criarSala(request, idProduto):
     user = request.user
     produto = Product.objects.get(id=idProduto)
@@ -57,6 +59,7 @@ def criarSala(request, idProduto):
                     'desabilitarAlugar': existeAluguelEmAndamento(produto)})
 
 
+@login_required
 def criarSalaSubmit(request, idProduto):
     mensagemEnviada = request.POST.get("mensagem")
     user = request.user
@@ -91,6 +94,7 @@ def criarSalaSubmit(request, idProduto):
                    'mensagems': mensagens, 'produto': produto,
                     'desabilitarAlugar': existeAluguelEmAndamento(produto)})
 
+@login_required
 def room(request, room_name):
     user = request.user
 
@@ -123,6 +127,7 @@ def room(request, room_name):
 
     return render(request, 'home/home.html')
 
+@login_required
 def roomSubmit(request, room_name):
     user = request.user
     try:
@@ -163,6 +168,7 @@ def roomSubmit(request, room_name):
                    'mensagems': mensagens, 'produto': chat.produto,
                    'desabilitarAlugar': existeAluguelEmAndamento(chat.produto)})
 
+@login_required
 def meusChats(request):
     user = request.user
     chats = Chat.objects.filter((Q(locador=user) | Q(locatario=user)))
@@ -195,13 +201,9 @@ def meusChats(request):
     return render(request, 'chat/meus-chats.html', {'chats': chats})
 
 
-
+@login_required
 def exportarpdf(request, room_name):
     user = request.user
-    print(user)
-    print('USUARIO AQUI')
-    userId = user.id
-    #user = MyUser.objects.get(id=userId)
 
     chat = Chat.objects.get(codigoSala=room_name)
     try:
@@ -226,8 +228,7 @@ def exportarpdf(request, room_name):
         for mensagemChat in mensagensChat:
             mensagens += mensagemChat.texto + "\n"
 
-    #ddaqui para baixo funciona
-    
+
     usuario = 1
     try:
         template = get_template('chat/chat2.html')
@@ -242,33 +243,6 @@ def exportarpdf(request, room_name):
     except:
         pass
     return HttpResponseRedirect(reverse_lazy('meusChats'))
-    #user = MyUser.objects.get(id=userId)
-    #try:
-     #   perfil = Dados_usuario.objects.get(user=user)
-    #except ObjectDoesNotExist:
-     #   perfil = Dados_usuario()
-
-    #try:
-     #   chat = Chat.objects.get(codigoSala=room_name)
-    #except ObjectDoesNotExist:
-     #   return render(request, 'home/home.html')
-
-  #  if perfil.nome == None or perfil.sobrenome == None:
-     #   identificador = user.email
-   # else:
-   #     identificador = perfil.nome + " " + perfil.sobrenome
-
-   # if chat.locatario == str(userId) or chat.locador == str(userId):
-     #   mensagensChat = chat.mensagem_set.all()
-      #  mensagens = ''
-
-     #   for mensagemChat in mensagensChat:
-        #    mensagens += mensagemChat.texto + "\n"
-
-     #   return render(request, 'chat/chat.html',
-        #              {'room_name': chat.codigoSala, 'identificador': identificador, 'mensagems': mensagens})
-
-   # return render(request, 'home/home.html')
 
 def existeAluguelEmAndamento(produto):
 
