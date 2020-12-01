@@ -3,45 +3,52 @@
 {% block title %} Produtos Requisitados/Alugados {% endblock %}
 
 {% block main %}
-<div class="container">
+
+<section class="container box-shadow p-3 pb-5">
+
+	<div class="text-center mb-5">
+		<h1 class="display-4 text-primary">Proposta de Aluguel</h1>
+		<span class="h6">Informações sobre a proposta do aluguel</span>
+	</div>
+
 	<div class="row">
 		<div class="col">
 			<table class="table">
 				<thead class="thead-dark">
-				<tr>
-					<th scope="col">Endereço informado</th>
-					<th scope="col"></th>
-				</tr>
+					<tr>
+						<th scope="col">Endereço informado</th>
+						<th scope="col"></th>
+					</tr>
 				</thead>
 				<tbody>
-				<tr>
-					<th scope="row">CEP</th>
-					<td>{{ perfilLocatario.cep }}</td>
-				</tr>
-				<tr>
-					<th scope="row">Cidade</th>
-					<td>{{ perfilLocatario.cidade }}</td>
-				</tr>
-				<tr>
-					<th scope="row">Bairro</th>
-					<td>{{ perfilLocatario.bairro }}</td>
-				</tr>
-				<tr>
-					<th scope="row">Estado</th>
-					<td>{{ perfilLocatario.estado }}</td>
-				</tr>
-				<tr>
-					<th scope="row">Rua</th>
-					<td>{{ perfilLocatario.rua }}</td>
-				</tr>
-				<tr>
-					<th scope="row">Complemento</th>
-					{% if perfilLocatario.complemento != None %}
-					<td>{{ perfilLocatario.complemento }}</td>
-					{% else %}
-					<td> </td>
-					{% endif %}
-				</tr>
+					<tr>
+						<th scope="row">CEP</th>
+						<td>{{ perfilLocatario.cep }}</td>
+					</tr>
+					<tr>
+						<th scope="row">Cidade</th>
+						<td>{{ perfilLocatario.cidade }}</td>
+					</tr>
+					<tr>
+						<th scope="row">Bairro</th>
+						<td>{{ perfilLocatario.bairro }}</td>
+					</tr>
+					<tr>
+						<th scope="row">Estado</th>
+						<td>{{ perfilLocatario.estado }}</td>
+					</tr>
+					<tr>
+						<th scope="row">Rua</th>
+						<td>{{ perfilLocatario.rua }}</td>
+					</tr>
+					<tr>
+						<th scope="row">Complemento</th>
+						{% if perfilLocatario.complemento != None %}
+						<td>{{ perfilLocatario.complemento }}</td>
+						{% else %}
+						<td> </td>
+						{% endif %}
+					</tr>
 				</tbody>
 			</table>
 
@@ -49,39 +56,47 @@
 		<div class="col">
 			<table class="table">
 				<thead class="thead-dark">
-				<tr>
-					<th scope="col">Informações do Aluguel</th>
-					<th scope="col"></th>
-				</tr>
+					<tr>
+						<th scope="col">Informações do Aluguel</th>
+						<th scope="col"></th>
+					</tr>
 				</thead>
 				<tbody>
-				<tr>
-					<th scope="row">Data Inicio</th>
-					<td>{{ aluguel.inicio }}</td>
-				</tr>
-				<tr>
-					<th scope="row">Data Fim</th>
-					<td>{{ aluguel.fim }}</td>
-				</tr>
-				<tr>
-					<th scope="row">Locatario</th>
-					<td>{{ identificador }}</td>
-				</tr>
-				<tr>
-					<th scope="row">Produto</th>
-					<td>{{ aluguel.produto.nome }}</td>
-				</tr>
+					<tr>
+						<th scope="row">Data Inicio</th>
+						<td>{{ aluguel.inicio }}</td>
+					</tr>
+					<tr>
+						<th scope="row">Data Fim</th>
+						<td>{{ aluguel.fim }}</td>
+					</tr>
+					<tr>
+						<th scope="row">Locatario</th>
+						<td>{{ identificador }}</td>
+					</tr>
+					<tr>
+						<th scope="row">Produto</th>
+						<td>{{ aluguel.produto.nome }}</td>
+					</tr>
 				</tbody>
 			</table>
-			{% if aluguel.confirmado %}
-			<a class="btn btn-secondary" href="{% url 'encerrar_aluguel' aluguel.id %}"> Encerrar Aluguel </a>
-			{% else %}
-			<a class="btn btn-secondary" href="{% url 'confirmar_aluguel' aluguel.id %}"> Confirmar Aluguel </a>
+			<div class="text-center">
+				{% if aluguel.confirmado %}
+				<a class="btn btn-danger botao-redondo mt-5" href="{% url 'encerrar_aluguel' aluguel.id %}"> Encerrar
+					Aluguel </a>
+				{% else %}
+				<a class="btn btn-primary botao-redondo mt-5 mr-5" href="{% url 'confirmar_aluguel' aluguel.id %}"> Confirmar Aluguel</a>
 
-			<a class="btn btn-danger" href="{% url 'cancelar_aluguel' aluguel.id %}"> Cancelar Aluguel </a>
-			{% endif %}
+				<a class="btn btn-danger botao-redondo mt-5" href="{% url 'cancelar_aluguel' aluguel.id %}"> Cancelar Aluguel
+				</a>
+				{% endif %}
+			</div>
 		</div>
 	</div>
-</div>
+
+</section>
+
+
+
 
 {% endblock %}

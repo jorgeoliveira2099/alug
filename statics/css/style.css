@@ -56,6 +56,14 @@ html, body {
    background-color: #FFF;
 }
 
+.link-sem-cor-azul-sem-traco{
+   color: black;
+}
+
+.link-sem-cor-azul-sem-traco:hover {
+   text-decoration: none;
+}
+
 /* Home */
 
 .aumentar-tamanho-mouse a {
@@ -393,4 +401,5 @@ section.duvida-por-tema p {
 .link-notificacao:hover {
    text-decoration: none;
 }
+
 

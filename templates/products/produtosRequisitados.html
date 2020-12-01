@@ -12,93 +12,92 @@
     </div>
     <div class="row justify-content-center">
 
+        <div class="col-12">
 
-
-        <div class="col-6">
-
-            <div class="text-center ml-5">
-                <h5 class="">Alugados</h5>
+            <div class="text-center">
+                <h5 style="border-bottom:3px solid #017cff; display: inline; border-radius: 5px;" class="pb-2 px-5">Seus produtos Alugados</h5>
             </div>
         </div>
 
-        <div class="col-6">
-
-            <div class="text-center mr-5">
-                <h5 class="">Propostas</h5>
-            </div>
-        </div>
         {% for alugado in alugados %}
         {% if alugado.confirmado %}
 
-        <li class="list-group-item col-5 mr-5" style="border-radius: 10px;">
+        <a class="link-sem-cor-azul-sem-traco col-md-6 col-12 mr-md-2 mt-4" style="font-weight: 600;"
+            href="{% url 'detalhar_aluguel' alugado.id %}">
+            <li class="list-group-item" style="border-radius: 5px;">
 
-            <div class="row col-12 align-items-center justify-content-md-around text-center">
+                <div class="row col-12 align-items-center justify-content-md-around text-center">
 
-                <div class="col-md-3 col-12">
-                    <a href="{% url 'detalhar_aluguel' alugado.id %}">
+                    <div class="col-md-3 col-12">
                         <image class="rounded" src="{{ alugado.produto.get_photo_url }}" width="150" height="100" />
-                    </a>
-                </div>
+                    </div>
 
-                <div class="col-md-3 col-12">
-                    <a href="{% url 'detalhar_aluguel' alugado.id %}">
+                    <div class="col-md-5 col-12 mt-md-0 mt-4">
                         <p> {{ alugado.produto.nome }} </p>
-                    </a>
-                </div>
+                    </div>
 
-
-            </div>
-        </li>
+            </li>
+        </a>
         {% endif %}
         {% empty %}
-        <li class="list-group-item mt-3 p-5 mr-5" style="border-radius: 10px;">
+        <li class="list-group-item mt-4 p-5 mr-md-4 mx-2" style="border-radius: 5px;">
             <div class="text-center mt-3">
-                <h4>Você não tem produtos alugados!<span><img style="width: 50px;"
-                            src="{% static 'images/chat-icone.png' %}" alt=""></span></h4>
+                <h4>Você não tem produtos alugados!<span><img class="ml-2" style="width: 50px;"
+                            src="{% static 'images/proposta-aceita-2.png' %}" alt=""></span></h4>
             </div>
         </li>
         {% endfor %}
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col-12 mt-5">
+
+            <div class="text-center">
+                <h5 style="border-bottom:3px solid #017cff; display: inline; border-radius: 5px;" class="pb-2 px-5">Aguardando sua Resposta</h5>
+            </div>
+        </div>
+
+
 
         {% for alugado in alugados %}
         {% if alugado.confirmado%}
         {% else %}
 
-        <li class="list-group-item col-5" style="border-radius: 10px;">
-            <div class="row col-12 align-items-center justify-content-md-around text-center">
+        <a class="link-sem-cor-azul-sem-traco col-md-6 col-12 mr-md-2 mt-4" style="font-weight: 600;"
+            href="{% url 'detalhar_aluguel' alugado.id %}">
+            <li class="list-group-item" style="border-radius: 5px;">
+                <div class="row col-12 align-items-center justify-content-md-around text-center">
 
-                <div class="col-md-3 col-12">
-                    <a href="{% url 'detalhar_aluguel' alugado.id %}">
+                    <div class="col-md-3 col-12">
                         <image class="rounded" src="{{ alugado.produto.get_photo_url }}" width="150" height="100" />
-                    </a>
-                </div>
+                    </div>
 
-                <div class="col-md-3 col-12">
-                    <a href="{% url 'detalhar_aluguel' alugado.id %}">
+                    <div class="col-md-5 col-12 mt-md-0 mt-4">
                         <p> {{ alugado.produto.nome }} </p>
-                    </a>
+                    </div>
+
+
+
                 </div>
 
+            </li>
+        </a>
+        {% endif %}
 
-
+        {% empty %}
+        <li class="list-group-item mt-4 p-5 mx-2" style="border-radius: 5px;">
+            <div class="text-center mt-3">
+                <h4>Você não tem propostas de aluguéis!<span><img class="ml-2" style="width: 50px;"
+                            src="{% static 'images/proposta-icone.png' %}" alt=""></span></h4>
             </div>
-    </div>
-    </li>
-    {% endif %}
-
-    {% empty %}
-    <li class="list-group-item mt-3 p-5" style="border-radius: 10px;">
-        <div class="text-center mt-3">
-            <h4>Você não tem proposta pra aluguel!<span><img style="width: 50px;"
-                        src="{% static 'images/chat-icone.png' %}" alt=""></span></h4>
-        </div>
-    </li>
-
-    </div>
+        </li>
 
 
-    {% endfor %}
 
-    </div>
+
+        {% endfor %}
 
     </div>
 

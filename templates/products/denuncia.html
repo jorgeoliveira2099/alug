@@ -5,26 +5,44 @@
 {% block title %} Denúncia {% endblock %}
 
 {% block main %}
-   <body>
-   <h3> Denúncia </h3>
 
-   <div>
-            {% for message in messages %}
-                   <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ message }}
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                   </div>
+<div>
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 
-            {% endfor %}
+    {% endfor %}
+</div>
+
+<section class="container box-shadow p-3 pb-5">
+
+    <div class="text-center mb-5">
+        <h1 class="display-4 text-primary">Denunciar</h1>
+        <span class="h6">Acha que algo está fora do normal? Conte pra nós!</span>
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col-7" style="color: black; font-weight: 600;">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|bootstrap }}
+
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'list_products' user.id %}" class="btn btn-primary px-4 mt-3 mt-lg-0 botao-redondo"> Voltar</a>
+                    <button type="submit" class="btn btn-primary px-4 mt-3 mt-lg-0 botao-redondo">
+                        Enviar</button>
+                </div>
+
+            </form>
         </div>
 
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form|bootstrap }}
-        <button type="submit" class="btn btn-secondary"> Salvar </button>
-        <a href="{% url 'list_products' user.id %}" class="btn btn-secondary"> Voltar</a>
+    </div>
 
-    </form>
+</section>
+
 {% endblock %}
