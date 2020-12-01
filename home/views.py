@@ -139,4 +139,3 @@ def gerarCategorias():
         categoria = Categoria()
         categoria.descricao = "Outros"
         categoria.save()
-    Dados_usuario.objects.all().delete()
