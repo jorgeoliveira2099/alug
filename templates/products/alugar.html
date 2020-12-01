@@ -6,56 +6,102 @@
 {% block title %} Alugar {% endblock %}
 
 {% block main %}
-<body>
-<h3> Alugar </h3>
+<section class="container box-shadow p-3 pb-5">
 
-<div>
-    {% for message in messages %}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+    <div class="text-center mb-5">
+        <h1 class="display-4 text-primary">Solicitação de Aluguel</h1>
+        <span class="h6">Preencha os dados para continuar com a solicitação</span>
     </div>
 
-    {% endfor %}
-</div>
+    <div class="row justify-content-center">
 
-<form method="POST" action="submit" enctype="multipart/form-data">
-    {% csrf_token %}
+        <div class="p-5 col-12 col-lg-7" style="border-radius: 20px; color: rgb(74, 74, 74); font-weight: bold;">
 
-    <div class="bg-white p-5 col-12 col-lg-7 mb-5"
-         style="border-radius: 20px; color: rgb(74, 74, 74); font-weight: bold;">
-        <p> CPF </p>
-        <input type="text" required  id="id_cpf" value="{{ cpf }}" name="id_cpf">
+            <div>
+                <h3 class="h4">Dados da Conta</h3>
+                <span style="font-weight: normal; font-size: 13px; color: #A9A9A9;">Será necessário o CPF para dar continuidade ao processo de solicitação de aluguel.</span>
+            </div>
 
-        <p> Endereço </p>
+            <form method="POST" class="mt-4" action="submit" enctype="multipart/form-data">
+                {% csrf_token %}
 
-        <p> Cep </p>
-        <input type="text" required  id="id_cep" value="{{ cep }}" name="id_cep" />
+                <div>
 
-        <p> Cidade </p>
-        <input type="text" required  id="id_cidade" value="{{ cidade }}" name="id_cidade" />
+                    <div class="form-group">
+                        <label for="inputNome">CPF</label>
+                        <input class="form-control" type="text" required id="id_cpf" value="{{ cpf }}" name="id_cpf">
+                    </div>
 
-        <p> Estado </p>
-        <input type="text" required  id="id_estado" maxlength="2" value="{{ estado }}" name="id_estado" />
+                </div>
 
-        <p> Rua </p>
-        <input type="text" required  id="id_rua" value="{{ rua }}" name="id_rua" />
+                <div class="mt-5">
+                    <h3 class="h4">Endereço</h3>
+                    <span style="font-weight: normal; font-size: 13px; color: #A9A9A9;">Preencha os campos com seus dados de endereço atuais.</span>
+                </div>
 
-        <p> Bairro </p>
-        <input type="text" required  id="id_bairro" value="{{ bairro }}" name="id_bairro" />
+                <div class="mt-4">
 
-        <p> Complemento </p>
-        <input type="text" id="id_complemento" value="{{ complemento }}"   name="id_complemento" />
-         <div class="mt-4">
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="inputNome">CEP</label>
+                            <input type="text" class="form-control" required id="id_cep" value="{{ cep }}"
+                                name="id_cep" />
+                        </div>
 
-            <button type="submit" id="btnSalvar" class="btn btn-secondary"> Alugar </button>
+                        <div class="col">
+                            <label for="inputNome">Bairro</label>
+                            <input type="text" class="form-control" required id="id_bairro" value="{{ bairro }}"
+                                name="id_bairro" />
+                        </div>
+                    </div>
 
-         </div>
+                    <div class="mt-4 form-group">
+                        <label for="inputNome">Rua</label>
+                        <input type="text" class="form-control" required id="id_rua" value="{{ rua }}" name="id_rua" />
+                    </div>
 
+                    <div class="form-row mb-4">
+                        <div class="col-3 mr-3">
+                            <label for="inputNome">Número</label>
+                            <input type="text" class="form-control" id="inputNome" placeholder="" value="399">
+                        </div>
+
+                        <div class="col">
+                            <label for="inputNome">Complemento</label>
+                            <input type="text" class="form-control" id="id_complemento" value="{{ complemento }}"
+                                name="id_complemento" />
+                        </div>
+                    </div>
+
+                    <div class="form-row mb-4">
+                        <div class="col-3 mr-3">
+                            <label for="inputNome">Estado</label>
+                            <input type="text" class="form-control" required id="id_estado" maxlength="2"
+                                value="{{ estado }}" name="id_estado" />
+                        </div>
+
+                        <div class="col">
+                            <label for="inputNome">Cidade</label>
+                            <input type="text" class="form-control" required id="id_cidade" value="{{ cidade }}"
+                                name="id_cidade" />
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" style="border-radius: 30px;" class="btn btn-block btn-primary py-2">Próximo Passo</button>
+                    </div>
+                </div>
+
+        </div>
+
+        <div class="p-5 col-12 col-lg-7" style="color: rgb(74, 74, 74); font-weight: bold;">
+
+        </div>
     </div>
 
-</form>
+    </form>
+
+</section>
+
 
 {% endblock %}

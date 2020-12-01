@@ -402,4 +402,11 @@ section.duvida-por-tema p {
    text-decoration: none;
 }
 
+/* Alugar Produto (data) */
+
+.span-campo span{
+   font-weight: normal; 
+   font-size: 13px; 
+   color: #A9A9A9;
+}
 
