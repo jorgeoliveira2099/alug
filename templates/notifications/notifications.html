@@ -1,72 +1,120 @@
 {%  extends 'base.html'%}
-
+{% load static %}
 {% block title %} Notificações {% endblock %}
 
 {% block main %}
 
- 
+<section class="container box-shadow p-3 pb-5">
 
-  {% for notification in notifications %}
+    <div class="text-center mb-5">
+        <h1 class="display-4 text-primary">Notificações</h1>
+        <span class="h6">Minhas notificações</span>
+    </div>
+
+    {% if count_notifications > 0 %}
+    <div class="row justify-content-end mr-md-5">
+        <a class="link-notificacao" href="{% url 'markall_as_read'  %}" class="delete">Marcar
+            todas como lido <span><img style="width: 30px;" src="{% static 'images/marcar-todos-como-lido.ico' %}"
+                    alt=""></span></a>
+    </div>
+
+    {% endif %}
+
+    <div class="row justify-content-center">
+
+        {% for notification in notifications %}
         {% if notification.viewed == False %}
 
-        
+        <div class="col-md-10 col-12">
 
-{% if notification.notification_type == 1 %}
-   
-<p>Você tem uma nova mensagem</p>
-            <p>{{notification.message}}</p>
-            <p>{{notification.user}}
-            <a href="{% url 'delete_notification' notification.id %}" class="delete">Marcar Como lido</a>   
-            <br><br>
-
-{% endif %}
-
-{% if notification.notification_type == 2 %}
-   
-          
-<a href="{% url 'produtos_requisitados' %}" class="nav-link"> Você tem uma proposta de aluguel</a>
-
-        
-            
-            <a href="{% url 'delete_notification' notification.id %}" class="delete">Marcar Como lido</a>   
-            <br><br>
-
-{% endif %}
-
-{% if notification.notification_type == 3 %}          
-    Sua proposta de aluguel foi aceita!       
-            
-            <a href="{% url 'delete_notification' notification.id %}" class="delete">Marcar Como lido</a>   
-            <br><br>
-{% endif %}
-
-{% if notification.notification_type == 4 %}          
-    <a href="{% url 'avaliacoes_pendentes' %}" class="nav-link">Avalie a sua experiencia com a negociação</a>        
-            
-            <a href="{% url 'delete_notification' notification.id %}" class="delete">Marcar Como lido</a>   
-            <br><br>
-{% endif %}
-
-{% if notification.notification_type == 5 %}          
-    <a href="{% url 'avaliacoes_pendentes' %}" class="nav-link">Sua proposta de aluguel foi cancelada</a>        
-            
-            <a href="{% url 'delete_notification' notification.id %}" class="delete">Marcar Como lido</a>   
-            <br><br>
-{% endif %}
-
-            
-        {% endif %}
-        {% empty %}
-        <h1>Você não tem Notificações!</h1>
-
-    {% endfor %}
+            <li class="list-group-item" style="border-radius: 10px;">
+                {% if notification.notification_type == 1 %}
+                <div class="row justify-content-between align-items-center">
+                    <img style="width: 30px;" src="{% static 'images/mensagem-icone.ico' %}" alt="">
+                    <h6>{{notification.message}}</h6>
+                    <a href="{% url 'delete_notification' notification.id %}" class="delete"><img style="width: 20px;"
+                            src="{% static 'images/icone-lixeira.ico' %}" alt=""></a>
+                </div>
+                {% endif %}
 
 
-{% if count_notifications > 0 %}
- <a href="{% url 'markall_as_read'  %}" class="delete">Marcar todas como lido</a>
+                {% if notification.notification_type == 2 %}
+                <div class="row justify-content-between align-items-center">
 
-{% endif %}
+                    <img style="width: 38px; height: 35px;" src="{% static 'images/proposta-icone.png' %}" alt="">
+                    <a class="link-notificacao" href="{% url 'produtos_requisitados' %}"> Você recebeu uma proposta de
+                        aluguel</a>
+
+                    <a href="{% url 'delete_notification' notification.id %}" class="delete"><img style="width: 20px;"
+                            src="{% static 'images/icone-lixeira.ico' %}" alt=""></a>
+
+                </div>
+                {% endif %}
+
+                {% if notification.notification_type == 3 %}
+                <div class="row justify-content-between align-items-center">
+
+                    <img style="width: 38px; height: 35px;" src="{% static 'images/proposta-aceita-2.png' %}" alt="">
+                    <h6>Sua proposta de aluguel foi aceita!</h6>
+                    <a href="{% url 'delete_notification' notification.id %}" class="delete"><img style="width: 20px;"
+                            src="{% static 'images/icone-lixeira.ico' %}" alt=""></a>
+                </div>
+                {% endif %}
+
+
+                {% if notification.notification_type == 4 %}
+                <div class="row justify-content-between align-items-center">
+
+                    <img style="width: 38px; height: 35px;" src="{% static 'images/avaliar-notificacoes.ico' %}" alt="">
+                    <a href="{% url 'avaliacoes_pendentes' %}" class="nav-link">Avalie a sua experiencia com a
+                        negociação</a>
+
+                    <a href="{% url 'delete_notification' notification.id %}" class="delete"><img style="width: 20px;"
+                            src="{% static 'images/icone-lixeira.ico' %}" alt=""></a>
+                </div>
+                {% endif %}
+
+                {% if notification.notification_type == 5 %}
+                <div class="row justify-content-between align-items-center">
+
+                    <img style="width: 38px; height: 35px;" src="{% static 'images/proposta-recusada.png' %}" alt="">
+                    <a href="{% url 'avaliacoes_pendentes' %}" class="nav-link">Sua proposta de aluguel foi
+                        cancelada</a>
+
+                    <a href="{% url 'delete_notification' notification.id %}" class="delete"><img style="width: 20px;"
+                            src="{% static 'images/icone-lixeira.ico' %}" alt=""></a>
+
+                </div>
+            </li>
+            {% endif %}
+
+
+            {% endif %}
+
+
+            {% empty %}
+            <div class="col-md-9 col-12">
+                <li class="list-group-item" style="border-radius: 10px;">
+                    <div class="text-center">
+                        <img src="{% static 'images/sem-notificacoes.ico' %}" alt="">
+                        <h4>Você não tem Notificações!</h4>
+                    </div>
+                </li>
+            </div>
+
+            {% endfor %}
+
+
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
 
 
 {% endblock %}
-

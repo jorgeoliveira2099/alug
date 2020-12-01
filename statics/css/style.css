@@ -388,3 +388,9 @@ section.duvida-por-tema p {
    text-decoration: none;
 }
 
+/* Notificações */
+
+.link-notificacao:hover {
+   text-decoration: none;
+}
+

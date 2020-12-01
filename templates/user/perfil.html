@@ -91,11 +91,12 @@
 
                     <div class="collapse mt-4 text-center" id="excluirConta">
                         <div>
-                            <p>Insira a sua senha</p>
+                            <p class="mr-2">Insira a sua senha</p>
                             <form method="POST" action="submit" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="d-flex justify-content-center">
-                                    <input type="password" class="form-control w-50" id="senha" name="senha" />
+                                    <span><img style="width: 40px;" class="mr-2" src="{% static 'images/seta-excluir-conta.png' %}" alt=""></span>
+                                    <input type="password" class="form-control w-50 mr-5" id="senha" name="senha" />
                                 </div>
 
                                 <div class="mt-3">
