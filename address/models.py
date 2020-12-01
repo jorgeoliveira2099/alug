@@ -8,7 +8,7 @@ class Dados_usuario(models.Model):
     nome = models.CharField(null=True, blank=True, max_length=255)
     sobrenome = models.CharField(null=True, blank=True, max_length=255)
     data_nascimento = models.DateField(null=True, blank=True, verbose_name='Data de Nascimento')
-    telefone = models.CharField(null=True, blank=True, max_length=12)
+    telefone = models.CharField(null=True, blank=True, max_length=14)
     cep = models.CharField(null=True, blank=True, max_length=10)
     cidade = models.CharField(null=True, blank=True, max_length=255)
     estado = models.CharField(null=True, blank=True, max_length=2)
