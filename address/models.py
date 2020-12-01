@@ -4,7 +4,7 @@ from cpf_field.models import CPFField
 
 class Dados_usuario(models.Model):
 
-    cpf = cpf = CPFField('cpf', null=True, blank=True)
+    cpf = cpf = CPFField('cpf', null=True, blank=True, unique=True)
     nome = models.CharField(null=True, blank=True, max_length=255)
     sobrenome = models.CharField(null=True, blank=True, max_length=255)
     data_nascimento = models.DateField(null=True, blank=True, verbose_name='Data de Nascimento')
@@ -15,7 +15,7 @@ class Dados_usuario(models.Model):
     rua = models.CharField(null=True, blank=True, max_length=255)
     bairro = models.CharField(null=True, blank=True, max_length=255)
     complemento = models.CharField(null=True, blank=True ,max_length=255)
-    user = models.OneToOneField(MyUser, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(MyUser, null=False, blank=False, on_delete=models.CASCADE)
     foto = models.ImageField(null=True, blank=True, verbose_name="Imagem")
 
     def __str__(self):

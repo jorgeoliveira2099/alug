@@ -241,6 +241,7 @@ def salvarPerfil(request):
     perfil.cidade = request.POST.get("id_cidade")
     perfil.estado = request.POST.get("id_estado")
     perfil.complemento = request.POST.get("id_complemento")
+    perfil.user = user
     perfil.save()
 
 @login_required

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from products.models import Product, Categoria
+from address.models import Dados_usuario
 from django.db.models import Q
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -138,3 +139,4 @@ def gerarCategorias():
         categoria = Categoria()
         categoria.descricao = "Outros"
         categoria.save()
+    Dados_usuario.objects.all().delete()
