@@ -46,6 +46,7 @@ html, body {
 
 .botao-redondo {
    border-radius: 50px;
+   font-weight: 500;
 }
 
 .login-cadastro-espacamento {
