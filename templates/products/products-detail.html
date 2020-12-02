@@ -79,7 +79,7 @@
 
 				<div class="mb-3">
 					<h3>{{ identificador }}</h3>
-					<a href="{% url 'avaliacoes_usuario'  idUsuario=product.user.id %}">Ver avaliações deste locador</a>
+					<a class="link-sem-cor-azul-sem-traco h6" href="{% url 'avaliacoes_usuario'  idUsuario=product.user.id %}">Avaliações deste locador<span><img style="width:22px" src="{% static 'images/avaliar-notificacoes.ico' %}" class="ml-1 pb-1" alt=""></span></a>
 				</div>
 
 				<div class="mb-3">

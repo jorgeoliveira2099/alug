@@ -5,35 +5,69 @@
 {% block title %} Avaliações Pendentes {% endblock %}
 
 {% block main %}
- <div class="container">
+<div>
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+</div>
 
-     <div>
-			{% for message in messages %}
-			<div class="alert alert-success alert-dismissible fade show" role="alert">
-				{{ message }}
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
+<section class="container box-shadow p-3 pb-5">
 
-			{% endfor %}
-		</div>
+    <div class="text-center mb-5">
+        <h1 class="display-4 text-primary">Avaliações Pendentes</h1>
+        <span class="h6">Avalie os usuários em que fez acordos</span>
+    </div>
 
-    <div class="row">
-       {% for avaliacao in avaliacoes %}
-           
-        <div class="col">
-               <a href="{% url 'avalia' avaliacao.id %}"> <p> Avaliar Experiencia</p> </a>         
+    <div class="row justify-content-center">
+        <div class="col-9">
+            {% for avaliacao in avaliacoes %}
+            <a href="{% url 'avalia' avaliacao.id %}" class="link-sem-cor-azul-sem-traco">
+                <li class="list-group-item aumentar-tamanho-mouse mt-3" style="border-radius: 20px;">
+                    <div class="row">
+                        <div class="row col-12 align-items-center justify-content-md-around text-center">
+
+
+                            <div class="col-md-3 col-12">
+                                <image style="width: 110px; height: 80px;" class="rounded"
+                                    src="{{ avaliacao.produto.get_photo_url }}" />
+                            </div>
+
+                            <div class="col-md-3 col-12">
+                                <h6>{{ avaliacao.produto }}</h6>
+                            </div>
+
+                            <div class="col-md-1 col-12">
+
+                                <img style="width: 50px;" src="{% static 'images/avaliar-notificacoes.ico' %}" alt="">
+                            </div>
+
+
+                        </div>
+                </li>
+            </a>
+
+            {% empty %}
+            <li class="list-group-item mt-3 p-5" style="border-radius: 20px;">
+                <div class="text-center">
+                    <img style="width: 100px;" src="{% static 'images/avaliacoes-icone.png' %}" alt="">
+                    <h4 class="mt-2">Você não tem avaliações pendentes! </h4>
+                </div>
+            </li>
+
+            {% endfor %}
         </div>
-            
-        {% empty %}
-        <h4>Você não tem avaliações pendentes!</h4>
-
-        {% endfor %}
-
 
     </div>
-    </div>
+
+
+</section>
+
+
 
 
 {% endblock %}

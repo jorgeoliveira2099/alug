@@ -4,73 +4,52 @@
 
 {% block title %} Avaliação {% endblock %}
 
+
+<style>
+  @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+</style>
+
 {% block main %}
 
 
-<style>
-  
-@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+<section class="container box-shadow p-3 pb-5">
 
-/* Styling h1 and links
-––––––––––––––––––––––––––––––––– */
-h1[alt="Simple"] {color: white;}
-a[href], a[href]:hover {color: grey; font-size: 0.5em; text-decoration: none}
+  <div class="text-center mb-5">
+    <h1 class="display-4 text-primary">Avalie o Usuário</h1>
+    <span class="h6">Conte-nos sobre como foi sua experiência com o usuário</span>
+  </div>
 
+  <div class="row justify-content-center">
 
-body
-{
- /* background: #4a4a4c !important;  */
-}
+    <div class="col-md-9 col-12">
 
-.starrating > input {display: none;}  /* Remove radio buttons */
+      <h3 class="mb-4">Avalie sua experiencia com {{ usuario }}!</h3>
+      <form action="/rating/avaliar/{{idAvalia}}/submit" method="POST">
+        {% csrf_token %}
+        <textarea type="text" id="textlocador" class="container d-flex justify-content-center form-control"
+          maxlength="300" name="text" placeholder="Descreva a sua experiencia!"></textarea><br>
 
-.starrating > label:before { 
-  content: "\f005"; /* Star */
-  margin: 2px;
-  font-size: 2em;
-  font-family: FontAwesome;
- /* display: inline-block;  */
-}
+        <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+          <input type="radio" id="star5" name="rate" value="5" /><label for="star5" title="cinco estrelas"></label>
+          <input type="radio" id="star4" name="rate" value="4" /><label for="star4" title="quatro estrelas"></label>
+          <input type="radio" id="star3" name="rate" value="3" /><label for="star3" title="tres estrelas"></label>
+          <input type="radio" id="star2" name="rate" value="2" /><label for="star2" title="duas estrelas"></label>
+          <input type="radio" id="star1" name="rate" value="1" /><label for="star1" title="uma estrela"></label>
+        </div>
 
-.starrating > label
-{
-  color: #222222; /* Start color when not clicked */
-}
+    </div>
+  </div>
 
-.starrating > input:checked ~ label
-{ color: #ffca08 ; } /* Set yellow color when star checked */
+  <div class="row justify-content-md-end justify-content-center">
 
-.starrating > input:hover ~ label
-{ color: #ffca08 ;  } /* Set yellow color when star hover */
+    <div class="mt-4 mr-md-5">
+      <button class="btn btn-primary px-5 btn-lg botao-redondo">Enviar Avaliação</button>
+    </div>
 
-
-
-</style>
-<body class="container my-4">
-    
-    <h1>Avaliação</h1>
-<h1>Avalie sua experiencia com {{ usuario }} !</h1>
-<h1>{{ idAvalia }}</h1>
-  <form action="/rating/avaliar/{{idAvalia}}/submit" method="POST"> 
-<!-- <form action="submit" method="POST"> -->
-    {% csrf_token %}
-  <textarea type="text" id="textlocador" class="container d-flex justify-content-center" maxlength="300" name="text" placeholder="Descreva a sua experiencia!"></textarea><br>
- 
-<div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
-    <input type="radio" id="star5" name="rate" value="5" /><label for="star5" title="cinco estrelas"></label>
-    <input type="radio" id="star4" name="rate" value="4" /><label for="star4" title="quatro estrelas"></label>
-    <input type="radio" id="star3" name="rate" value="3" /><label for="star3" title="tres estrelas"></label>
-    <input type="radio" id="star2" name="rate" value="2" /><label for="star2" title="duas estrelas"></label>
-    <input type="radio" id="star1" name="rate" value="1" /><label for="star1" title="uma estrela"></label>
-</div>
-
-   <!--  <input type="submit" value="Submit">   -->
- <!--  <button type="submit" id="submit">Avaliar</button>  -->
-    <button class="btn btn-primary">Avaliar</button> 
-    
-</form> 
+  </div>
 
 
-</body>
+  </form>
+</section>
 
 {% endblock %}

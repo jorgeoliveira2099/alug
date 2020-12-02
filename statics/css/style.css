@@ -56,7 +56,7 @@ html, body {
    background-color: #FFF;
 }
 
-.link-sem-cor-azul-sem-traco{
+.link-sem-cor-azul-sem-traco {
    color: black;
 }
 
@@ -94,7 +94,7 @@ html, body {
    line-height: 1.5;
 }
 
-.categoria p{ 
+.categoria p {
    color: rgb(74, 74, 74);
    font-weight: 500;
 }
@@ -111,7 +111,6 @@ html, body {
    cursor: pointer;
    text-decoration: none;
 }
-
 
 /* EFEITO PARALLAX HOME */
 
@@ -136,17 +135,14 @@ html, body {
 
 .caixa2 {
    background-image: url('../images/alugando-carro.jpg');
-
 }
 
 .caixa3 {
    background-image: url('../images/alugando-mala.jpg');
-
 }
 
 .caixa4 {
    background-image: url('../images/comprar-ou-alugar.jpg');
-
 }
 
 .conteudo {
@@ -195,7 +191,6 @@ html, body {
 .texto-meus-anuncios:hover {
    text-decoration: none;
 }
-
 
 /* Detalhe produto */
 
@@ -372,8 +367,6 @@ section.duvida-por-tema p {
    text-decoration: none;
 }
 
-
-
 /* Chat */
 
 #chat-text {
@@ -388,7 +381,7 @@ section.duvida-por-tema p {
 
 /* Meus Chats */
 
-.link-produto-chat{
+.link-produto-chat {
    color: black;
 }
 
@@ -404,9 +397,33 @@ section.duvida-por-tema p {
 
 /* Alugar Produto (data) */
 
-.span-campo span{
-   font-weight: normal; 
-   font-size: 13px; 
+.span-campo span {
+   font-weight: normal;
+   font-size: 13px;
    color: #A9A9A9;
 }
 
+/* Avaliar Usuário */
+
+.starrating>input {
+   display: none;
+}
+
+.starrating>label:before {
+   content: "\f005";
+   margin: 2px;
+   font-size: 2em;
+   font-family: FontAwesome;
+}
+
+.starrating>label {
+   color: #222222;
+}
+
+.starrating>input:checked~label {
+   color: #ffca08;
+}
+
+.starrating>input:hover~label {
+   color: #ffca08;
+}

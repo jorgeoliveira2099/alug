@@ -10,12 +10,12 @@
         <h1 class="display-4 text-primary">Propostas</h1>
         <span class="h6">Aqui você encontra todas as suas propostas</span>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mb-5">
 
         <div class="col-12">
 
             <div class="text-center">
-                <h5 style="border-bottom:3px solid #017cff; display: inline; border-radius: 5px;" class="pb-2 px-5">Seus produtos Alugados</h5>
+                <h4>Seus produtos Alugados</h4>
             </div>
         </div>
 
@@ -23,7 +23,7 @@
 
         <a class="link-sem-cor-azul-sem-traco col-md-6 col-12 mr-md-2 mt-4" style="font-weight: 600;"
             href="{% url 'detalhar_aluguel' alugado.id %}">
-            <li class="list-group-item" style="border-radius: 5px;">
+            <li class="list-group-item" style="border-radius: 20px;">
 
                 <div class="row col-12 align-items-center justify-content-md-around text-center">
 
@@ -38,10 +38,10 @@
             </li>
         </a>
         {% empty %}
-        <li class="list-group-item mt-4 p-5 mr-md-4 mx-2" style="border-radius: 5px;">
-            <div class="text-center mt-3">
-                <h4>Você não tem produtos alugados!<span><img class="ml-2" style="width: 50px;"
-                            src="{% static 'images/proposta-aceita-2.png' %}" alt=""></span></h4>
+        <li class="list-group-item mt-4 p-5 mr-md-4 mx-2" style="border-radius: 20px;">
+            <div class="text-center">
+                <img style="width: 50px;" src="{% static 'images/proposta-aceita-2.png' %}" alt="">
+                <h4 class="mt-2">Você não tem produtos alugados!</h4>
             </div>
         </li>
         {% endfor %}
@@ -53,7 +53,7 @@
         <div class="col-12 mt-5">
 
             <div class="text-center">
-                <h5 style="border-bottom:3px solid #017cff; display: inline; border-radius: 5px;" class="pb-2 px-5">Aguardando sua Resposta</h5>
+                <h4>Aguardando sua Resposta</h4>
             </div>
         </div>
 
@@ -63,7 +63,7 @@
 
         <a class="link-sem-cor-azul-sem-traco col-md-6 col-12 mr-md-2 mt-4" style="font-weight: 600;"
             href="{% url 'detalhar_aluguel' proposta.id %}">
-            <li class="list-group-item" style="border-radius: 5px;">
+            <li class="list-group-item" style="border-radius: 20px;">
                 <div class="row col-12 align-items-center justify-content-md-around text-center">
 
                     <div class="col-md-3 col-12">
@@ -82,10 +82,10 @@
         </a>
 
         {% empty %}
-        <li class="list-group-item mt-4 p-5 mx-2" style="border-radius: 5px;">
-            <div class="text-center mt-3">
-                <h4>Você não tem propostas de aluguéis!<span><img class="ml-2" style="width: 50px;"
-                            src="{% static 'images/proposta-icone.png' %}" alt=""></span></h4>
+        <li class="list-group-item mt-4 p-5 mx-2" style="border-radius: 20px;">
+            <div class="text-center">
+                <img style="width: 50px;" src="{% static 'images/proposta-icone.png' %}" alt="">
+                <h4 class="mt-2">Você não tem propostas de aluguéis!</h4>
             </div>
         </li>
 
