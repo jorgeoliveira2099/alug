@@ -14,7 +14,7 @@ def ShowNOtifications(request):
     template = loader.get_template('notifications/notifications.html')
 
     context = {
-        'notifications': notifications,
+        'notifications': reversed(notifications),
     }
 
     return HttpResponse(template.render(context, request))
