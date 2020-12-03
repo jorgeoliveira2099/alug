@@ -185,10 +185,8 @@ def alugarSubmit(request, productId):
 
     if request.POST and form.is_valid():
         alugar = form.save(commit=False)
-
         alugar.locatario = user
         alugar.locador = locador
-        # alugar.locatario =
         alugar.produto = produto
         alugar.inicio = str(form.cleaned_data['inicio'])
         alugar.fim = str(form.cleaned_data['fim'])
@@ -207,7 +205,16 @@ def alugarSubmit(request, productId):
         is_favourite = False
         if produto.favourite.filter(id=request.user.id).exists():
             is_favourite = True
-        return render(request, 'products/products-detail.html', {'is_favourite': is_favourite, 'product': produto})
+        try:
+            perfil = Dados_usuario.objects.get(user=produto.user)
+        except ObjectDoesNotExist:
+            perfil = Dados_usuario()
+
+        if perfil.nome != None:
+            identificador = perfil.nome
+        else:
+            identificador = 'Anônimo'
+        return render(request, 'products/products-detail.html', {'is_favourite': is_favourite, 'product': produto, 'identificador': identificador})
 
     context = {'user': user, 'produto': produto, 'form': form, 'locador': locador, # 'productId':productId
 
