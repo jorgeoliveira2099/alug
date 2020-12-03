@@ -3,11 +3,11 @@
 {%  load bootstrap %}
 {% load static %}
 
-{% block title %} Alugar{% endblock %}
+{% block title %} Alugar Produto{% endblock %}
 
 {% block main %}
 
-<section class="container box-shadow p-3 pb-5">
+<section class="container box-shadow mb-5 pt-5 pb-3">
 
     <div class="text-center mb-5">
         <h1 class="display-4 text-primary">Solicitação de Aluguel</h1>
@@ -30,11 +30,11 @@
                     {% csrf_token %}
                     {{ form|bootstrap }}
                     <div class="mt-4">
-                        <button type="submit" id="btnSalvar" style="border-radius: 30px;"
+                        <button type="submit" id="btnSalvar" style="border-radius: 30px; font-weight: 500;"
                             class="btn btn-block btn-primary py-2">Finalizar Solicitação</button>
                     </div>
                     <div class="mt-2">
-                        <a href="{% url 'alugar' user.id %}" style="border-radius: 30px;"
+                        <a href="{% url 'alugar' user.id %}" style="border-radius: 30px; font-weight: 500;"
                             class="btn btn-block btn-primary py-2"> Passo Anterior</a>
                     </div>
 

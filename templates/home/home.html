@@ -1,7 +1,7 @@
 {%  extends 'base.html'%}
 {% load static %}
 {% load bootstrap %}
-{% block title %} Seja bem vindo {% endblock %}
+{% block title %} Alugo - Tela Inicial {% endblock %}
 
 {% block main %}
 
@@ -20,7 +20,7 @@
             <input hidden value="{{categoria}}" name="categoria" id="categoriaSelecionada">
             <input hidden value="{{estado}}" name="estado" id="estadoSelecionado">
             <span class="input-group-append">
-                <input type="text" maxlength="100" class="form-control" name="nome" id="nomePesquisa">
+                <input type="text" maxlength="100" class="form-control form-control-lg" name="nome" id="nomePesquisa">
                 <button id="btnForm" type="submit" class="btn btn-primary py-0 px-3">
                     <img src="{% static 'images/icone-lupa.png' %}" style="width: 30px;" alt="icone lupa">
                 </button>
@@ -63,7 +63,7 @@
                     <div class="col-md-2 col-6 text-center aumentar-tamanho-mouse mt-3">
                         <a onclick="preencherCategoria('Construção')">
                             <img src="{% static 'images/icone-construcao.ico' %}" style="margin-bottom: 9px;"
-                                 alt="icone Construção">
+                                alt="icone Construção">
                             <br>
                             <p class="m-0">Construção</p>
                         </a>
@@ -72,7 +72,7 @@
                     <div class="col-md-2 col-6 text-center aumentar-tamanho-mouse mt-3">
                         <a onclick="preencherCategoria('Agro e Indústria')">
                             <img src="{% static 'images/icone-industria.ico' %}" style="width: 60px;"
-                                 alt="icone Indústria">
+                                alt="icone Indústria">
                             <br>
                             <p class="m-0">Agro e Indústria</p>
                         </a>
@@ -96,196 +96,176 @@
         {% endfor %}
     </div>
     </div>
-</section>
-<div class="row">
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Acre')">
-            <p class="m-0">AC</p>
-        </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Alagoas')">
+    <div class="row mb-5 px-4 py-1" style="border-radius: 20px; background-color: lavender;">
+
+        <div class="col-12 mb-2">
+            <h5><span><img src="{% static 'images/icone-localizacao.ico' %}" style="width: 50px;" alt=""></span> Escolha
+                seu Estado</h5>
+        </div>
+
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho" onclick="preencherEstado('Acre')">
+            <p>AC</p>
+        </a>
+
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho"
+            onclick="preencherEstado('Alagoas')">
             <p class="m-0">AL</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Amapá')">
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho" onclick="preencherEstado('Amapá')">
             <p class="m-0">AP</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Amazonas')">
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho"
+            onclick="preencherEstado('Amazonas')">
             <p class="m-0">AM</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Bahia')">
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho" onclick="preencherEstado('Bahia')">
             <p class="m-0">BA</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Ceará')">
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho" onclick="preencherEstado('Ceará')">
             <p class="m-0">CE</p>
         </a>
-    </div>
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Distrito Federal')">
+
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho"
+            onclick="preencherEstado('Distrito Federal')">
             <p class="m-0">DF</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Espírito Santo')">
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho"
+            onclick="preencherEstado('Espírito Santo')">
             <p class="m-0">ES</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Goiás')">
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho" onclick="preencherEstado('Goiás')">
             <p class="m-0">GO</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Maranhão')">
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho"
+            onclick="preencherEstado('Maranhão')">
             <p class="m-0">MA</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Mato Grosso do Sul')">
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho"
+            onclick="preencherEstado('Mato Grosso do Sul')">
             <p class="m-0">MS</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Mato Grosso')">
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho"
+            onclick="preencherEstado('Mato Grosso')">
             <p class="m-0">MT</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Minas Gerais')">
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho"
+            onclick="preencherEstado('Minas Gerais')">
             <p class="m-0">MG</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Pará')">
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho" onclick="preencherEstado('Pará')">
             <p class="m-0">PA</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Paraíba')">
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho"
+            onclick="preencherEstado('Paraíba')">
             <p class="m-0">PB</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Pernambuco')">
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho"
+            onclick="preencherEstado('Pernambuco')">
             <p class="m-0">PE</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Piauí')">
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho" onclick="preencherEstado('Piauí')">
             <p class="m-0">PI</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Paraná')">
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho" onclick="preencherEstado('Paraná')">
             <p class="m-0">PR</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Rio de Janeiro')">
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho"
+            onclick="preencherEstado('Rio de Janeiro')">
             <p class="m-0">RJ</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Rio Grande do Norte')">
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho"
+            onclick="preencherEstado('Rio Grande do Norte')">
             <p class="m-0">RN</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Rondônia')">
-            <p class="m-0">RO</p>
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho"
+            onclick="preencherEstado('Rondônia')">
+            <p class="mt-3 mt-md-0">RO</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Roraima')">
-            <p class="m-0">RR</p>
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho"
+            onclick="preencherEstado('Roraima')">
+            <p class="mt-3 mt-md-0">RR</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Rio Grande do Sul')">
-            <p class="m-0">RS</p>
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho"
+            onclick="preencherEstado('Rio Grande do Sul')">
+            <p class="mt-3 mt-md-0">RS</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Santa Catarina')">
-            <p class="m-0">SC</p>
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho"
+            onclick="preencherEstado('Santa Catarina')">
+            <p class="mt-3 mt-md-0">SC</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('São Paulo')">
-            <p class="m-0">SP</p>
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho"
+            onclick="preencherEstado('São Paulo')">
+            <p class="mt-3 mt-md-0">SP</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Sergipe')">
-            <p class="m-0">SE</p>
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho"
+            onclick="preencherEstado('Sergipe')">
+            <p class="mt-3 mt-md-0">SE</p>
         </a>
-    </div>
 
-    <div class="col-md-1 col-6 aumentar-tamanho-mouse mt-3">
-        <a onclick="preencherEstado('Tocantins')">
-            <p class="m-0">TO</p>
+        <a class="aumentar-tamanho-mouse link-sem-cor-azul-sem-traco estado-atalho"
+            onclick="preencherEstado('Tocantins')">
+            <p class="mt-3 mt-md-0">TO</p>
         </a>
-    </div>
 
-</div>
+    </div>
+</section>
+
+
+
 
 <section class="container-fluid bg-light p-5">
     <div class="container">
         <h4>Sobre o Alugo</h4>
         <div class="mt-5 row py-4 py-sm-0 ml-3 justify-content-between">
 
-            <div class="row bg-primary p-5 col-5 align-items-center" style=" border-radius: 80px;">
+            <div class="row bg-primary p-5 col-md-5 col-12 align-items-center" style="border-radius: 80px;">
                 <div class="col-6">
                     <h5 class="text-white">Plataforma de Aluguéis de bens</h5>
                 </div>
                 <div class="col-6">
-                    <img class="" style="width: 200px; height: 200px; border-radius: 80px;" src="{% static 'images/icon-256x256.png' %}" alt="">
+                    <img class="img-fluid" style="border-radius: 80px;" src="{% static 'images/icon-256x256.png' %}"
+                        alt="">
                 </div>
                 <div class="mt-5">
                     <h6 class="text-white"></h6>
                 </div>
             </div>
 
-            <div class="row bg-danger p-5 col-5 align-items-center" style=" border-radius: 80px;">
-                <div class="col-6">
+            <div class="row bg-danger p-5 col-md-5 col-12 mt-5 mt-md-0 align-items-center"
+                style=" border-radius: 80px;">
+
+                <div class="col-md-6 col-12">
+                    <img class="img-fluid" style="width: 200px; height: 200px; border-radius: 80px;"
+                        src="{% static 'images/alugar-carro.jpg' %}" alt="">
+                </div>
+                <div class="col-md-6 col-12 mt-4 mt-md-0">
                     <h5 class="text-white">Tem algum produto parado na sua residência e não sabe o que fazer?</h5>
                 </div>
-                <div class="col-6">
-                    <img class="rounded" style="width: 200px; height: 200px;"  src="{% static 'images/alugar-carro.jpg' %}" alt="">
-                </div>
-                <div class="mt-5">
+                <div class="mt-md-5 mt-3">
                     <h6 class="text-white">No Alugo você pode anunciar seu produto para outra pessoa alugar e ainda
                         receber
                         por isso!</h6>
@@ -306,6 +286,7 @@
         document.getElementById('categoriaSelecionada').value = categoria;
         document.getElementById('btnForm').click();
     }
+
     function preencherEstado(estado) {
         document.getElementById('estadoSelecionado').value = estado;
         document.getElementById('btnForm').click();

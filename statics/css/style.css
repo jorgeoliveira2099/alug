@@ -65,9 +65,25 @@ html, body {
    text-decoration: none;
 }
 
+section.box-shadow {
+   border-radius: 20px;
+}
+
+.estado-atalho {
+   color: black;
+   margin-right: 20px;
+   font-weight: 500;
+}
+
 /* Home */
 
 .aumentar-tamanho-mouse a {
+   color: black;
+   text-decoration: none;
+   cursor: pointer;
+}
+
+.aumentar-tamanho-mouse p {
    color: black;
    text-decoration: none;
    cursor: pointer;

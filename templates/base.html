@@ -130,14 +130,14 @@
             <a id="anunciar" class="btn text-white ml-md-2 px-3 botao-redondo" style="background-color: orange;"
               href="{% url 'login' %}">Anunciar</a>
           </li>
-          
+
           {% endif %}
         </ul>
       </div>
     </div>
   </nav>
 
-  
+
 
   {% block main %}
   {% endblock %}
@@ -170,6 +170,9 @@
           <h6>LINKS ÚTEIS</h6>
           <ul class="list-unstyled">
             <li><a href="{% url 'perguntasFrequentes' %}">→ Perguntas Frequentes</a></li>
+            <li><a href="{% url 'produtos_requisitados' %}">→ Suas Propostas</a></li>
+            <li><a href="{% url 'avaliacoes_pendentes' %}">→ Avaliações Pendentes</a></li>
+            <li><a href="{% url 'historico_status' %}">→ Histórico dos Status do Aluguel</a></li>
           </ul>
         </div>
 
@@ -187,6 +190,8 @@
           <h6>LINKS ÚTEIS</h6>
           <ul class="list-unstyled">
             <li><a href="{% url 'perguntasFrequentes' %}">→ Perguntas Frequentes</a></li>
+            <li><a href="{% url 'login' %}">→ Suas Propostas</a></li>
+            <li><a href="{% url 'login' %}">→ Avaliações Pendentes</a></li>
           </ul>
         </div>
 

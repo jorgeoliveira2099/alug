@@ -1,6 +1,6 @@
 {%  extends 'base.html'%}
 {% load static %}
-{% block title %} Chat Home{% endblock %}
+{% block title %} Chat {% endblock %}
 
 {% block main %}
 
@@ -10,14 +10,14 @@
 
     {% csrf_token %}
     
-    <section class="container box-shadow p-3 pb-5">
+    <section class="container box-shadow mb-5 pt-5 pb-3">
 
         <div class="text-center">
             <h1 class="display-4 text-primary">Chat</h1>
-            <span class="h6">Converse com o locatário, <output id="identificador"> {{ identificador }} </output></span>
+            <span class="h6">Entre em um acordo com o usuário</span>
         </div>
 
-        <div class="row mt-5">
+        <div class="row mt-5 mb-5">
 
             <div class="col-md-6 col-12">
 
@@ -30,7 +30,7 @@
                     <span class="input-group-append">
                         <input class="form-control enviar-mensagem" type="text" id="mensagem" name="mensagem"
                             maxlength="80">
-                        <button class="btn btn-block btn-primary col-2" type="submit" id="submit" style="">Enviar</button>
+                        <button class="btn btn-block btn-primary col-2" style="font-weight: 500;" type="submit" id="submit" style="">Enviar</button>
                     </span>
                 </div>
 
@@ -48,14 +48,14 @@
                 </div>
 
                 <div class="mt-5">
-                    <h6>Caso queira iniciar a solicitação do processo de aluguel do produto:</h6>
+                    
 
                     {% if desabilitarAlugar %}
-                    <input disabled value="Alugar" type="button" class="btn btn-secondary" />
-                    <p> Este produto está em processo de aluguel, entre em contato com o locador para saber quando
-                        estará disponivel
-                    </p>
+                    <h6 class="text-danger"> Este produto está em processo de aluguel, entre em contato com o locador para saber quando
+                        estará disponivel.
+                    </h6>
                     {% else %}
+                    <h6>Caso queira iniciar a solicitação do processo de aluguel do produto:</h6>
                     <div class="mt-4 mx-auto col-4">
                         <a type="button" href="{% url 'alugar' produto.id %}">
                         <img style="width: 150px;" src="{% static 'images/alugar.png' %}" alt=""></a>
@@ -89,9 +89,10 @@
                     <h4>Para evitar o esquecimento do acordo entre as 2 partes, o Alugo disponibiliza a exportação da conversa no formato PDF!</h4>
                 </div>
 
-                <div class="mt-4 text-center">
-                    <a class="" href="{% url 'exportarpdf' room_name  %}"> 
-                        <img style="width: 90px;" src="{% static 'images/pdf_baixar.png' %}" alt="">
+                <div class="mt-4">
+                    <a class="d-flex align-items-center" href="{% url 'exportarpdf' room_name  %}"> 
+                        <h5 class="ml-lg-5">Baixar</h5>
+                        <img class="ml-3" style="width: 90px;" src="{% static 'images/pdf_baixar.png' %}" alt="">
                     </a>
                 </div>
             </div>

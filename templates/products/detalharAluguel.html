@@ -1,17 +1,17 @@
 {%  extends 'base.html'%}
 
-{% block title %} Produtos Requisitados/Alugados {% endblock %}
+{% block title %} Confirmação Aluguel {% endblock %}
 
 {% block main %}
 
-<section class="container box-shadow p-3 pb-5">
+<section class="container box-shadow mb-5 pt-5 pb-3">
 
 	<div class="text-center mb-5">
 		<h1 class="display-4 text-primary">Proposta de Aluguel</h1>
 		<span class="h6">Informações sobre a proposta do aluguel</span>
 	</div>
 
-	<div class="row">
+	<div class="row mb-5">
 		<div class="col">
 			<table class="table">
 				<thead class="thead-dark">
@@ -85,9 +85,9 @@
 				<a class="btn btn-danger botao-redondo mt-5" href="{% url 'encerrar_aluguel' aluguel.id %}"> Encerrar
 					Aluguel </a>
 				{% else %}
-				<a class="btn btn-primary botao-redondo mt-5 mr-5" href="{% url 'confirmar_aluguel' aluguel.id %}"> Confirmar Aluguel</a>
+				<a class="btn btn-primary botao-redondo px-4 mt-5 mr-5" href="{% url 'confirmar_aluguel' aluguel.id %}"> Aceitar Proposta</a>
 
-				<a class="btn btn-danger botao-redondo mt-5" href="{% url 'cancelar_aluguel' aluguel.id %}"> Cancelar Aluguel
+				<a class="btn btn-danger botao-redondo px-4 mt-5" href="{% url 'cancelar_aluguel' aluguel.id %}"> Recusar Proposta
 				</a>
 				{% endif %}
 			</div>

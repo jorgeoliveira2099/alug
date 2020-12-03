@@ -1,7 +1,7 @@
 {%  extends 'base.html'%}
 {% load static %}
 
-{% block title %} Lista de Produtos {% endblock %}
+{% block title %} Meus Anúncios {% endblock %}
 
 {% block main %}
 
@@ -99,7 +99,7 @@
 
     </div>
 
-    <div class="row mt-4">
+    <div class="row mt-4 mb-5">
         <div class="col-12 d-flex justify-content-center">
             {% include 'products/pagination.html' with page=products %}
         </div>
