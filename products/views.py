@@ -163,7 +163,6 @@ def alugar(request, productId):
     except ObjectDoesNotExist:
         perfil = Dados_usuario()
 
-    messages.info(request, 'Por gentileza, confirme seus dados!')
     return render(request, 'products/alugar.html',
                   {'cpf': perfil.cpf if perfil.cpf != None else "", 'cep': perfil.cep if perfil.cep != None else "",
                       'cidade': perfil.cidade if perfil.cidade != None else "",
