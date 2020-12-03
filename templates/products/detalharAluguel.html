@@ -83,8 +83,35 @@
 
 			<div class="text-center">
 				{% if aluguel.confirmado %}
-				<a class="btn btn-danger botao-redondo mt-5" href="{% url 'encerrar_aluguel' aluguel.id %}"> Encerrar
-					Aluguel </a>
+				
+
+				<button type="button" style="margin-top: 45px;" class="btn btn-danger botao-redondo" data-toggle="modal" data-target="#modalEncerrar">
+   Encerrar
+  </button>
+  <!-- Modal para aceitar -->
+  <div class="modal" id="modalEncerrar">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Encerrar aluguel</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Tem certeza que deseja encerrar este aluguel?
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger botao-redondo" data-dismiss="modal">Fechar</button>
+          <a class="btn btn-primary botao-redondo" href="{% url 'encerrar_aluguel' aluguel.id %}">Aceitar</a>
+        </div>        
+      </div>
+    </div>  
+</div>	
 				{% else %}
 
 			
@@ -118,9 +145,37 @@
 </div>
 
 				
+<button type="button" style="margin-top: 45px;" class="btn btn-danger botao-redondo" data-toggle="modal" data-target="#modalRecusar">
+   Recusar Proposta
+  </button>
 
-				<a class="btn btn-danger botao-redondo px-4 mt-5" href="{% url 'cancelar_aluguel' aluguel.id %}"> Recusar Proposta
-				</a>
+  <!-- Modal para recusar -->
+  <div class="modal" id="modalRecusar">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Recusar Proposta</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Tem certeza que deseja recusar esta proposta?
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger botao-redondo" data-dismiss="modal">Fechar</button>
+          <a class="btn btn-primary botao-redondo" href="{% url 'cancelar_aluguel' aluguel.id %}">Aceitar</a>
+        </div>        
+      </div>
+    </div>  
+</div>	
+
+
+
 				{% endif %}
 			</div>
 		</div>
