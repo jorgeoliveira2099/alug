@@ -60,47 +60,41 @@
 
             <div class="dropdown-menu cor-texto-dropdown" aria-labelledby="navbarDropdown">
 
-              <div class="arredondar-linha">
-                <a href="{% url 'show_notifications' %}" class="dropdown-item">
-                  <i class="material-icons">Notificações</i>
-                  {% if count_notifications %}
-                  <i class="far fa-bell" style="color:red;"></i>
-                  {% else %}
-                  <i class="far fa-bell ml-1"></i>
-                  <span class="badge">{{ count_notifications }}</span>
-                  {% endif %}
-                </a>
-              </div>
-
-              <div class="arredondar-linha">
+              <div>
                 <a class="dropdown-item" href="{% url 'perfil' user.id %}"><i>Meu Perfil</i>
                   <img class="ml-1" src="{% static 'images/icone-perfil-dropdown.ico' %}" alt="icone perfil"></a>
               </div>
 
-              <div class="arredondar-linha">
+              <div>
                 <a class="dropdown-item" href="{% url 'products_favourite_list' %}"><i>Meus Favoritos</i>
                   <img class="ml-1" src="{% static 'images/icone-favoritos-nav.png' %}" alt="icone meus favoritos"></a>
               </div>
 
-              <div class="arredondar-linha">
+              <div>
                 <a class="dropdown-item" href="{% url 'meusChats' %}">
                   <i>Chat</i>
                   <img class="ml-2" src="{% static 'images/icone-chat.png' %}" alt="icone chat"></a>
               </div>
 
-              <div class="arredondar-linha">
+              <div>
                 <a class="dropdown-item" href="{% url 'produtos_requisitados' %}">
                   <i>Suas Propostas</i>
                   <img class="ml-2" src="{% static 'images/proposta-icone.png' %}" alt="icone chat"></a>
               </div>
 
-              <div class="arredondar-linha">
+              <div>
+                <a class="dropdown-item" href="{% url 'historico_status' %}">
+                  <i>Status Propostas</i>
+                  <img class="ml-2" style="width: 40px;" src="{% static 'images/icone-status-propostas.ico' %}" alt="icone chat"></a>
+              </div>
+
+              <div>
                 <a class="dropdown-item" href="{% url 'avaliacoes_pendentes' %}">
                   <i>Avaliações Pendentes</i>
                   <img class="ml-2" src="{% static 'images/avaliar-notificacoes.ico' %}" alt="icone chat"></a>
               </div>
 
-              <div class="arredondar-linha">
+              <div>
                 <a class="dropdown-item" href="{% url 'perguntasFrequentes' %}">
                   <i>Ajuda e suporte</i>
                   <img src="{% static 'images/icone-ajuda-2.ico' %}" class="ml-1" alt="icone ajuda"></a>
@@ -111,6 +105,19 @@
                   <img src="{% static 'images/icone-sair.png' %}" alt="icone sair"></a>
               </div>
             </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'show_notifications' %}" class="nav-link">
+              <i class="material-icons"></i>
+              {% if count_notifications %}
+              <img src="{% static 'images/notificacao-nav.png' %}" alt="">
+              <span class="badge float-right">{{ count_notifications }}</span>
+              {% else %}
+              <img src="{% static 'images/icone-sem-notificacao-nav.ico' %}" alt="">
+              <span class="badge float-right">{{ count_notifications }}</span>
+              {% endif %}
+            </a>
           </li>
 
           <li class="nav-item aumentar-tamanho-mouse">
@@ -172,7 +179,7 @@
             <li><a href="{% url 'perguntasFrequentes' %}">→ Perguntas Frequentes</a></li>
             <li><a href="{% url 'produtos_requisitados' %}">→ Suas Propostas</a></li>
             <li><a href="{% url 'avaliacoes_pendentes' %}">→ Avaliações Pendentes</a></li>
-            <li><a href="{% url 'historico_status' %}">→ Histórico dos Status do Aluguel</a></li>
+            <li><a href="{% url 'historico_status' %}">→ Status das Propostas</a></li>
           </ul>
         </div>
 

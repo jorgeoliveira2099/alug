@@ -72,14 +72,13 @@
                 <input hidden value="{{categoria}}" name="categoria" id="categoriaSelecionada">
 
                 <span class="input-group-append">
-                    <input type="text" maxlength="100" value="{{nome}}" class="form-control" name="nome"
+                    <input onkeyup="pesquisar()" type="text" maxlength="100" value="{{nome}}" class="form-control" name="nome"
                         id="nomePesquisa">
                     <button type="submit" class="btn btn-primary py-0 px-3">
                         <img src="{% static 'images/icone-lupa.png' %}" style="width: 30px;" alt="icone lupa">
                     </button>
                 </span>
             </div>
-
 
     </div>
 
@@ -111,7 +110,7 @@
 
             <span class="input-group-append">
                 <input type="text" maxlength="100" value="{{nome}}" class="form-control pesquisa-mobile" name="nome"
-                        id="nomePesquisaMobile">
+                    id="nomePesquisaMobile">
                 <button type="submit" class="btn btn-primary py-0 px-3">
                     <img src="{% static 'images/icone-lupa.png' %}" style="width: 30px;" alt="icone lupa">
                 </button>
@@ -132,7 +131,9 @@
                         <image src="{{ product.get_photo_url }}" class="rounded tamanho-imagens-pesquisa"> </image>
 
                         <div class="row col-lg-9 col-8 col-sm-7">
-                            <p data-toggle="tooltip" data-placement="bottom" title="{{ product.nome }}" class="col-lg-9 col-12 texto-item-nome align-content-md-between reticencias">{{ product.nome }}</p>
+                            <p data-toggle="tooltip" data-placement="bottom" title="{{ product.nome }}"
+                                class="col-lg-9 col-12 texto-item-nome align-content-md-between reticencias">
+                                {{ product.nome }}</p>
 
                             <p class="col-lg-3 col-12" style="font-size: 20px; font-weight: 700;">R$ {{ product.preco }}
                             </p>
@@ -216,6 +217,11 @@
         cidade: document.getElementById('cidade'),
         estado: document.getElementById('estado')
     }, '{{estado}}', '{{cidade}}')
+
+
+    function pesquisar(){
+        document.getElementById("nomePesquisaMobile").value = document.getElementById("nomePesquisa").value;
+    }
 </script>
 
 {% endblock %}

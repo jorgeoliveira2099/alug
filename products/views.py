@@ -54,7 +54,7 @@ def create_product(request):
         product.cidade = request.POST.get('cidade')
         product.estado = request.POST.get('estado')
         product.save()
-        messages.info(request, 'Anunciado com sucesso!')
+        messages.info(request, 'Produto anunciado com sucesso!')
         form = ProductForm(None, None)
         return render(request, 'products/products-form.html', {'form': form})
 
@@ -83,7 +83,7 @@ def delete_product(request, productId):
     product = Product.objects.get(id=productId)
     user = product.user
     product.delete()
-    messages.info(request, 'Produto excluido com sucesso!')
+    messages.info(request, 'Anúncio excluído com sucesso!')
     return redirect(reverse('list_products', kwargs={'userId': user.id}))
 
 
@@ -147,8 +147,8 @@ def denunciar(request, productId):
         denuncia.produto = produto
         denuncia.save()
         messages.info(request, 'Agradecemos pela sua boa '
-                               'vontade de manter a nossa plataforma mais acolhedora '
-                               'e iremos avaliar esse caso!')
+                               'vontade de manter a nossa plataforma mais acolhedora. '
+                               'Iremos avaliar esse caso!')
         return redirect(reverse('denuncia', kwargs={'productId': produto.id}))
 
     return render(request, 'products/denuncia.html', {'form': form, 'productId': produto.id})
@@ -200,7 +200,7 @@ def alugarSubmit(request, productId):
         status.save()
 
         messages.info(request,
-                      'O locador recebeu seu pedido de aluguel, aguarde o retorno dele, ou entre em contato com ele(a) pelo chat')
+                      'O locador recebeu seu pedido de aluguel, aguarde o retorno dele, ou entre em contato com ele(a) pelo chat!')
         is_favourite = False
         if produto.favourite.filter(id=request.user.id).exists():
             is_favourite = True
@@ -334,7 +334,7 @@ def encerrarAluguel(request, idAluguel):
 
     aluguel.delete()
 
-    messages.info(request, 'Você encerrou um aluguel, por gentileza avalie a experiência com o locatario')
+    messages.info(request, 'Você encerrou um aluguel, por gentileza avalie a experiência com o locatário!')
     return render(request, 'products/produtosRequisitados.html')
 
 
@@ -358,7 +358,7 @@ def cancelarAluguel(request, idAluguel):
 
     aluguel.delete()
 
-    messages.info(request, 'Você cancelou a proposta de aluguel')
+    messages.info(request, 'Você rejeitou a proposta de aluguel!')
     return render(request, 'products/produtosRequisitados.html')
 
 
