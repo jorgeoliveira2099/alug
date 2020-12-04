@@ -5,11 +5,24 @@
 {% block main %}
 
 <section class="container box-shadow mb-5 pt-5 pb-3">
+    <div>
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
 
+        {% endfor %}
+    </div>
+    
     <div class="text-center mb-5">
         <h1 class="display-4 text-primary">Propostas</h1>
         <span class="h6">Aqui você encontra todas as suas propostas</span>
     </div>
+
+
     <div class="row justify-content-center">
 
         <div class="col-12">
@@ -22,7 +35,7 @@
         {% for alugado in alugados %}
 
         <a class="link-sem-cor-azul-sem-traco col-md-6 col-12 mr-md-2 mt-4" style="font-weight: 600;"
-            href="{% url 'detalhar_aluguel' alugado.id %}">
+           href="{% url 'detalhar_aluguel' alugado.id %}">
             <li class="list-group-item" style="border-radius: 20px;">
 
                 <div class="row col-12 align-items-center justify-content-md-around text-center">
@@ -62,7 +75,7 @@
         {% for proposta in propostas %}
 
         <a class="link-sem-cor-azul-sem-traco col-md-6 col-12 mr-md-2 mt-4" style="font-weight: 600;"
-            href="{% url 'detalhar_aluguel' proposta.id %}">
+           href="{% url 'detalhar_aluguel' proposta.id %}">
             <li class="list-group-item" style="border-radius: 20px;">
                 <div class="row col-12 align-items-center justify-content-md-around text-center">
 
