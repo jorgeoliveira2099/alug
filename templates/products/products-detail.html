@@ -20,7 +20,7 @@
 	</div>
 
 	<div class="mt-5">
-		<h3>{{ product.nome }}</h3>
+		<h3 class="reticencias">{{ product.nome }}</h3>
 	</div>
 
 	<div class="row justify-content-between col-lg-9 col-12">
@@ -67,8 +67,8 @@
 
 		<div class="col-lg-9 col-12">
 
-			<div class="">
-				<image src="{{ product.get_photo_url }}" class="rounded w-100 imagem-xl imagem-lg imagem-md"></image>
+			<div style="background-color: #E6E3E3;" class="text-center">
+				<image src="{{ product.get_photo_url }}" id="imagem-detalhe" class="rounded img-fluid"></image>
 			</div>
 
 		</div>
@@ -160,6 +160,30 @@
 
 </section>
 
+<script type="text/javascript">
+
+function saberTamanho(image) {
+	return {
+  width: image.naturalWidth,
+  height: image.naturalHeight
+	}
+}
+	
+	const img = document.getElementById('imagem-detalhe');
+	const size = saberTamanho(img);
+
+	if(size.width >= 825 && size.height > 402){
+		document.getElementById('imagem-detalhe').setAttribute('style', 'width: 825px');
+		document.getElementById('imagem-detalhe').setAttribute('style', 'height: 402px');
+	}else if((size.width > 520 && size.height > 402) || (size.width > 520 && size.height < 402)){
+		document.getElementById('imagem-detalhe').setAttribute('style', 'width: 520px');
+		document.getElementById('imagem-detalhe').setAttribute('style', 'height: 402px');
+	} else if((size.height < 402 && size.height < 402) || (size.height > 402 && size.height > 402)){
+		document.getElementById('imagem-detalhe').setAttribute('style', 'height: 402px');
+	}
+
+
+</script>
 
 
 {% endblock %}

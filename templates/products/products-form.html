@@ -16,45 +16,45 @@
             </div>
 
             <div>
-                    {% for message in messages %}
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ message }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
-                    {% endfor %}
+                {% endfor %}
 
-            <div class="row p-lg-5 py-4 px-1 rounded mb-5 texto-campo" style="border: 1px solid #ccc">
+                <div class="row p-lg-5 py-4 px-1 rounded mb-5 texto-campo" style="border: 1px solid #ccc">
 
-                <form method="POST" action="" enctype="multipart/form-data" class="col-lg-9">
-                    {% csrf_token %}
-                    {{ form|bootstrap }}
-                    <div>
-                        <select required class="custom-select mt-2 mb-4 col-4" name="estado" id="estado"></select>
+                    <form method="POST" action="" enctype="multipart/form-data" class="col-lg-9">
+                        {% csrf_token %}
+                        {{ form|bootstrap }}
+                        <div>
+                            <select required class="custom-select mt-2 mb-4 col-4" name="estado" id="estado"></select>
+                        </div>
+                        <div>
+                            <select required class="custom-select col-4" name="cidade" id="cidade"></select>
+                        </div>
+                </div>
+
+
+                <div class="row mt-5">
+                    <div class="col-lg-6">
+                        <span>Ao publicar você concorda e aceita nossos <a href="#">Termos de Uso e
+                                Privacidade</a></span>
                     </div>
-                    <div>
-                        <select required class="custom-select col-4" name="cidade" id="cidade"></select>
+                    <div class="col-3">
                     </div>
+                    <div class="col-lg-3 text-center">
+                        <button type="submit"
+                            class="btn btn-primary px-5 btn-block mt-3 mt-lg-0 btn-lg botao-redondo">Anunciar</button>
+                    </div>
+                    </form>
+                </div>
+
             </div>
-
-
-            <div class="row mt-5">
-                <div class="col-lg-6">
-                    <span>Ao publicar você concorda e aceita nossos <a href="#">Termos de Uso e
-                            Privacidade</a></span>
-                </div>
-                <div class="col-3">
-                </div>
-                <div class="col-lg-3 text-center">
-                    <button type="submit"
-                        class="btn btn-primary px-5 btn-block mt-3 mt-lg-0 btn-lg botao-redondo">Anunciar</button>
-                </div>
-                </form>
-            </div>
-
-        </div>
     </section>
 
 
@@ -78,10 +78,10 @@
     </script>
 
     <script language="JavaScript" type="text/javascript" charset="utf-8">
-      new dgCidadesEstados({
-        cidade: document.getElementById('cidade'),
-        estado: document.getElementById('estado')
-      }, '{{estado}}', '{{cidade}}')
+        new dgCidadesEstados({
+            cidade: document.getElementById('cidade'),
+            estado: document.getElementById('estado')
+        }, '{{estado}}', '{{cidade}}')
     </script>
 
 

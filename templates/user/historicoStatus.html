@@ -19,7 +19,7 @@
                     <image style="width: 110px; height: 80px;" class="rounded"
                         src="{{ historico.produto.get_photo_url }}" />
                 </li>
-                <li class="list-group-item">{{historico.produto}}</li>
+                <li data-toggle="tooltip" data-placement="bottom" title="{{ historico.produto }}"  class="list-group-item reticencias">{{historico.produto}}</li>
                 <li class="list-group-item">Locador: {{historico.locador}}</li>
 
                 {% if historico.status == 1 %}

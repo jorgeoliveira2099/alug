@@ -1,0 +1,182 @@
+{%  extends 'base.html'%}
+{% load static %}
+
+
+{% block title %} Perguntas Frequentes {% endblock %}
+
+{% block main %}
+
+<section class="container">
+  <div class="text-center my-5 pt-3">
+    <span class="h6">SEU PLANO, SEU ANÚNCIO</span>
+    <h1 class="display-4 text-primary">Escolha o Plano</h1>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md mb-5">
+      <div class="bg-light rounded p-4 box-shadow">
+        <h2>Gold</h2>
+        <ul class="list-unstyled lista-plano" style="border-radius: 20px; color: rgb(74, 74, 74); font-weight: bold;">
+          <li>→ 10 Anúncios</li>
+          <li>→ Anúncios mais visíveis</li>
+        </ul>
+
+        <div class="row mt-4 align-items-center">
+          <div class="col-lg-6">
+            <a class="btn btn-primary btn-lg btn-block botao-redondo" data-toggle="collapse" href="#contaBancaria"
+              role="button" aria-expanded="false" aria-controls="contaBancaria">Comprar Plano</a>
+          </div>
+          <div class="col-lg-6 col-12 text-center mt-lg-0 mt-2">
+            <span class="h4">R$20,00</span>
+          </div>
+        </div>
+
+        <div class="collapse" id="contaBancaria">
+          <div class="row col-12 justify-content-center">
+            <div class="12 text-center p-5">
+              <div>
+                <h5>Adquirir Plano</h5>
+              </div>
+
+              <div>
+                <h6>Para estar realizando a adoção do plano para a sua conta, envie o comprovante de transfêrencia para
+                  o e-mail noreplyalugo@gmail.com com o título "Compra de Plano", contendo
+                  o e-mail da sua conta e seus dados pessoais.
+                </h6>
+              </div>
+
+              <div class="row align-items-center">
+
+                <div class="col-4 mt-5">
+                  <img src="{% static 'images/icon-120x120.png' %}" alt="">
+                </div>
+
+                <div class="mt-5 col-8">
+                  <h6>Conta Bancária</h6>
+                  <h6>Agência: 0001</h6>
+                  <h6>Conta: 8205374-9</h6>
+                  <h6>Banco: 260 - Nu Pagamentos S.A.</h6>
+                  <h6>Nome: Plataforma Alugo</h6>
+                  <h6>CNPJ: 70.842.377/0001-73</h6>
+                </div>
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+    </div>
+
+    <div class="col-md mb-5">
+      <div class="bg-light rounded p-4 box-shadow">
+        <h2>Platium</h2>
+        <ul class="list-unstyled lista-plano" style="border-radius: 20px; color: rgb(74, 74, 74); font-weight: bold;">
+          <li>→ 250 Anúncios</li>
+          <li>→ Anúncios mais visíveis</li>
+          <li>→ Canal de Atendimento Exclusivo</li>
+        </ul>
+
+        <div class="row mt-4 align-items-center">
+          <div class="col-lg-6">
+            <a class="btn btn-primary btn-lg btn-block botao-redondo" data-toggle="collapse" href="#contaBancaria2"
+              role="button" aria-expanded="false" aria-controls="contaBancaria">Comprar Plano</a>
+          </div>
+          <div class="col-lg-6 col-12 text-center mt-lg-0 mt-2">
+            <span class="h4">R$100,00</span>
+          </div>
+        </div>
+
+        <div class="collapse" id="contaBancaria2">
+          <div class="row col-12 justify-content-center">
+            <div class="12 text-center p-5">
+              <div>
+                <h5>Adquirir Plano</h5>
+              </div>
+
+              <div>
+                <h6>Para estar realizando a adoção do plano para a sua conta, envie o comprovante de transfêrencia para
+                  o e-mail noreplyalugo@gmail.com com o título "Compra de Plano", contendo
+                  o e-mail da sua conta e seus dados pessoais.
+                </h6>
+              </div>
+
+              <div class="row align-items-center">
+
+                <div class="col-4 mt-5">
+                  <img src="{% static 'images/icon-120x120.png' %}" class="" alt="">
+                </div>
+
+                <div class="mt-5 col-8">
+                  <h6>Conta Bancária</h6>
+                  <h6>Agência: 0001</h6>
+                  <h6>Conta: 8205374-9</h6>
+                  <h6>Banco: 260 - Nu Pagamentos S.A.</h6>
+                  <h6>Nome: Plataforma Alugo</h6>
+                  <h6>CNPJ: 70.842.377/0001-73</h6>
+                </div>
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="container-fluid bg-light py-5">
+  <div class="container text-center">
+    <div>
+      <span class="h6 d-block">DÚVIDAS QUANTO AOS BENEFÍCIOS?</span>
+      <h1 class="display-4 text-primary">Descrição dos benefícios</h1>
+    </div>
+
+    <div class="row py-5" style="border-radius: 20px; color: rgb(74, 74, 74);">
+
+      <div class="col-xl-4 col-md-6 mt-3">
+        <div style="height: 100px;" class="d-flex justify-content-center">
+          <img class="" src="{% static 'images/icone-anuncio-planos.ico' %}" alt="Documentos">
+        </div>
+        <div class="">
+          <h3>+ Anúncios</h3>
+          <p>Insira mais anúncios de uma só vez!</p>
+        </div>
+      </div>
+
+      <div class="col-xl-4 col-md-6 mt-3">
+        <div style="height: 100px;" class="d-flex justify-content-center">
+          <img src="{% static 'images/icone-mais-visibilidade.ico' %}" alt="Passagens">
+        </div>
+        <h3>Mais Visibilidade</h3>
+        <p>Tenha seu anúncio mais visível nas buscas!</p>
+      </div>
+
+      <div class="col-xl-4 col-md-6 mt-3">
+        <div style="height: 100px;" class="d-flex justify-content-center">
+          <img src="{% static 'images/icone-suporte.ico' %}" alt="Translado">
+        </div>
+        <h3>Atendimento Exclusivo</h3>
+        <p>Receba atendimento por e-mail e telefone de um dos nossos especialistas.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock %}

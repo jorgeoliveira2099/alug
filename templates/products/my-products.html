@@ -53,7 +53,7 @@
                                     <image src="{{ product.get_photo_url }}"
                                         class="rounded tamanho-fixo-imagens-myAnuncios"> </image>
                                     <div class="mt-2 mb-2">
-                                        <span class="h5">{{ product.nome }}</span>
+                                        <p data-toggle="tooltip" data-placement="bottom" title="{{ product.nome }}" class="h5 meus-produtos reticencias">{{ product.nome }}</p>
                                     </div>
                                     <div class="mb-3">
                                         <span class="h6"><strong>R${{ product.preco }}</strong></span>

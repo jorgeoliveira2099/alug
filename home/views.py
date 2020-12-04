@@ -23,6 +23,9 @@ def termosDeUso(request):
 def perguntasFrequentes(request):
     return render(request, 'home/perguntasfrequentes.html')
 
+def sejaPrime(request):
+    return render(request, 'home/sejaPrime.html')
+
 def pesquisa(request):
     categoria = request.POST.get('categoria')
     resposta = request.GET.get('page')

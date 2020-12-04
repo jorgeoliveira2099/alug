@@ -43,7 +43,7 @@
                 <div class="mt-5">
 
                     <image class="tamanho-fixo-imagens rounded" src="{{ produto.get_photo_url }}" />
-                    <h5 class="mt-3"> {{ produto.nome }} </h5>
+                    <h5 data-toggle="tooltip" data-placement="bottom" title="{{ produto.nome }}" class="mt-3 reticencias"> {{ produto.nome }} </h5>
                     <h5> <span>R$ </span>{{ produto.preco }} </h5>
                 </div>
 

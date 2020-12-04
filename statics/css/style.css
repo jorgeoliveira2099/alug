@@ -75,6 +75,37 @@ section.box-shadow {
    font-weight: 500;
 }
 
+.reticencias {
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+@media (max-width: 1200px) {
+   h6.reticencias {
+      white-space: normal;
+      max-width: 310px;
+      text-overflow: ellipsis;
+   }
+}
+
+@media (max-width: 800px) {
+   .meus-produtos.reticencias {
+      max-width: 344px;
+   }
+   h3.reticencias {
+      white-space: normal;
+   }
+   .pesquisa.reticencias {
+      overflow: normal;
+      text-overflow: unset;
+      max-width: 500px;
+   }
+   .centralizar-pesquisa {
+      text-align: center;
+   }
+}
+
 /* Home */
 
 .aumentar-tamanho-mouse a {
@@ -444,3 +475,14 @@ section.duvida-por-tema p {
 .starrating>input:hover~label {
    color: #ffca08;
 }
+
+
+/* Seja Prime */
+
+.lista-plano li+li {
+   border-top: 1px solid rgba(0, 0, 0, .2);
+ }
+ 
+ .lista-plano li {
+   padding: 1rem;
+ }

@@ -40,7 +40,7 @@
           {% if user.is_authenticated %}
 
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'sejaPrime' %}">
               <img src="{% static 'images/icone-prime.ico' %}" alt="icone-prime">
               Seja Prime</a>
           </li>
@@ -177,7 +177,7 @@
         </div>
 
         {% else %}
-        <div class="col-4">
+        <div class="col-md-4 col-7">
           <h6>ACESSO RÁPIDO</h6>
           <ul class="list-unstyled">
             <li><a href="{% url 'login' %}">→ Anunciar</a></li>
@@ -186,7 +186,11 @@
           </ul>
         </div>
 
-        <div class="col-4">
+        <div class="d-md-none col-5">
+
+        </div>
+
+        <div class="col-md-4 col-7 mt-3 mb-5 mt-md-0 mb-md-0">
           <h6>LINKS ÚTEIS</h6>
           <ul class="list-unstyled">
             <li><a href="{% url 'perguntasFrequentes' %}">→ Perguntas Frequentes</a></li>
