@@ -335,7 +335,9 @@ def encerrarAluguel(request, idAluguel):
     aluguel.delete()
 
     messages.info(request, 'Você encerrou um aluguel, por gentileza avalie a experiência com o locatário!')
-    return render(request, 'products/produtosRequisitados.html')
+    alugados = Alugar.objects.filter(Q(locador=user) & Q(confirmado=True))
+    propostas = Alugar.objects.filter(Q(locador=user) & Q(confirmado=False))
+    return render(request, 'products/produtosRequisitados.html', {'alugados': alugados, 'propostas': propostas})
 
 
 @login_required
@@ -359,7 +361,9 @@ def cancelarAluguel(request, idAluguel):
     aluguel.delete()
 
     messages.info(request, 'Você rejeitou a proposta de aluguel!')
-    return render(request, 'products/produtosRequisitados.html')
+    alugados = Alugar.objects.filter(Q(locador=user) & Q(confirmado=True))
+    propostas = Alugar.objects.filter(Q(locador=user) & Q(confirmado=False))
+    return render(request, 'products/produtosRequisitados.html', {'alugados': alugados, 'propostas': propostas})
 
 
 @login_required
