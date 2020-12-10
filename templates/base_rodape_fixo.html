@@ -13,85 +13,138 @@
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>{% block title %}{% endblock %}</title>
 </head>
 
 <body>
 
   <script type="text/javascript" src="{% static 'js/cidades-estados.js' %}"></script>
-  <nav class="navbar fixed-top navbar-expand-lg bg-dark fixed-top box-shadow py-2">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container nav-alugo">
+
       <a class="navbar-brand aumentar-tamanho-mouse" href="{% url 'home' %}">
         <img id="logo-nav" src="{% static 'images/icon-nav-57x57.png' %}" alt="">
       </a>
+
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
       <div class="collapse navbar-collapse cor-texto-nav icones-nav" id="navbarResponsive">
+
         <ul class="navbar-nav ml-auto">
           {% if user.is_authenticated %}
+
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'sejaPrime' %}">
               <img src="{% static 'images/icone-prime.ico' %}" alt="icone-prime">
               Seja Prime</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="{% url 'list_products' user.id %}">
               <img src="{% static 'images/icone-meus-anuncios.png' %}" alt="meus anuncios">
               Meus Anúncios</a>
           </li>
-          <li class="nav-item dropdown">
+
+          <li class="nav-item dropdown bg">
+
             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
               href="perfil_usuario.html">
               <img src="{% static 'images/icone-perfil-nav.png' %}" alt="icone perfil">
               Perfil</a>
+
             <div class="dropdown-menu cor-texto-dropdown" aria-labelledby="navbarDropdown">
-              <div class="arredondar-linha">
-                <a href="{% url 'show_notifications' %}" class="dropdown-item">
-                  <i class="material-icons">Notificações</i>
-                  {% if count_notifications %}
-                  <i class="far fa-bell" style="color:red;"></i>
-                  {% else %}
-                  <i class="far fa-bell ml-1"></i>
-                  <span class="badge">{{ count_notifications }}</span>
-                  {% endif %}
-                </a>
-              </div>
-              <div class="arredondar-linha">
-                <a class="dropdown-item" href="{% url 'perfil' user.id %}"><i>Meu Perfil</i> 
+
+              <div>
+                <a class="dropdown-item" href="{% url 'perfil' user.id %}"><i>Meu Perfil</i>
                   <img class="ml-1" src="{% static 'images/icone-perfil-dropdown.ico' %}" alt="icone perfil"></a>
               </div>
-              <div class="arredondar-linha">
+
+              <div>
+                <a class="dropdown-item" href="{% url 'products_favourite_list' %}"><i>Meus Favoritos</i>
+                  <img class="ml-1" src="{% static 'images/icone-favoritos-nav.png' %}" alt="icone meus favoritos"></a>
+              </div>
+
+              <div>
                 <a class="dropdown-item" href="{% url 'meusChats' %}">
-                  <i>Chat</i> 
+                  <i>Chat</i>
                   <img class="ml-2" src="{% static 'images/icone-chat.png' %}" alt="icone chat"></a>
               </div>
-              <div class="arredondar-linha">
-                <a class="dropdown-item" href="#">
-                  <i>Ajuda</i> 
+
+              <div>
+                <a class="dropdown-item" href="{% url 'produtos_requisitados' %}">
+                  <i>Suas Propostas</i>
+                  <img class="ml-2" src="{% static 'images/proposta-icone.png' %}" alt="icone chat"></a>
+              </div>
+
+              <div>
+                <a class="dropdown-item" href="{% url 'historico_status' %}">
+                  <i>Status Propostas</i>
+                  <img class="ml-2" style="width: 40px;" src="{% static 'images/icone-status-propostas.ico' %}" alt="icone chat"></a>
+              </div>
+
+              <div>
+                <a class="dropdown-item" href="{% url 'avaliacoes_pendentes' %}">
+                  <i>Avaliações Pendentes</i>
+                  <img class="ml-2" src="{% static 'images/avaliar-notificacoes.ico' %}" alt="icone chat"></a>
+              </div>
+
+              <div>
+                <a class="dropdown-item" href="{% url 'perguntasFrequentes' %}">
+                  <i>Ajuda e suporte</i>
                   <img src="{% static 'images/icone-ajuda-2.ico' %}" class="ml-1" alt="icone ajuda"></a>
               </div>
-              <a class="dropdown-item" href="{% url 'logout' %}"><i>Sair</i>
-                <img src="{% static 'images/icone-sair.png' %}" alt="icone sair"></a>
+
+              <div>
+                <a class="dropdown-item" href="{% url 'logout' %}"><i>Sair</i>
+                  <img src="{% static 'images/icone-sair.png' %}" alt="icone sair"></a>
+              </div>
             </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'show_notifications' %}" class="nav-link">
+              <i class="material-icons"></i>
+              {% if count_notifications %}
+              <img src="{% static 'images/notificacao-nav.png' %}" alt="">
+              <span class="badge float-right">{{ count_notifications }}</span>
+              {% else %}
+              <img src="{% static 'images/icone-sem-notificacao-nav.ico' %}" alt="">
+              <span class="badge float-right">{{ count_notifications }}</span>
+              {% endif %}
+            </a>
+          </li>
+
           <li class="nav-item aumentar-tamanho-mouse">
             <a id="anunciar" class="btn text-white ml-md-2 px-3 botao-redondo" style="background-color: orange;"
               href="{% url 'create_products' %}">Anunciar</a>
           </li>
+
           {% else %}
+
           <li class="nav-item">
             <a class="nav-link" href="{% url 'login' %}">
               <img src="{% static 'images/icone-entrar.png' %}" alt="Entrar">
               Entrar</a>
           </li>
+
           <li class="nav-item aumentar-tamanho-mouse">
             <a id="anunciar" class="btn text-white ml-md-2 px-3 botao-redondo" style="background-color: orange;"
               href="{% url 'login' %}">Anunciar</a>
           </li>
-          </li>
+
           {% endif %}
         </ul>
       </div>
     </div>
   </nav>
+
+
 
   {% block main %}
   {% endblock %}
@@ -123,12 +176,15 @@
         <div class="col-md-4 col-7 mt-3 mb-5 mt-md-0 mb-md-0">
           <h6>LINKS ÚTEIS</h6>
           <ul class="list-unstyled">
-            <li><a href="">→ Perguntas Frequentes</a></li>
+            <li><a href="{% url 'perguntasFrequentes' %}">→ Perguntas Frequentes</a></li>
+            <li><a href="{% url 'produtos_requisitados' %}">→ Suas Propostas</a></li>
+            <li><a href="{% url 'avaliacoes_pendentes' %}">→ Avaliações Pendentes</a></li>
+            <li><a href="{% url 'historico_status' %}">→ Status das Propostas</a></li>
           </ul>
         </div>
 
         {% else %}
-        <div class="col-4">
+        <div class="col-md-4 col-7">
           <h6>ACESSO RÁPIDO</h6>
           <ul class="list-unstyled">
             <li><a href="{% url 'login' %}">→ Anunciar</a></li>
@@ -137,10 +193,16 @@
           </ul>
         </div>
 
-        <div class="col-4">
+        <div class="d-md-none col-5">
+
+        </div>
+
+        <div class="col-md-4 col-7 mt-3 mb-5 mt-md-0 mb-md-0">
           <h6>LINKS ÚTEIS</h6>
           <ul class="list-unstyled">
-            <li><a href="">→ Perguntas Frequentes</a></li>
+            <li><a href="{% url 'perguntasFrequentes' %}">→ Perguntas Frequentes</a></li>
+            <li><a href="{% url 'login' %}">→ Suas Propostas</a></li>
+            <li><a href="{% url 'login' %}">→ Avaliações Pendentes</a></li>
           </ul>
         </div>
 
@@ -160,8 +222,15 @@
       <div class="row justify-content-between mt-1 mr-1">
 
         <div class="extra ml-3">
-          <a href="">Termos e condições de uso</a>
+          <a href="{% url 'termosDeUso' %}">Termos e condições de uso</a>
+
+          <a class="ml-3 politica-cookies" href="{% url 'politicaCookies' %}">Política de cookies</a>
+
+          <div class="d-md-none">
+            <a class="ml-3" href="{% url 'politicaCookies' %}">Política de cookies</a>
+          </div>
         </div>
+
 
         <div class="cop">
           <p>© 2020 Alugo</p>
@@ -184,6 +253,8 @@
   <script type="text/javascript" src="{% static 'js/jquery-1.2.6.pack.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/jquery.maskedinput-1.1.4.pack.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/senha.js' %}"></script>
+
 </body>
 
 </html>

@@ -26,6 +26,9 @@ def perguntasFrequentes(request):
 def sejaPrime(request):
     return render(request, 'home/sejaPrime.html')
 
+def politicaCookies(request):
+    return render(request, 'home/politicaCookies.html')
+
 def pesquisa(request):
     categoria = request.POST.get('categoria')
     resposta = request.GET.get('page')

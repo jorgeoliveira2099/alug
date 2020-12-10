@@ -23,11 +23,11 @@
 
     <div class="col-md-9 col-12">
 
-      <h3 class="mb-4">Avalie sua experiencia com {{ usuario }}!</h3>
+      <h3 class="mb-4">Avalie sua experiência com {{ usuario }}!</h3>
       <form action="/rating/avaliar/{{idAvalia}}/submit" method="POST">
         {% csrf_token %}
         <textarea type="text" id="textlocador" class="container d-flex justify-content-center form-control"
-          maxlength="300" name="text" placeholder="Descreva a sua experiencia!"></textarea><br>
+          maxlength="300" name="text" placeholder="Descreva a sua experiência!"></textarea><br>
 
         <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
           <input type="radio" id="star5" name="rate" value="5" /><label for="star5" title="cinco estrelas"></label>

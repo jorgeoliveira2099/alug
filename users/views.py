@@ -41,7 +41,7 @@ def excluirContaSubmit(request, userId):
        auth.delete()
        produtos = Product.objects.filter(Q(alugado=False)).order_by('-id')[0:8]
        context = {'products': produtos}
-       messages.info(request, 'Usuario excluido com sucesso!')
+       messages.info(request, 'Sua conta foi excluída com sucesso!')
        return render(request, 'home/home.html', context)
     else:
        messages.error(request, 'Senha incorreta, favor informar a senha correta!')

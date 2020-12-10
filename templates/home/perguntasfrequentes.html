@@ -53,17 +53,6 @@
         <p>Na barra de navegação, clique na aba Perfil, em seguida clique em Meu Perfil, role a página até o fim e
           clique em excluir conta.</p>
       </div>
-
-      <div class="mb-3">
-        <a data-toggle="collapse" href="#AlterarEmail" role="button" aria-expanded="false"
-          aria-controls="multiCollapseExample1">Como altero meu email?</a>
-      </div>
-
-      <div class="collapse ml-5" id="AlterarEmail">
-        <p> Na barra de navegação, clique na aba Perfil, em seguida clique em Meu Perfil, após isso digite os novos
-          dados e salve a alteração.
-        </p>
-      </div>
     </div>
   </div>
   <!-- Fim - 1 categoria de dúvidas -->
@@ -85,16 +74,7 @@
       </div>
 
       <div class="collapse ml-5" id="PublicarAnuncio">
-        <p>No menu de navegação, na aba inserir.</p>
-      </div>
-
-      <div class="mb-3">
-        <a data-toggle="collapse" href="#ProblemaImagem" role="button" aria-expanded="false"
-          aria-controls="multiCollapseExample1">Problemas em anexar uma imagem</a>
-      </div>
-
-      <div class="collapse ml-5" id="ProblemaImagem">
-        <p>Abra a página de inserir produto e tire a foto com a câmera, ou importe a imagem através da galeria.</p>
+        <p>No menu de navegação, clique em "Anunciar".</p>
       </div>
 
       <div class="mb-3">
@@ -103,46 +83,45 @@
       </div>
 
       <div class="collapse ml-5" id="VerMeusAnuncios">
-        <p>No menu de navegação, na aba meus anúncios</p>
+        <p>No menu de navegação, clique em "Meus Anúncios".</p>
       </div>
 
       <div class="mb-3">
         <a data-toggle="collapse" href="#EditarAnuncio" role="button" aria-expanded="false"
-          aria-controls="multiCollapseExample1">Onde edito meus anúncios publicados?</a>
+          aria-controls="multiCollapseExample1">Como edito meu anúncio?</a>
       </div>
 
       <div class="collapse ml-5" id="EditarAnuncio">
-        <p>No menu de navegação, na aba meus anúncios</p>
+        <p>No menu de navegação, clique em "Meus Anúncios", clique no ícone <span><i class="fa fa-pencil" aria-hidden="true"></i></span> e edite seu anúncio!</p>
       </div>
 
       <div class="mb-3">
         <a data-toggle="collapse" href="#ExcluirAnuncio" role="button" aria-expanded="false"
-          aria-controls="multiCollapseExample1">Onde excluo meus anúncios publicados?</a>
+          aria-controls="multiCollapseExample1">Como excluo meu anúncio?</a>
       </div>
 
       <div class="collapse ml-5" id="ExcluirAnuncio">
-        <p>No menu de navegação, na aba meus anúncios</p>
+        <p>No menu de navegação, clique em "Meus Anúncios", clique no ícone <span><i class="fa fa-trash" aria-hidden="true"></i></span> e exclua seu anúncio!</p>
       </div>
 
       <div class="mb-3">
-        <a data-toggle="collapse" href="#ExpiradoAnuncio" role="button" aria-expanded="false"
-          aria-controls="multiCollapseExample1">Meu anúncio expirou e agora?</a>
+        <a data-toggle="collapse" href="#FavoritarAnuncio" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Como favorito um anúncio?</a>
       </div>
 
-      <div class="collapse ml-5" id="ExpiradoAnuncio">
-        <p>
-          Insira-o novamente ou renove-o com um de nossos planos.
-        </p>
+      <div class="collapse ml-5" id="FavoritarAnuncio">
+        <p>Escolha o anúncio que quer favoritar, abra-o, em seguida clique no ícone <span><img style="width: 30px;" src="{% static 'images/coracao-vazio.ico' %}" alt=""></span> para favoritar.</p>
       </div>
 
       <div class="mb-3">
-        <a data-toggle="collapse" href="#StatusAnuncio" role="button" aria-expanded="false"
-          aria-controls="multiCollapseExample1">Meu anúncio não sai do status "em análise"</a>
+        <a data-toggle="collapse" href="#VerAnuncioFavoritado" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Onde vejo meus anúncios favoritados?</a>
       </div>
 
-      <div class="collapse ml-5" id="StatusAnuncio">
-        <p>A análise dura em média 30 minutos, naso o tempo seja maior, entre em contato conosco.</p>
+      <div class="collapse ml-5" id="VerAnuncioFavoritado">
+        <p>No menu de navegação, clique em "Perfil", depois clique em "Meus Favoritos".</p>
       </div>
+
     </div>
   </div>
 
@@ -164,27 +143,92 @@
       </div>
 
       <div class="collapse ml-5" id="TornarPrime">
-        <p>Adquirindo o plano prime.</p>
+        <p>No menu de navegação, clique em "Seja Prime", logo em seguida, clique em "Comprar Plano" e siga o passo a passo.</p>
       </div>
       <!--  Fim - Um submenu com um texto -->
 
+    </div>
+  </div>
+
+  <div class="pb-2" style="border-bottom: 1px solid #ccc;">
+
+    <div class="pt-4 pb-2">
+      <a data-toggle="collapse" href="#Alugar" class="colecao" role="button" aria-expanded="false"
+        aria-controls="multiCollapseExample1">
+        <img src="{% static 'images/icone-seta-pro-lado.ico' %}" style="width: 20px;" alt="icone seta pro lado">
+        Alugar</a>
+    </div>
+
+    <div class="collapse ml-5" id="Alugar">
+
       <div class="mb-3">
-        <a data-toggle="collapse" href="#DescontoPrime" role="button" aria-expanded="false"
-          aria-controls="multiCollapseExample1">Se eu for Gold, se for comprar o Platium tenho desconto?</a>
+        <a data-toggle="collapse" href="#AlugarProduto" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Como inicio o processo de aluguel?</a>
       </div>
 
-      <div class="collapse ml-5" id="DescontoPrime">
-        <p>Sim, o desconto de 30% é automático.</p>
+      <div class="collapse ml-5" id="AlugarProduto">
+        <p>Escolha o anúncio que você quer alugar, clique em "Chamar no chat", em seguida, clique em "Alugar" e siga o passo a passo.</p>
       </div>
 
       <div class="mb-3">
-        <a data-toggle="collapse" href="#DurarPrime" role="button" aria-expanded="false"
-          aria-controls="multiCollapseExample1">Por quanto tempo dura o prime?</a>
+        <a data-toggle="collapse" href="#VerMeusAlugueis" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Sou locador, onde vejo meus produtos alugados?</a>
       </div>
 
-      <div class="collapse ml-5" id="DurarPrime">
-        <p>12 meses</p>
+      <div class="collapse ml-5" id="VerMeusAlugueis">
+        <p>No menu de navegação, clique em "Perfil" e clique em "Suas Propostas".</p>
       </div>
+
+      <div class="mb-3">
+        <a data-toggle="collapse" href="#EditarAnuncio" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Sou locador, Como encerro um aluguel?</a>
+      </div>
+
+      <div class="collapse ml-5" id="EditarAnuncio">
+        <p>No menu de navegação, clique em "Perfil", clique em "Suas Propostas", clique no produto que você quer encerrar o aluguel em "Produtos Alugados" e clique no botão "Encerrar Aluguel"</p>
+      </div>
+
+      <div class="mb-3">
+        <a data-toggle="collapse" href="#ExcluirAnuncio" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Sou locador, onde vejo propostas propostas que recebi?</a>
+      </div>
+
+      <div class="collapse ml-5" id="ExcluirAnuncio">
+        <p>No menu de navegação, clique em "Perfil", clique em "Suas Propostas", em "Aguardando sua Resposta" estará as propostas recebidas.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="pb-2" style="border-bottom: 1px solid #ccc;">
+
+    <div class="pt-4 pb-2">
+      <a data-toggle="collapse" href="#Avaliacoes" class="colecao" role="button" aria-expanded="false"
+        aria-controls="multiCollapseExample1">
+        <img src="{% static 'images/icone-seta-pro-lado.ico' %}" style="width: 20px;" alt="icone seta pro lado">
+        Avaliações</a>
+    </div>
+
+    <div class="collapse ml-5" id="Avaliacoes">
+
+      <div class="mb-3">
+        <a data-toggle="collapse" href="#AvaliarUsuario" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Como avalio um usuário?</a>
+      </div>
+
+      <div class="collapse ml-5" id="AvaliarUsuario">
+        <p>Após ter realizado um aluguel, no menu de navegação, clique em "Perfil", logo em seguida, clique em "Avaliações pendentes", clique no produto que você alugou para estar avaliando o locador/locatário.</p>
+      </div>
+      
+      <div class="mb-3">
+        <a data-toggle="collapse" href="#VerAvaliacoesUsuario" role="button" aria-expanded="false"
+          aria-controls="multiCollapseExample1">Como vejo as avaliações de um usuário?</a>
+      </div>
+
+      <div class="collapse ml-5" id="VerAvaliacoesUsuario">
+        <p>Clique no anúncio e depois clique em "Avaliações deste Locador"</p>
+      </div>
+
     </div>
   </div>
 
